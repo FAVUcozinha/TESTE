@@ -714,7 +714,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tbody>
+                <tbody></tb>
             </table>
         </div>
 
@@ -727,7 +727,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tby>
+                <tbody></tb>
             </table>
         </div>
 
@@ -753,7 +753,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tbody>
+                <tbody></tb>
             </table>
         </div>
         
@@ -766,7 +766,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tbody>
+                <tbody></tb>
             </table>
         </div>
         
@@ -857,23 +857,24 @@
     <script>
         // 🚨🚨🚨 INÍCIO DAS CONSTANTES E VARIÁVEIS DE CONFIGURAÇÃO 🚨🚨🚨
         
-        // 1. SEU NÚMERO DE WHATSAPP (Corrigido para 5581997346237)
+        // 1. SEU NÚMERO DE WHATSAPP (Corrigido)
         const SEU_NUMERO_WHATSAPP = "5581997346237"; 
 
-        // 2. URL DE ENVIO DO SEU NOVO GOOGLE FORMS (Garantida a correção do link)
+        // 2. URL DE ENVIO DO SEU NOVO GOOGLE FORMS (Corrigida)
         const ENDPOINT_DE_REGISTRO_FORMS = "https://docs.google.com/forms/d/e/1FAIpQLSczJtEuQDBrSdw8fr1RjCGcCvPwcLaigK-A_1BgPPK0i0k-9w/formResponse"; 
 
-        // 3. MAPA DE CAMPOS - NOVOS ENTRY ID's DO FORMS RECRIADO (Ordem verificada)
+        // 3. MAPA DE CAMPOS - NOVOS ENTRY ID's DO FORMS (MAIS PROVÁVEIS, baseados na sua inspeção)
+        // ESSA É A CHAVE DA SOLUÇÃO. ESTAMOS FORÇANDO O MAPA CONFORME SEU FORMS.
         const FORM_MAP = {
-            NOME: 'entry.50745233',              // 1. Nome do Cliente
-            DATA: 'entry.1017833038',            // 2. Data Entrega
-            HORARIO: 'entry.946351052',           // 3. Horário Entrega
-            PAGAMENTO: 'entry.2120392339',       // 4. Forma de Pagamento
-            TOTAL: 'entry.390595286',            // 5. Total Final
-            CUPOM: 'entry.1690041133',           // 6. Cupom Utilizado
-            RESUMO_ITENS: 'entry.2062334812',    // 7. Resumo dos Itens
-            ID_PEDIDO: 'entry.1221568297',       // 8. ID do Pedido
-            STATUS: 'entry.1979450379'           // 9. Status
+            NOME: 'entry.461447198',              // B
+            STATUS: 'entry.106951967',           // J (2º input hidden na inspeção)
+            PAGAMENTO: 'entry.2021419276',       // E (3º input hidden)
+            TOTAL: 'entry.857371791',            // F (4º input hidden)
+            CUPOM: 'entry.1413598671',           // G (5º input hidden)
+            RESUMO_ITENS: 'entry.888527842',     // H (6º input hidden)
+            HORARIO: 'entry.928045139_hour',     // D
+            DATA: 'entry.1017281190_year',       // C
+            ID_PEDIDO: 'entry.772122274'         // I
         };
         // 🚨🚨🚨 FIM DAS CONSTANTES DE CONFIGURAÇÃO 🚨🚨🚨
 
@@ -1657,7 +1658,7 @@
 
         // NOVO: GERA ID ÚNICO
         function gerarIdPedido() {
-            // Exemplo: PEDIDO-20251023-145712-321
+            // Exemplo: PEDIDO-20251023-181512-321
             const agora = new Date();
             const dataStr = agora.toLocaleDateString('sv-SE').replace(/-/g, '');
             const horaStr = agora.toLocaleTimeString('pt-BR', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit'}).replace(/:/g, '');
@@ -1686,7 +1687,7 @@
              window.open(url, '_blank');
         }
 
-        // FUNÇÃO PRINCIPAL CONFIRMAR PEDIDO (Atualizada para envio ao Forms e WhatsApp)
+        // FUNÇÃO PRINCIPAL CONFIRMAR PEDIDO (FINAL)
         function confirmarPedido() {
             
             atualizarTotal(); 
@@ -1739,7 +1740,12 @@
             idPedidoAtual = gerarIdPedido(); 
 
             const cupom = cupomAplicado.codigo || "Nenhum";
-            const totalLiquidoFormatado = totalLiquido.toFixed(2).replace('.', ','); // Ex: 150,00
+            
+            // CORREÇÃO: Formatação para PONTO (Ex: 150.00) para o Forms reconhecer como número.
+            const totalForms = totalLiquido.toFixed(2); 
+            
+            // Formato com vírgula para o WhatsApp (exibição)
+            const totalWhatsApp = totalLiquido.toFixed(2).replace('.', ','); 
             
             // Monta a string de resumo
             let resumoString = '';
@@ -1760,11 +1766,11 @@
                 [FORM_MAP.DATA]: data,
                 [FORM_MAP.HORARIO]: horario,
                 [FORM_MAP.PAGAMENTO]: pagamento,
-                [FORM_MAP.TOTAL]: totalLiquidoFormatado,
+                [FORM_MAP.TOTAL]: totalForms, // ENVIANDO COM PONTO
                 [FORM_MAP.CUPOM]: cupom,
                 [FORM_MAP.RESUMO_ITENS]: resumoString.trim(),
-                [FORM_MAP.ID_PEDIDO]: idPedidoAtual, // <--- ID ÚNICO
-                [FORM_MAP.STATUS]: 'Aberto' // <--- STATUS INICIAL
+                [FORM_MAP.ID_PEDIDO]: idPedidoAtual, 
+                [FORM_MAP.STATUS]: 'Aberto' 
             };
 
             for (const entryId in campos) {
@@ -1776,12 +1782,11 @@
             }
             
             // ENVIO PARA O GOOGLE FORMS (REGISTRO NO SHEETS)
-            // A action do form será executada aqui.
             window.submitted = true;
             form.submit(); 
 
-            // CHAMA O ENVIO DO WHATSAPP (ABRE NOVA ABA/JANELA PARA O CLIENTE)
-            enviarWhatsapp(nome, data, horario, pagamento, totalLiquidoFormatado, resumoString.trim(), idPedidoAtual, cupom);
+            // CHAMA O ENVIO DO WHATSAPP (usa o total formatado com VÍRGULA)
+            enviarWhatsapp(nome, data, horario, pagamento, totalWhatsApp, resumoString.trim(), idPedidoAtual, cupom);
 
             // Fechamos o popup do pedido (o alerta de sucesso será dado pelo iframe.onload)
             fecharPopup();
