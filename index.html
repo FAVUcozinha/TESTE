@@ -861,6 +861,7 @@
 
     <script>
         // 🚨🚨 URL DO APPS SCRIPT (SUA CHAVE API) 🚨🚨
+        // Sua URL: https://script.google.com/macros/s/AKfycbyx-GAj1IgiYxS-HUe0wtVNjtprviAR7A6-bgfV3eXIsc0dTxoNLtCsSNwMHVYbR8AF/exec
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyx-GAj1IgiYxS-HUe0wtVNjtprviAR7A6-bgfV3eXIsc0dTxoNLtCsSNwMHVYbR8AF/exec"; 
         // Seu número de WhatsApp (mantido)
         const WHATSAPP_NUMBER = "558195256641"; 
@@ -1855,6 +1856,7 @@
             
             // -------------------------------------------------------------
             // NOVO BLOCO: ENVIO DOS DADOS PARA O GOOGLE APPS SCRIPT (Criação de Pedido)
+            // CORRIGIDO: Uso de URLSearchParams para Apps Script
             // -------------------------------------------------------------
             
             const formData = new FormData();
@@ -1872,6 +1874,9 @@
             // Campo principal que contém todos os detalhes do pedido
             formData.append('Resumo dos Itens', resumoParaEnvio); 
 
+            // Converte FormData para URLSearchParams (formato que Apps Script espera no doPost(e))
+            const urlEncodedData = new URLSearchParams(formData);
+
             // Configura o botão para o estado de envio
             const submitButton = document.querySelector('button[onclick="confirmarPedido()"]');
             const originalText = submitButton.textContent;
@@ -1884,7 +1889,7 @@
                 // Envia para o Apps Script (com action=createOrder no POST)
                 const response = await fetch(APPS_SCRIPT_URL, { 
                     method: 'POST',
-                    body: formData
+                    body: urlEncodedData // AGORA USAMOS A VERSÃO CORRIGIDA
                 });
 
                 const responseData = await response.json();
@@ -1893,7 +1898,7 @@
                     alert("Pedido registrado com sucesso na Planilha! Você será redirecionado para o WhatsApp.");
                     apiSuccess = true;
                 } else {
-                    console.error('Erro API:', responseData.message);
+                    console.error('Erro API:', responseData.message || responseData);
                     alert(`Falha no registro do pedido. Enviando via WhatsApp. Erro: ${responseData.message || 'API indisponível'}`);
                 }
             } catch (error) {
