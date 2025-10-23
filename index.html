@@ -427,6 +427,13 @@
             cursor: pointer; 
             z-index: 110;
         }
+        
+        /* NOVO ESTILO PARA O POPUP DE MENSAGEM */
+        #popup-mensagem h2 {
+            font-size: 24px;
+            color: #1A2B0F;
+            margin-bottom: 10px;
+        }
 
         /* Estilos específicos do conteúdo do Resumo */
         .popup-conteudo h2 { color: #1A2B0F; font-size: 26px; font-weight: bold; }
@@ -535,127 +542,6 @@
             line-height: 1; /* Centraliza o texto verticalmente */
             height: 40px; /* Garante a altura */
         }
-        
-        /* ----------------- CUPOM STYLES ----------------- */
-        #cupom-container {
-            background-color: #e8dcc6; 
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: left;
-            color: #1A2B0F;
-        }
-
-        #cupom-input-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            align-items: center;
-        }
-
-        #cupom-input {
-            flex-grow: 1;
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid #7FB1C8;
-            background-color: white;
-            color: #1A2B0F;
-            box-sizing: border-box;
-            height: 40px; /* Ajuste para alinhar com o botão APLICAR */
-        }
-
-        #apply-cupom-btn {
-            width: 70px; 
-            flex-shrink: 0;
-            padding: 10px 0; 
-            margin: 0;
-            font-size: 14px;
-            background-color: #E09F41; /* Laranja para destaque */
-            border-radius: 10px; 
-            height: 40px; /* Garante a altura para alinhar com o input */
-        }
-
-        .cupom-message {
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .cupom-error {
-            color: red;
-        }
-
-        .cupom-success {
-            color: green;
-        }
-
-        /* ---------------------------------------------------------------------- */
-        /* ESTILOS DO POPUP DE INFORMAÇÕES DO PEDIDO (Novo Estilo) */
-        /* ---------------------------------------------------------------------- */
-        #form-pedido {
-            display: flex;
-            flex-direction: column; /* Coloca os filhos em coluna */
-            gap: 15px; /* Espaçamento entre os campos */
-            text-align: left;
-            color: #1A2B0F; /* Cor do texto do rótulo */
-        }
-
-        #form-pedido label {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: -5px; /* Ajuste para aproximar do campo */
-        }
-
-        /* Estilo para todos os inputs e selects dentro do formulário */
-        #form-pedido input[type="text"],
-        #form-pedido input[type="date"],
-        #form-pedido input[type="time"],
-        #form-pedido select {
-            /* Cor de fundo branca, conforme solicitação (como o campo de cupom) */
-            background-color: white; 
-            color: #1A2B0F;
-            border: 1px solid #7FB1C8; /* Borda azul padrão do site */
-            padding: 10px;
-            border-radius: 10px;
-            font-family: 'Basic Choice 2', Arial, sans-serif;
-            font-size: 16px;
-            width: 100%; /* Ocupa a largura total para quebrar a linha */
-            box-sizing: border-box;
-            text-align: left; /* Alinhamento do texto */
-        }
-        
-        /* Ajuste do input de nome para alinhamento esquerdo */
-        #form-pedido input[type="text"] {
-            text-align: left;
-        }
-
-        /* PADRONIZAÇÃO dos botões (CONFIRMAR/EDITAR/CONTINUAR COMPRANDO) com o botão azul principal */
-        #form-pedido button {
-            background-color: #7FB1C8; /* Cor azul do "CONTINUAR COMPRANDO" */
-            box-shadow: 0 4px #4c7e93; /* Sombra do "CONTINUAR COMPRANDO" */
-            margin-top: 15px; /* Espaçamento padrão */
-        }
-
-        /* O botão "CONTINUAR COMPRANDO" (era Cancelar) mantém o estilo do botão azul */
-        #form-pedido button:nth-of-type(2) { 
-            background-color: #7FB1C8;
-            box-shadow: 0 4px #4c7e93;
-        }
-        /* ---------------------------------------------------------------------- */
-
-
-        /* Media Queries (Mantidos) */
-        @media (min-width: 768px) {
-            header img:first-child { content: url('topodesktop.png'); }
-            footer img { content: url('rodadesktop.png'); }
-            #fixed-summary {
-                 max-width: 600px; 
-            }
-        }
-        @media (max-width: 767px) {
-            header img:nth-of-type(2) { display: none; } 
-            header img, footer img { width: 100%; }
-        }
     </style>
     
 </head>
@@ -713,7 +599,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tbody>
+                <tbody></tby>
             </table>
         </div>
 
@@ -727,7 +613,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tbody>
+                <tbody></tby>
             </table>
         </div>
 
@@ -843,6 +729,14 @@
             </div>
         </div>
         
+        <div id="popup-mensagem" class="popup">
+            <div class="popup-conteudo">
+                <h2 id="modal-titulo"></h2>
+                <p id="modal-mensagem" style="color:#1A2B0F; font-size:18px;"></p>
+                <button onclick="fecharModalMensagem()">OK</button>
+            </div>
+        </div>
+
         <div id="fixed-summary">
             <div class="summary-content">
                 <div id="summary-text">
@@ -860,7 +754,7 @@
     </div>
 
     <script>
-        // 🚨🚨 URL DO APPS SCRIPT (SUA CHAVE API) - CORRIGIDA 🚨🚨
+        // 🚨🚨 URL DO APPS SCRIPT (SUA CHAVE API) 🚨🚨
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPg0luc_LKOhkOLrefXv202qDAHMHFHO_19WF4dtXoc_20MwykJzNI5IRuYlq0Rr5s/exec"; 
         // Seu número de WhatsApp (mantido)
         const WHATSAPP_NUMBER = "558195256641"; 
@@ -1667,8 +1561,20 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - MANTIDAS
+        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - CORRIGIDO O ALERTA
         // -----------------------------------------------------
+        
+        // NOVO: Função customizada para mostrar alertas
+        function fecharModalMensagem() {
+            document.getElementById("popup-mensagem").style.display = "none";
+        }
+
+        function mostrarAlertaCustomizado(titulo, mensagem) {
+            document.getElementById("modal-titulo").textContent = titulo;
+            document.getElementById("modal-mensagem").textContent = mensagem;
+            document.getElementById("popup-mensagem").style.display = "flex";
+        }
+
         function abrirResumoPopup() {
             // Garante que a mensagem do cupom seja exibida corretamente ao abrir
             const cupomMessage = document.getElementById('cupom-message');
@@ -1681,7 +1587,7 @@
             if (total > 0) {
                  document.getElementById("popup-resumo").style.display = "flex";
             } else {
-                 alert("Seu pedido está vazio. Adicione itens para visualizar o resumo!");
+                 mostrarAlertaCustomizado("A FAVU Cozinha Afetiva", "Seu pedido está vazio. Adicione itens para visualizar o resumo!");
             }
         }
         
@@ -1724,15 +1630,27 @@
             limparCupom();
 
             fecharPopup();
+            fecharModalMensagem(); // Garante que a mensagem de sucesso feche
             fecharResumoPopup();
             atualizarTotal();
             window.scrollTo(0, 0);
         }
 
         // ***************************************************************
-        // FUNÇÃO PRINCIPAL DE ENVIO (AJUSTADA PARA APPS SCRIPT + WHATSAPP)
+        // FUNÇÃO PRINCIPAL DE ENVIO (COM BLOQUEIO DE DUPLO CLIQUE E CORREÇÃO DE POST)
         // ***************************************************************
         async function confirmarPedido() { 
+            
+            const submitButton = document.querySelector('button[onclick="confirmarPedido()"]');
+            const originalText = submitButton.textContent;
+            
+            // 1. BLOQUEIA DUPLO CLIQUE IMEDIATAMENTE
+            if (submitButton.disabled) {
+                return; 
+            }
+            submitButton.textContent = 'ENVIANDO...';
+            submitButton.disabled = true;
+
             // Linha riscada para separar o resumo dos itens das informações do cliente
             const linhaSeparadora = "\n\n*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*\n\n";
 
@@ -1801,15 +1719,19 @@
             
             // ************ VALIDAÇÃO DE BLOQUEIO ************
             if (totalPedido === 0) {
-                alert("Seu pedido está vazio. Adicione itens para confirmar.");
+                mostrarAlertaCustomizado("A FAVU Cozinha Afetiva", "Seu pedido está vazio. Adicione itens para confirmar.");
                 fecharPopup();
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
                 return;
             }
 
             if (temErroDeMinimo) {
-                alert("Por favor, ajuste as quantidades mínimas do seu pedido antes de confirmar.");
+                mostrarAlertaCustomizado("A FAVU Cozinha Afetiva", "Por favor, ajuste as quantidades mínimas do seu pedido antes de confirmar.");
                 atualizarTotal(); // Recarrega os totais e erros
                 abrirResumoPopup();
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
                 return;
             }
             // ************ FIM DA VALIDAÇÃO DE BLOQUEIO ************
@@ -1841,7 +1763,9 @@
             const pagamento = document.getElementById("pagamento").value;
 
             if (!nome || !data || !horario || !pagamento) {
-                alert("Por gentileza, preencha todos os campos!");
+                mostrarAlertaCustomizado("A FAVU Cozinha Afetiva", "Por gentileza, preencha todos os campos!");
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
                 return;
             }
 
@@ -1854,12 +1778,10 @@
 
             
             // -------------------------------------------------------------
-            // NOVO BLOCO: ENVIO DOS DADOS PARA O GOOGLE APPS SCRIPT (Criação de Pedido)
-            // CORRIGIDO: Uso de URLSearchParams para Apps Script
+            // BLOCO DE ENVIO PARA O GOOGLE APPS SCRIPT
             // -------------------------------------------------------------
             
             const formData = new FormData();
-            // Adiciona a ação para o Apps Script saber que é um novo pedido
             formData.append('action', 'createOrder'); 
             
             formData.append('Nome do Cliente', nome);
@@ -1870,52 +1792,55 @@
             formData.append('Desconto', desconto.toFixed(2).replace('.', ','));
             formData.append('Total Final', totalLiquido.toFixed(2).replace('.', ','));
             formData.append('Cupom Aplicado', cupomAplicado.codigo || 'Nenhum');
-            // Campo principal que contém todos os detalhes do pedido
             formData.append('Resumo dos Itens', resumoParaEnvio); 
 
-            // Converte FormData para URLSearchParams (formato que Apps Script espera no doPost(e))
             const urlEncodedData = new URLSearchParams(formData);
-
-            // Configura o botão para o estado de envio
-            const submitButton = document.querySelector('button[onclick="confirmarPedido()"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'ENVIANDO...';
-            submitButton.disabled = true;
 
             let apiSuccess = false;
 
             try {
-                // Envia para o Apps Script (com action=createOrder no POST)
+                // Envia para o Apps Script
                 const response = await fetch(APPS_SCRIPT_URL, { 
                     method: 'POST',
-                    body: urlEncodedData // AGORA USAMOS A VERSÃO CORRIGIDA
+                    body: urlEncodedData 
                 });
 
-                const responseData = await response.json();
-
-                if (response.ok && responseData.success) {
-                    alert("Pedido registrado com sucesso na Planilha! Você será redirecionado para o WhatsApp.");
-                    apiSuccess = true;
+                // Verifica se a resposta foi JSON válida. Se não, assume falha.
+                if (response.ok) {
+                    const responseData = await response.json();
+                    
+                    if (responseData.success) {
+                        mostrarAlertaCustomizado("Pedido Enviado!", "Seu pedido foi registrado com sucesso na Planilha! Você será redirecionado para o WhatsApp.");
+                        apiSuccess = true;
+                    } else {
+                        // Erro de lógica interna do Apps Script (ex: Planilha não encontrada ou duplicidade bloqueada)
+                        console.error('Erro API (Lógica):', responseData.message || responseData);
+                         mostrarAlertaCustomizado("Atenção (Falha no Registro)", `Falha no registro do pedido (Servidor). Enviando via WhatsApp. Erro: ${responseData.message || 'API indisponível'}`);
+                    }
                 } else {
-                    console.error('Erro API:', responseData.message || responseData);
-                    alert(`Falha no registro do pedido. Enviando via WhatsApp. Erro: ${responseData.message || 'API indisponível'}`);
+                    // Erro HTTP (ex: 500 Internal Server Error)
+                    console.error('Erro HTTP:', response.status);
+                    mostrarAlertaCustomizado("Atenção (Erro de Conexão)", "Falha na conexão HTTP com a Planilha. O pedido será enviado via WhatsApp para garantir o registro.");
                 }
             } catch (error) {
-                console.error('Erro de rede ao enviar para Apps Script:', error);
-                alert("Erro de conexão. Enviando via WhatsApp para garantir o pedido.");
+                // Erro de rede (Timeout, CORS, etc.).
+                console.error('Erro de rede/JSON:', error);
+                mostrarAlertaCustomizado("Atenção (Erro de Conexão)", "Falha na comunicação com a Planilha. Enviando via WhatsApp para garantir o pedido.");
+                apiSuccess = true; // Assumimos que o Lock Service pode ter salvado, e o WhatsApp está funcionando.
             } finally {
-                // Restaura o estado do botão
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
+                // ...
             }
 
             // 4. Abre o WhatsApp (sempre)
             const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(resumoParaEnvio)}`;
             window.open(whatsappLink, '_blank');
 
-            // 5. Se o envio foi bem-sucedido para a API, reseta o formulário.
+            // 5. Restaura/reseta o estado do botão
             if (apiSuccess) {
                 resetarCampos();
+            } else {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
             }
         }
 
@@ -1987,6 +1912,7 @@
             document.addEventListener('click', function(event) {
                 const popupResumo = document.getElementById('popup-resumo');
                 const popupPedido = document.getElementById('popup-pedido');
+                const popupMensagem = document.getElementById('popup-mensagem');
                 
                 // Fechando o pop-up de resumo se o clique for no overlay
                 if (popupResumo && popupResumo.style.display === 'flex' && event.target === popupResumo) {
@@ -1996,6 +1922,11 @@
                 // Fechando o pop-up de pedido se o clique for no overlay
                 if (popupPedido && popupPedido.style.display === 'flex' && event.target === popupPedido) {
                     fecharPopup();
+                }
+
+                // Fechando o pop-up de mensagem se o clique for no overlay
+                if (popupMensagem && popupMensagem.style.display === 'flex' && event.target === popupMensagem) {
+                    fecharModalMensagem();
                 }
             });
 
