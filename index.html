@@ -847,10 +847,10 @@
         
         <iframe name="hidden_iframe" id="hidden_iframe" 
                 style="display:none;" 
-                onload="if(window.submitted) {alert('✅ Pedido Registrado!'); resetarCampos();} window.submitted=false;"></iframe>
+                onload="if(window.submitted) {alert('✅ Pedido Registrado! Consulte o Painel Interno.'); resetarCampos();} window.submitted=false;"></iframe>
         
         <form target="hidden_iframe" method="POST" id="form_envio_oculto" 
-              action="https://docs.google.com/forms/d/e/1FAIpQLSczJtEuQDBrSdw8fr1RjCGcCvPwcLaigK-A_1BgPPK0i0k-9w/formResponse">
+              action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSczJtEuQDBrSdw8fr1RjCGcCvPwcLaigK-A_1BgPPK0i0k-9w/formResponse">
         </form>
         </div>
 
@@ -863,18 +863,17 @@
         // 2. URL DE ENVIO DO SEU NOVO GOOGLE FORMS (Corrigida)
         const ENDPOINT_DE_REGISTRO_FORMS = "https://docs.google.com/forms/d/e/1FAIpQLSczJtEuQDBrSdw8fr1RjCGcCvPwcLaigK-A_1BgPPK0i0k-9w/formResponse"; 
 
-        // 3. MAPA DE CAMPOS - NOVOS ENTRY ID's DO FORMS (MAIS PROVÁVEIS, baseados na sua inspeção)
-        // ESSA É A CHAVE DA SOLUÇÃO. ESTAMOS FORÇANDO O MAPA CONFORME SEU FORMS.
+        // 3. MAPA DE CAMPOS - NOVOS ENTRY ID's DO FORMS (Mapeamento FINAL pela inspeção)
         const FORM_MAP = {
             NOME: 'entry.461447198',              // B
-            STATUS: 'entry.106951967',           // J (2º input hidden na inspeção)
-            PAGAMENTO: 'entry.2021419276',       // E (3º input hidden)
-            TOTAL: 'entry.857371791',            // F (4º input hidden)
-            CUPOM: 'entry.1413598671',           // G (5º input hidden)
-            RESUMO_ITENS: 'entry.888527842',     // H (6º input hidden)
-            HORARIO: 'entry.928045139_hour',     // D
-            DATA: 'entry.1017281190_year',       // C
-            ID_PEDIDO: 'entry.772122274'         // I
+            DATA: 'entry.1017281190_year',        // C (O Forms espera o ano/data principal)
+            HORARIO: 'entry.928045139_hour',      // D (O Forms espera a hora principal)
+            PAGAMENTO: 'entry.772122274',         // E (Mapeado com o ID da inspeção)
+            TOTAL: 'entry.106951967',             // F (Mapeado com o ID da inspeção)
+            CUPOM: 'entry.2021419276',            // G (Mapeado com o ID da inspeção)
+            RESUMO_ITENS: 'entry.857371791',      // H (Mapeado com o ID da inspeção)
+            ID_PEDIDO: 'entry.1413598671',        // I (Mapeado com o ID da inspeção)
+            STATUS: 'entry.888527842'             // J (Mapeado com o ID da inspeção)
         };
         // 🚨🚨🚨 FIM DAS CONSTANTES DE CONFIGURAÇÃO 🚨🚨🚨
 
