@@ -108,7 +108,7 @@
         }
 
         /* ---------------------------------------------------------------------- */
-        /* ESTILOS DAS TABELAS (e dos grupos para o filtro) - MANTIDOS */
+        /* ESTILOS DAS TABELAS (e dos grupos para o filtro) - AJUSTADOS (COOKIES) */
         /* ---------------------------------------------------------------------- */
         .categoria-group {
             transition: opacity 0.3s ease; 
@@ -138,7 +138,7 @@
 
         /* CLASSE DE DESTAQUE PARA EDIÇÃO */
         .highlight-edit { 
-            background-color: rgba(255, 255, 0, 0.4) !important; 
+            background-color: rgba(255, 255, 0, 0.4) !important; /* Destaque amarelo-claro */
             transition: background-color 0.3s ease-in-out; 
         }
         
@@ -148,15 +148,19 @@
         }
         
         /* Definindo larguras para as colunas da tabela padrão (com QNT. MÍN.) */
+        /* 1: Item (45%) | 2: QNT. MIN. (25%) | 3: UNID. (15%) | 4: QUANTIDADE (15%) */
         .categoria-group:not(#grupo-cookies) th:nth-child(1), .categoria-group:not(#grupo-cookies) td:nth-child(1) { width: 45%; } 
         .categoria-group:not(#grupo-cookies) th:nth-child(2), .categoria-group:not(#grupo-cookies) td:nth-child(2) { width: 25%; } 
         .categoria-group:not(#grupo-cookies) th:nth-child(3), .categoria-group:not(#grupo-cookies) td:nth-child(3) { width: 15%; } 
         .categoria-group:not(#grupo-cookies) th:nth-child(4), .categoria-group:not(#grupo-cookies) td:nth-child(4) { width: 15%; } 
 
-        /* AJUSTE PARA A TABELA DE COOKIES */
-        #tabela-cookies th:nth-child(1), #tabela-cookies td:nth-child(1) { width: 55%; } 
-        #tabela-cookies th:nth-child(2), #tabela-cookies td:nth-child(2) { width: 20%; } 
-        #tabela-cookies th:nth-child(3), #tabela-cookies td:nth-child(3) { width: 25%; } 
+        /* *************************************************************** */
+        /* AJUSTE PARA A TABELA DE COOKIES (AGORA COM 3 COLUNAS NO HTML) */
+        /* *************************************************************** */
+        /* 1: Item | 2: UNID. (Preço) | 3: QUANTIDADE */
+        #tabela-cookies th:nth-child(1), #tabela-cookies td:nth-child(1) { width: 55%; } /* ITEM */
+        #tabela-cookies th:nth-child(2), #tabela-cookies td:nth-child(2) { width: 20%; } /* UNID. (Preço) */
+        #tabela-cookies th:nth-child(3), #tabela-cookies td:nth-child(3) { width: 25%; } /* QUANTIDADE */
         
         /* Ajustes finos para td/th */
         th, td { 
@@ -181,8 +185,14 @@
         header img + img { display: none; }
 
         /* Cores (AJUSTADAS) */
+        
+        /* A cor dos dados das colunas QUANTIDADE (td) é mantida em branco */
         table#tabela-bolo-tradicional td:nth-child(4), table#tabela-bolo-especial td:nth-child(4), table#tabela-prato-salgado td:nth-child(4), table#tabela-doces td:nth-child(4), table#tabela-cookies td:nth-child(3), table#tabela-salfri td:nth-child(4), table#tabela-salgado-forno td:nth-child(4), table#tabela-salgado-vegetariano td:nth-child(4) { color: white; }
+
+        /* 2. Cor de todos os cabeçalhos de coluna (ITEM, QNT. MÍN/tamanho, UNID., QUANTIDADE) é definida como BRANCA */
         th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4) { color: white; }
+        
+        /* Corrige o item em si para a cor correta (MANTIDA EM BRANCO) */
         table#tabela-bolo-tradicional td:nth-child(1), table#tabela-bolo-especial td:nth-child(1), table#tabela-prato-salgado td:nth-child(1), table#tabela-doces td:nth-child(1), table#tabela-cookies td:nth-child(1), table#tabela-salfri td:nth-child(1), table#tabela-salgado-forno td:nth-child(1), table#tabela-salgado-vegetariano td:nth-child(1) { color: white; }
 
 
@@ -201,7 +211,7 @@
         .quantidade-container { 
             text-align: center; 
             display: flex;
-            flex-direction: column; 
+            flex-direction: column; /* Para empilhar o input e a mensagem de erro */
             justify-content: center;
             align-items: center;
             padding: 0;
@@ -221,7 +231,7 @@
             border-radius: 10px; 
             box-sizing: border-box;
             
-            -moz-appearance: textfield; 
+            -moz-appearance: textfield; /* Firefox */
         }
         
         /* OCULTAÇÃO DE SETAS: Aplicado a ambos os inputs numéricos */
@@ -239,6 +249,7 @@
             display: none; 
             font-size: 0.9em; 
             margin-top: 5px;
+            /* ADICIONADO: Garante que a mensagem de erro individual não quebre o layout */
             line-height: 1.1; 
             width: 100%;
             text-align: center;
@@ -251,7 +262,7 @@
             margin-top: 10px; 
             font-weight: bold;
             text-align: center;
-            display: none; 
+            display: none; /* Inicia oculto */
             padding-bottom: 5px;
         }
 
@@ -301,7 +312,7 @@
         
         /* Cor do botão de rodapé "Ver Pedido" alterada para o AZUL ESPECÍFICO */
         #summary-button {
-            background-color: #7FB1C8; 
+            background-color: #7FB1C8; /* AZUL SOLICITADO */
             color: white; 
             padding: 12px 20px;
             border-radius: 10px;
@@ -311,7 +322,7 @@
             border: none;
             width: 150px;
             text-align: center;
-            box-shadow: 0 4px #4c7e93; 
+            box-shadow: 0 4px #4c7e93; /* Sombra ajustada para o azul */
             transition: background-color 0.2s;
         }
         
@@ -334,10 +345,10 @@
         
         /* MODIFICAÇÃO AQUI: Fundo branco e fonte padronizada para inputs do resumo */
         .resumo-item-input-group input {
-            background-color: white; 
+            background-color: white; /* Fundo branco solicitado */
             border: 1px solid #ccc;
             color: #1A2B0F;
-            font-family: 'Basic Choice 2', Arial, sans-serif; 
+            font-family: 'Basic Choice 2', Arial, sans-serif; /* Fonte padronizada */
         }
 
         /* Cor do botão primário (Fazer Pedido/Continuar Comprando) */
@@ -351,8 +362,8 @@
             font-family: 'Basic Choice 2', Arial, sans-serif; 
             width: 100%; 
             font-size: 18px; 
-            margin-top: 10px; 
-            box-shadow: 0 4px #4c7e93; 
+            margin-top: 10px; /* Ajustado para espaçamento consistente */
+            box-shadow: 0 4px #4c7e93; /* Sombra padrão azul */
         }
         button:active {
             box-shadow: 0 2px #4c7e93;
@@ -370,6 +381,7 @@
             cursor: pointer; 
             width: 100%; 
             margin-top: 20px; 
+            /* ADICIONADO ESPAÇAMENTO INFERIOR */
             margin-bottom: 20px; 
             font-family: 'Basic Choice 2', Arial, sans-serif; 
         }
@@ -429,7 +441,7 @@
             margin-top: 10px;
         }
         .resumo-total-line {
-            font-size: 16px; 
+            font-size: 16px; /* Menor que o TOTAL FINAL */
             font-weight: normal;
             display: flex;
             justify-content: space-between;
@@ -456,14 +468,14 @@
         
         /* Estilo do preço final com desconto */
         .price-final-item {
-             color: #E60000; 
+             color: #E60000; /* Vermelho para destaque de desconto */
         }
 
         /* Estilo para cada item do resumo (linha do produto) */
         .resumo-item-line {
             display: flex;
             justify-content: space-between;
-            align-items: center; 
+            align-items: center; /* Alinha tudo verticalmente */
             border-bottom: 1px dashed #7FB1C8; 
             padding: 8px 0;
             font-size: 14px;
@@ -483,7 +495,7 @@
             color: #1A2B0F;
         }
         .resumo-item-name .price-final-item {
-             color: #1A2B0F; 
+             color: #1A2B0F; /* O preço com desconto permanece preto aqui */
              font-weight: bold;
         }
 
@@ -492,7 +504,7 @@
             display: flex;
             align-items: center;
             flex-shrink: 0;
-            gap: 5px; 
+            gap: 5px; /* ESPAÇAMENTO REDUZIDO ENTRE UNIDADE E INPUT */
         }
 
         /* Estilo para o campo de input na edição direta (como na imagem) */
@@ -504,7 +516,7 @@
             text-align: center;
             border-radius: 10px;
             box-sizing: border-box;
-            margin: 0; 
+            margin: 0; /* CORREÇÃO: Aproxima o input do UN. */
             
             -moz-appearance: textfield; 
         }
@@ -515,13 +527,13 @@
             color: white;
             width: 70px; 
             font-size: 12px; 
-            padding: 10px 0; 
-            margin: 0 0 0 10px; 
+            padding: 10px 0; /* AUMENTADO para igualar a altura do botão APLICAR */
+            margin: 0 0 0 10px; /* MAIOR ESPAÇAMENTO com UNIDADE */
             border-radius: 10px; 
             box-shadow: none;
             flex-shrink: 0;
-            line-height: 1; 
-            height: 40px; 
+            line-height: 1; /* Centraliza o texto verticalmente */
+            height: 40px; /* Garante a altura */
         }
         
         /* ----------------- CUPOM STYLES ----------------- */
@@ -549,7 +561,7 @@
             background-color: white;
             color: #1A2B0F;
             box-sizing: border-box;
-            height: 40px; 
+            height: 40px; /* Ajuste para alinhar com o botão APLICAR */
         }
 
         #apply-cupom-btn {
@@ -558,9 +570,9 @@
             padding: 10px 0; 
             margin: 0;
             font-size: 14px;
-            background-color: #E09F41; 
+            background-color: #E09F41; /* Laranja para destaque */
             border-radius: 10px; 
-            height: 40px; 
+            height: 40px; /* Garante a altura para alinhar com o input */
         }
 
         .cupom-message {
@@ -582,16 +594,16 @@
         /* ---------------------------------------------------------------------- */
         #form-pedido {
             display: flex;
-            flex-direction: column; 
-            gap: 15px; 
+            flex-direction: column; /* Coloca os filhos em coluna */
+            gap: 15px; /* Espaçamento entre os campos */
             text-align: left;
-            color: #1A2B0F; 
+            color: #1A2B0F; /* Cor do texto do rótulo */
         }
 
         #form-pedido label {
             font-weight: bold;
             font-size: 16px;
-            margin-bottom: -5px; 
+            margin-bottom: -5px; /* Ajuste para aproximar do campo */
         }
 
         /* Estilo para todos os inputs e selects dentro do formulário */
@@ -599,16 +611,17 @@
         #form-pedido input[type="date"],
         #form-pedido input[type="time"],
         #form-pedido select {
+            /* Cor de fundo branca, conforme solicitação (como o campo de cupom) */
             background-color: white; 
             color: #1A2B0F;
-            border: 1px solid #7FB1C8; 
+            border: 1px solid #7FB1C8; /* Borda azul padrão do site */
             padding: 10px;
             border-radius: 10px;
             font-family: 'Basic Choice 2', Arial, sans-serif;
             font-size: 16px;
-            width: 100%; 
+            width: 100%; /* Ocupa a largura total para quebrar a linha */
             box-sizing: border-box;
-            text-align: left; 
+            text-align: left; /* Alinhamento do texto */
         }
         
         /* Ajuste do input de nome para alinhamento esquerdo */
@@ -618,9 +631,9 @@
 
         /* PADRONIZAÇÃO dos botões (CONFIRMAR/EDITAR/CONTINUAR COMPRANDO) com o botão azul principal */
         #form-pedido button {
-            background-color: #7FB1C8; 
-            box-shadow: 0 4px #4c7e93; 
-            margin-top: 15px; 
+            background-color: #7FB1C8; /* Cor azul do "CONTINUAR COMPRANDO" */
+            box-shadow: 0 4px #4c7e93; /* Sombra do "CONTINUAR COMPRANDO" */
+            margin-top: 15px; /* Espaçamento padrão */
         }
 
         /* O botão "CONTINUAR COMPRANDO" (era Cancelar) mantém o estilo do botão azul */
@@ -714,7 +727,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tb>
+                <tbody></tbody>
             </table>
         </div>
 
@@ -727,7 +740,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tb>
+                <tbody></tby>
             </table>
         </div>
 
@@ -740,7 +753,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tb>
+                <tbody></tbody>
             </table>
         </div>
 
@@ -753,7 +766,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tb>
+                <tbody></tbody>
             </table>
         </div>
         
@@ -766,7 +779,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tb>
+                <tbody></tbody>
             </table>
         </div>
         
@@ -806,7 +819,7 @@
             <div class="popup-conteudo">
                 <span class="fechar" onclick="fecharPopup()">&times;</span>
                 <h2>INFORMAÇÕES DO PEDIDO</h2>
-                <form id="form-pedido">
+                <form id="form-pedido"> 
                     <label for="nome">NOME:</label>
                     <input type="text" id="nome" name="nome" placeholder="Seu Nome Completo" required>
 
@@ -844,73 +857,39 @@
         <footer>
             <img src="roda2.png" alt="Rodapé">
         </footer>
-        
-        <iframe name="hidden_iframe" id="hidden_iframe" 
-                style="display:none;" 
-                onload="if(window.submitted) {alert('✅ Pedido Registrado! Consulte o Painel Interno.'); resetarCampos();} window.submitted=false;"></iframe>
-        
-        <form target="hidden_iframe" method="POST" id="form_envio_oculto" 
-              action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSczJtEuQDBrSdw8fr1RjCGcCvPwcLaigK-A_1BgPPK0i0k-9w/formResponse">
-        </form>
-        </div>
+    </div>
 
     <script>
-        // 🚨🚨🚨 INÍCIO DAS CONSTANTES E VARIÁVEIS DE CONFIGURAÇÃO 🚨🚨🚨
-        
-        // 1. SEU NÚMERO DE WHATSAPP (Corrigido)
-        const SEU_NUMERO_WHATSAPP = "5581997346237"; 
+        // 🚨🚨 AJUSTE A URL DO SEU FORMSPREE AQUI! 🚨🚨
+        const FORMSPREE_ENDPOINT = "https://script.google.com/macros/s/AKfycbyx-GAj1IgiYxS-HUe0wtVNjtprviAR7A6-bgfV3eXIsc0dTxoNLtCsSNwMHVYbR8AF/exec"; 
+        const WHATSAPP_NUMBER = "558195256641"; // Seu número para contato
 
-        // 2. URL DE ENVIO DO SEU NOVO GOOGLE FORMS (Corrigida)
-        const ENDPOINT_DE_REGISTRO_FORMS = "https://docs.google.com/forms/d/e/1FAIpQLSczJtEuQDBrSdw8fr1RjCGcCvPwcLaigK-A_1BgPPK0i0k-9w/formResponse"; 
-
-        // 3. MAPA DE CAMPOS - NOVOS ENTRY ID's DO FORMS (Mapeamento FINAL pela inspeção)
-        const FORM_MAP = {
-            NOME: 'entry.461447198',              // B
-            DATA: 'entry.1017281190_year',        // C (O Forms espera o ano/data principal)
-            HORARIO: 'entry.928045139_hour',      // D (O Forms espera a hora principal)
-            PAGAMENTO: 'entry.772122274',         // E (Mapeado com o ID da inspeção)
-            TOTAL: 'entry.106951967',             // F (Mapeado com o ID da inspeção)
-            CUPOM: 'entry.2021419276',            // G (Mapeado com o ID da inspeção)
-            RESUMO_ITENS: 'entry.857371791',      // H (Mapeado com o ID da inspeção)
-            ID_PEDIDO: 'entry.1413598671',        // I (Mapeado com o ID da inspeção)
-            STATUS: 'entry.888527842'             // J (Mapeado com o ID da inspeção)
-        };
-        // 🚨🚨🚨 FIM DAS CONSTANTES DE CONFIGURAÇÃO 🚨🚨🚨
-
-
-        // Variáveis globais necessárias (Mantidas)
+        // Variável global para armazenar o cupom aplicado
         let cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
-        let totalLiquido = 0; 
-        window.gruposResumo = {}; 
-        window.temErroDeMinimo = false;
-        window.submitted = false; // Flag para o iframe onload
-        let idPedidoAtual = null; // Variável para armazenar o ID do pedido gerado
-
-        // NOVAS CONSTANTES DE CUPOM (Mantidas)
+        
+        // NOVAS CONSTANTES DE CUPOM
         const CUPOM_COOKIES10 = 'COOKIES10'; 
         const CUPOM_FAVU10 = 'FAVU10OFF'; 
         const CUPOM_FAVUCOOKIES = 'FAVUCOOKIES'; 
         
         // -----------------------------------------------------
-        // DADOS DOS PRODUTOS - MANTIDOS (SEM ALTERAÇÃO)
+        // DADOS DOS PRODUTOS - MANTIDOS
         // -----------------------------------------------------
         const generateId = (nome, tamanho) => {
-             let base = nome.toLowerCase().replace(/[^a-z0-9]/g, '-');
-             if (tamanho) {
-                 base += '-' + tamanho.toLowerCase().replace(/[^a-z0-9]/g, '');
-             }
-             return base.replace(/-+/g, '-').trim('-');
-         };
-         
-         const addGroupKeys = (itens) => {
-             return itens.map(item => ({
-                 ...item,
-                 groupKey: item.tamanho ? item.nome : item.id 
-             }));
-         };
-         
-        // [CÓDIGO DE DADOS DOS ITENS... FOI OMITIDO AQUI PARA ECONOMIZAR ESPAÇO, MAS DEVE PERMANECER NO SEU ARQUIVO ORIGINAL]
+            let base = nome.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            if (tamanho) {
+                base += '-' + tamanho.toLowerCase().replace(/[^a-z0-9]/g, '');
+            }
+            return base.replace(/-+/g, '-').trim('-');
+        };
         
+        const addGroupKeys = (itens) => {
+            return itens.map(item => ({
+                ...item,
+                groupKey: item.tamanho ? item.nome : item.id 
+            }));
+        };
+
         const itensBoloTradicional = addGroupKeys([
             { nome: "Bolo de Bem-Casado", tamanho: "P (1.5 KG)", preco: 100.00, min: 1, descricaoResumo: "Bolo de Bem-Casado - P (1.5 KG)", descricao: ""},
             { nome: "Bolo de Bem-Casado", tamanho: "M (2.5 KG)", preco: 160.00, min: 1, descricaoResumo: "Bolo de Bem-Casado - M (2.5 KG)", descricao: ""},
@@ -968,6 +947,7 @@
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensCookies = addGroupKeys([
+            // MINIMO DE CADA COOKIE AGORA É 1. A VALIDAÇÃO DE 3 UNIDADES VAI PARA O GRUPO.
             { nome: "Cookie Tradicional", min: 1, preco: 12.00, descricaoResumo: "Cookie Tradicional", descricao: "Massa de baunilha com pedaços de chocolate meio amargo" },
             { nome: "Cookie Red Velvet", min: 1, preco: 12.00, descricaoResumo: "Cookie Red Velvet", descricao: "Massa de baunilha com toque de cream cheese, cacau vermelho e pedaços de chocolate branco" },
             { nome: "Cookie Black", min: 1, preco: 12.00, descricaoResumo: "Cookie Black", descricao: "Massa feita com cacau 100% e pedaços de chocolate meio amargo" },
@@ -1062,744 +1042,889 @@
             { nome: "Torta Salgada de Frango", tamanho: "M (2 KG)", preco: 140.00, min: 1, descricaoResumo: "Torta Salgada de Frango - M (2 KG)", descricao: ""},
             { nome: "Torta Salgada de Frango", tamanho: "G (3 KG)", preco: 210.00, min: 1, descricaoResumo: "Torta Salgada de Frango - G (3 KG)", descricao: ""},
         ]).map(item => ({...item, id: generateId(item.nome, item.tamanho)}));
-         
+
+        
         const gruposItens = {
-             "tabela-bolo-tradicional": { itens: itensBoloTradicional, nomeGrupo: "Bolos Tradicionais", img: "img-bolo-tradicional", minTotal: 0 },
-             "tabela-bolo-especial": { itens: itensBoloEspecial, nomeGrupo: "Bolos Especiais", img: "img-bolo-especial", minTotal: 0 },
-             "tabela-doces": { itens: itensDoces, nomeGrupo: "Doces", img: "img-doces", minTotal: 0 },
-             "tabela-cookies": { itens: itensCookies, nomeGrupo: "Cookies", img: "img-cookies", minTotal: 3, minIndividual: 1 }, 
-             "tabela-salfri": { itens: itensSalgadoFrito, nomeGrupo: "Salgados Fritos", img: "img-salfri", minTotal: 0 },
-             "tabela-salgado-forno": { itens: itensSalgadoForno, nomeGrupo: "Salgados Assados", img: "img-salgado-forno", minTotal: 0 },
-             "tabela-salgado-vegetariano": { itens: itensSalgadoVegetariano, nomeGrupo: "Salgados Vegetarianos", img: "img-salgado-vegetariano", minTotal: 0 },
-             "tabela-prato-salgado": { itens: itensPratoSalgado, nomeGrupo: "Pratos Salgados", img: "img-prato-salgado", minTotal: 0 },
-         };
-         
-         let todosOsItens = [];
-         for (const idTabela in gruposItens) {
-             gruposItens[idTabela].itens.forEach(item => {
-                 todosOsItens.push({
-                     nome: item.descricaoResumo,
-                     id: item.id, 
-                     grupoId: "grupo-" + idTabela.replace("tabela-", "")
-                 });
-             });
-         }
+            "tabela-bolo-tradicional": { itens: itensBoloTradicional, nomeGrupo: "Bolos Tradicionais", img: "img-bolo-tradicional", minTotal: 0 },
+            "tabela-bolo-especial": { itens: itensBoloEspecial, nomeGrupo: "Bolos Especiais", img: "img-bolo-especial", minTotal: 0 },
+            "tabela-doces": { itens: itensDoces, nomeGrupo: "Doces", img: "img-doces", minTotal: 0 },
+            // minTotal 3 para a categoria Cookies
+            "tabela-cookies": { itens: itensCookies, nomeGrupo: "Cookies", img: "img-cookies", minTotal: 3, minIndividual: 1 }, 
+            "tabela-salfri": { itens: itensSalgadoFrito, nomeGrupo: "Salgados Fritos", img: "img-salfri", minTotal: 0 },
+            "tabela-salgado-forno": { itens: itensSalgadoForno, nomeGrupo: "Salgados Assados", img: "img-salgado-forno", minTotal: 0 },
+            "tabela-salgado-vegetariano": { itens: itensSalgadoVegetariano, nomeGrupo: "Salgados Vegetarianos", img: "img-salgado-vegetariano", minTotal: 0 },
+            "tabela-prato-salgado": { itens: itensPratoSalgado, nomeGrupo: "Pratos Salgados", img: "img-prato-salgado", minTotal: 0 },
+        };
+        
+        let todosOsItens = [];
+        for (const idTabela in gruposItens) {
+            gruposItens[idTabela].itens.forEach(item => {
+                todosOsItens.push({
+                    nome: item.descricaoResumo,
+                    id: item.id, 
+                    grupoId: "grupo-" + idTabela.replace("tabela-", "")
+                });
+            });
+        }
         
         // -----------------------------------------------------
-        // FUNÇÕES DE CRIAÇÃO, FILTRO E EDIÇÃO (MANTIDAS)
+        // FUNÇÃO DE CRIAÇÃO DE TABELAS - MANTIDA
         // -----------------------------------------------------
         function criarTabelaGrupo(grupo, idTabela, nomeGrupo) {
-             const tbody = document.getElementById(idTabela).querySelector('tbody');
-             if (!tbody) return;
-        
-             let grupoAtual = null;
-             let countGrupo = 0;
-             
-             const isGroupedTable = idTabela.includes('bolo') || idTabela.includes('prato');
-             const isCookieTable = idTabela === 'tabela-cookies';
-             const minDoGrupo = gruposItens[idTabela]?.minTotal || 0;
-        
-        
-             for (let i = 0; i < grupo.length; i++) {
-                 const item = grupo[i];
-                 const tr = document.createElement("tr");
-                 
-                 const coluna2 = isCookieTable ? item.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : (item.tamanho || item.min); 
-                 const precoFormatado = item.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                 const itemId = item.id;
-                 
-                 tr.id = itemId; 
-                 
-                 let isFirstInGroup = false;
-                 
-                 if (isGroupedTable) {
-                     if (item.groupKey !== grupoAtual) {
-                         grupoAtual = item.groupKey;
-                         isFirstInGroup = true;
-                         countGrupo = 1;
-                         let j = i + 1;
-                         while (j < grupo.length && grupo[j].groupKey === grupoAtual) {
-                             countGrupo++;
-                             j++;
-                         }
-                     }
-                     
-                     if (item.groupKey === grupoAtual && i < grupo.length - 1 && grupo[i+1].groupKey === grupoAtual) {
-                                         tr.classList.add('item-group-active');
-                     }
-                 }
-                 
-                 const inputHtml = `<input type="number" value="0" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" data-item-id="${itemId}" class="quantidade-input">`;
-        
-                 let erroHtml = '';
-                 const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-                 const isIndividualMinCheck = gruposComMinimoIndividual.includes(nomeGrupo) && (item.min && item.min > 1);
-                 
-                 if (isIndividualMinCheck) {
-                     erroHtml = `<div class="erro-item-unico">Mín ${item.min} Unid.</div>`; 
-                 }
-        
-        
-                 let celulasComuns;
-        
-                 if (isCookieTable) {
-                     celulasComuns = `
-                         <td>
-                             <div class="item-nome">${item.nome}</div>
-                             ${item.descricao ? `<div class="descricao">${item.descricao}</div>` : ''}
-                         </td>
-                         <td>R$ ${precoFormatado}</td>
-                         <td>
-                             <div class="quantidade-container">
-                                 ${inputHtml}
-                                 ${erroHtml}
-                             </div>
-                         </td>
-                     `;
-                 } else {
-                     celulasComuns = `
-                         <td>
-                             <div class="item-nome">${item.nome}</div>
-                             ${item.descricao ? `<div class="descricao">${item.descricao}</div>` : ''}
-                         </td>
-                         <td>${coluna2}</td>
-                         <td>R$ ${precoFormatado}</td>
-                         <td>
-                             <div class="quantidade-container">
-                                 ${inputHtml}
-                                 ${erroHtml}
-                             </div>
-                         </td>
-                     `;
-                 }
-        
-                 const celulasAgrupadas = `
-                     <td>${coluna2}</td>
-                     <td>R$ ${precoFormatado}</td>
-                     <td>
-                         <div class="quantidade-container">
-                             ${inputHtml}
-                             ${erroHtml}
-                         </div>
-                     </td>
-                 `;
-        
-                 if (isGroupedTable && isFirstInGroup) {
-                     tr.innerHTML = `
-                         <td rowspan="${countGrupo}" class="item-group-cell">
-                             <div class="item-nome">${item.nome}</div>
-                             ${item.descricao ? `<div class="descricao">${item.descricao}</div>` : ''}
-                         </td>
-                         ${celulasAgrupadas}
-                     `;
-                 } else if (isGroupedTable && !isFirstInGroup) {
-                     tr.innerHTML = celulasAgrupadas;
-                 } else {
-                     tr.innerHTML = celulasComuns;
-                 }
-                 
-                 tbody.appendChild(tr);
-             }
-         }
-        
-         function ativarAba(linkElement) {
-             const targetGroupId = linkElement.getAttribute('data-target');
-             const targetGroup = document.getElementById(targetGroupId);
-             const categoriasBar = document.getElementById('categorias-horizontal');
-        
-             if (!targetGroup) return;
-        
-             categoriasBar.querySelectorAll('a').forEach(link => {
-                 link.classList.remove('active-link');
-             });
-             document.querySelectorAll('.categoria-group').forEach(group => {
-                 group.classList.remove('active-group');
-             });
-        
-             linkElement.classList.add('active-link');
-             targetGroup.classList.add('active-group');
-             
-             linkElement.scrollIntoView({ behavior: 'smooth', inline: 'center' }); 
-         }
-        
-         function scrollToElement(targetElement) {
-             if (!targetElement) return;
-             document.querySelectorAll('.highlight-edit').forEach(el => {
-                 el.classList.remove('highlight-edit');
-             });
-             const mainHeader = document.querySelector('header');
-             const stickyNav = document.getElementById('sticky-nav-container');
-             const fixedHeight = (mainHeader ? mainHeader.offsetHeight : 0) + (stickyNav ? stickyNav.offsetHeight : 0) + 10;
-             const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-             const offsetPosition = elementPosition - fixedHeight;
-        
-             window.scrollTo({
-                 top: Math.max(0, offsetPosition), 
-                 behavior: 'smooth'
-             });
-         }
-         
-         function limparCupom() {
-             cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
-             const cupomInput = document.getElementById('cupom-input');
-             if (cupomInput) cupomInput.value = '';
-         }
-        
-         function aplicarCupom() {
-             const cupomInput = document.getElementById('cupom-input');
-             const cupomCode = cupomInput.value.toUpperCase().trim();
-             const cupomMessage = document.getElementById('cupom-message');
-             
-             cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
-             cupomMessage.className = 'cupom-message'; 
-             
-             let totalBrutoPedido = 0; 
-             let totalCookies = 0;
-             let subtotalCookies = 0; 
-             const cookiesGrupos = ["Cookies"]; 
-             let hasCookieItem = false;
-             
-             const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-             let temErroDeMinimoLocal = false; 
-        
-             document.querySelectorAll(".quantidade-input").forEach(input => {
-                 const grupo = input.getAttribute("data-grupo");
-                 const quantidade = parseInt(input.value) || 0; 
-                 const preco = parseFloat(input.getAttribute("data-preco")) || 0;
-                 const min = parseInt(input.getAttribute("data-min")) || 1;
-                 
-                 const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
-                 const isItemValido = quantidade >= min;
-                 
-                 if (quantidade > 0 && isIndividualMinCheck && !isItemValido) {
-                     temErroDeMinimoLocal = true;
-                 }
-        
-                 if (quantidade > 0 && (!isIndividualMinCheck || isItemValido)) {
-                     const totalItem = quantidade * preco;
-                     totalBrutoPedido += totalItem; 
-                 }
-        
-                 if (cookiesGrupos.includes(grupo)) {
-                     totalCookies += quantidade;
-                     subtotalCookies += quantidade * preco;
-                     if (quantidade > 0) {
-                         hasCookieItem = true;
-                     }
-                 }
-             });
-        
-             const minTotalCookies = gruposItens["tabela-cookies"]?.minTotal || 0;
-             const cookiesValidos = totalCookies === 0 || totalCookies >= minTotalCookies;
-             if (!cookiesValidos && totalCookies > 0) temErroDeMinimoLocal = true;
-             
-             if (temErroDeMinimoLocal) {
-                 cupomAplicado.mensagem = 'Ajuste as quantidades mínimas do seu pedido antes de aplicar um cupom.';
-                 cupomMessage.classList.add('cupom-error');
-                 atualizarTotal();
-                 return;
-             }
-        
-             const taxaDesconto = 0.10; 
-             const minCookiesCupom = 4; 
-        
-             if (cupomCode === CUPOM_FAVU10) {
-                 if (totalBrutoPedido === 0) {
-                     cupomAplicado.mensagem = 'Adicione itens ao carrinho antes de aplicar o cupom.';
-                     cupomMessage.classList.add('cupom-error');
-                     atualizarTotal();
-                     return;
-                 }
-                 const descontoTotal = totalBrutoPedido * taxaDesconto;
-                 cupomAplicado = {
-                     codigo: cupomCode,
-                     desconto: descontoTotal, 
-                     mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF no total)` 
-                 };
-                 cupomMessage.classList.add('cupom-success');
-                 
-             } else if (cupomCode === CUPOM_COOKIES10) {
-                 if (!hasCookieItem) {
-                     cupomAplicado.mensagem = 'Cupom válido apenas para Cookies.';
-                     cupomMessage.classList.add('cupom-error');
-                     atualizarTotal();
-                     return;
-                 }
-                 if (totalCookies < minCookiesCupom) {
-                     cupomAplicado.mensagem = `CUPOM VÁLIDO APENAS PARA NO MÍNIMO ${minCookiesCupom} COOKIES.`;
-                     cupomMessage.classList.add('cupom-error');
-                     atualizarTotal();
-                     return;
-                 }
-                 const descontoTotal = subtotalCookies * taxaDesconto; 
-                 cupomAplicado = {
-                     codigo: cupomCode,
-                     desconto: descontoTotal, 
-                     mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF em Cookies)` 
-                 };
-                 cupomMessage.classList.add('cupom-success');
-                 
-             } else if (cupomCode === CUPOM_FAVUCOOKIES) {
-                 if (!hasCookieItem) {
-                     cupomAplicado.mensagem = 'Cupom válido apenas para Cookies.';
-                     cupomMessage.classList.add('cupom-error');
-                     atualizarTotal();
-                     return;
-                 }
-                 const dataAtual = new Date();
-                 const diaDaSemana = dataAtual.getDay(); 
-        
-                 if (diaDaSemana === 0 || diaDaSemana === 5 || diaDaSemana === 6) { 
-                     cupomAplicado.mensagem = 'Cupom válido apenas para pedidos realizados entre Segunda e Quinta-feira.';
-                     cupomMessage.classList.add('cupom-error');
-                     atualizarTotal();
-                     return;
-                 }
-        
-                 if (totalCookies < minCookiesCupom) {
-                     cupomAplicado.mensagem = `CUPOM VÁLIDO APENAS PARA NO MÍNIMO ${minCookiesCupom} COOKIES.`;
-                     cupomMessage.classList.add('cupom-error');
-                     atualizarTotal();
-                     return;
-                 }
-                 const descontoTotal = subtotalCookies * taxaDesconto; 
-                 cupomAplicado = {
-                     codigo: cupomCode,
-                     desconto: descontoTotal, 
-                     mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF)` 
-                 };
-                 cupomMessage.classList.add('cupom-success');
-                 
-             } else if (cupomCode) {
-                 cupomAplicado.mensagem = `Código "${cupomCode}" inválido.`;
-                 cupomMessage.classList.add('cupom-error');
-             }
-             
-             cupomMessage.textContent = cupomAplicado.mensagem;
-             atualizarTotal();
-         }
-         
-         function excluirItem(itemId) {
-             const inputNoMain = document.querySelector(`.quantidade-input[data-item-id="${itemId}"]`);
-             if (inputNoMain) {
-                 inputNoMain.value = "0"; 
-                 inputNoMain.dispatchEvent(new Event('input')); 
-             }
-             if (cupomAplicado.codigo) aplicarCupom();
-             
-             if (parseFloat(document.getElementById("summary-total").textContent.replace('R$ ', '').replace('.', '').replace(',', '.')) > 0) {
-                 abrirResumoPopup();
-             } else {
-                 fecharResumoPopup();
-             }
-         }
-         
-         function atualizarQuantidadeDireta(inputElement) {
-             const itemId = inputElement.getAttribute('data-item-id');
-             const valorInput = inputElement.value.replace(/[^0-9]/g, ''); 
-             let novaQuantidade = parseInt(valorInput) || 0;
-        
-             const inputNoMain = document.querySelector(`.quantidade-input[data-item-id="${itemId}"]`);
-        
-             if (inputNoMain) {
-                 if (novaQuantidade <= 0) {
-                     novaQuantidade = 0; 
-                     inputElement.value = "0"; 
-                 } else {
-                     inputElement.value = novaQuantidade; 
-                 }
-        
-                 inputNoMain.value = novaQuantidade;
-                 
-                 atualizarTotal();
-                 
-                 if (cupomAplicado.codigo) aplicarCupom();
-        
-                 if (parseFloat(document.getElementById("summary-total").textContent.replace('R$ ', '').replace('.', '').replace(',', '.')) > 0) {
-                     abrirResumoPopup(); 
-                 } else {
-                     fecharResumoPopup();
-                 }
-             }
-         }
-         
-         function atualizarTotal() {
-             let totalBruto = 0;
-             let totalItens = 0;
-             const resumoItensPopup = document.getElementById("popup-resumo-itens");
-             const resumoTotalPopup = document.getElementById("popup-resumo-total");
-             const fixedSummary = document.getElementById("fixed-summary");
-             const fazerPedidoContainer = document.getElementById("fazer-pedido-button-container");
-             
-             if (!resumoItensPopup || !fixedSummary || !fazerPedidoContainer) return;
-             resumoItensPopup.innerHTML = ''; 
-        
-             const gruposResumoParaEnvio = {}; 
-             const totaisPorGrupo = {};
-        
-             const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-        
-             document.querySelectorAll(".quantidade-input").forEach(input => {
-                 const quantidade = parseInt(input.value) || 0;
-                 const min = parseInt(input.getAttribute("data-min")) || 1;
-                 const preco = parseFloat(input.getAttribute("data-preco")) || 0;
-                 const descricaoResumo = input.getAttribute("data-resumo");
-                 const grupo = input.getAttribute("data-grupo");
-                 const itemId = input.getAttribute("data-item-id");
-                 
-                 const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
-                 
-                 const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1; 
-        
-                 if (!totaisPorGrupo[grupo]) {
-                     totaisPorGrupo[grupo] = { quantidade: 0, items: [] };
-                 }
-                 totaisPorGrupo[grupo].quantidade += quantidade;
-                 totaisPorGrupo[grupo].items.push({ input, quantidade, min, preco, descricaoResumo, itemId, grupo });
-        
-                 const isItemInError = isIndividualMinCheck && quantidade > 0 && quantidade < min;
-                 
-                 if (isItemInError) {
-                     if (erroElemento) {
-                         erroElemento.textContent = `Mín ${min} Unid.`;
-                         erroElemento.style.display = 'block';
-                     }
-                 } else {
-                     if (erroElemento) erroElemento.style.display = 'none'; 
-                 }
-             });
-        
-             window.temErroDeMinimo = false;
-             
-             for (const grupo in totaisPorGrupo) {
-                 const infoGrupo = totaisPorGrupo[grupo];
-                 const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
-                 const minTotal = gruposItens[idTabela]?.minTotal || 0;
-                 const isCookieGroup = grupo === "Cookies";
-                 const erroCategoriaElemento = isCookieGroup ? document.getElementById('erro-cookies') : null;
-                 
-                 let grupoValido = true;
-                 
-                 if (minTotal > 0 && infoGrupo.quantidade > 0 && infoGrupo.quantidade < minTotal) {
-                     grupoValido = false;
-                     window.temErroDeMinimo = true;
-                     if (erroCategoriaElemento) {
-                         erroCategoriaElemento.textContent = `Mínimo de ${minTotal} unidades na categoria ${grupo}.`;
-                         erroCategoriaElemento.style.display = 'block';
-                     }
-                 } else {
-                     if (erroCategoriaElemento) erroCategoriaElemento.style.display = 'none';
-                 }
-        
-                 infoGrupo.items.forEach(item => {
-                     const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
-                     const isItemValido = item.quantidade >= item.min;
-                     
-                     if (item.quantidade > 0) {
-                         let shouldIncludeInTotal = true;
-                         
-                         if (isIndividualMinCheck && !isItemValido) {
-                              shouldIncludeInTotal = false;
-                              window.temErroDeMinimo = true; 
-                         }
-                         if (minTotal > 0 && !grupoValido) {
-                              shouldIncludeInTotal = false; 
-                         }
-                         
-                         if (shouldIncludeInTotal) {
-                             const totalItem = item.quantidade * item.preco;
-                             totalBruto += totalItem;
-                             totalItens += item.quantidade;
-                         }
-        
-                         if (!gruposResumoParaEnvio[grupo]) gruposResumoParaEnvio[grupo] = [];
-                         gruposResumoParaEnvio[grupo].push({ 
-                             descricaoResumo: item.descricaoResumo, 
-                             quantidade: item.quantidade 
-                         });
-                     }
-                 });
-             }
-        
-             const descontoTotal = cupomAplicado.desconto;
-             window.totalLiquido = totalBruto; 
-             
-             if (descontoTotal > 0) {
-                 window.totalLiquido = totalBruto - descontoTotal;
-             }
-        
-             const totalBrutoFormatado = totalBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-             const totalLiquidoFormatado = window.totalLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-             
-             resumoItensPopup.innerHTML = '';
-             for (const grupo in gruposResumoParaEnvio) {
-                 resumoItensPopup.innerHTML += `<strong>${grupo}:</strong><br>`;
-                 gruposResumoParaEnvio[grupo].forEach(item => {
-                     const itemOriginal = todosOsItens.find(i => i.nome === item.descricaoResumo);
-                     const preco = itemOriginal ? gruposItens[itemOriginal.grupoId.replace('grupo-', 'tabela-')].itens.find(i => i.descricaoResumo === item.descricaoResumo)?.preco || 0 : 0;
-                     const precoTotalItem = item.quantidade * preco;
-                     let precoExibicao = `R$ ${precoTotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-                     
-                     resumoItensPopup.innerHTML += `
-                         <div class="resumo-item-line">
-                             <div class="resumo-item-name">
-                                 ${item.descricaoResumo} 
-                                 <small>${precoExibicao}</small>
-                             </div>
-                             <div class="resumo-item-input-group">
-                                 <input type="number" 
-                                          min="0" 
-                                          value="${item.quantidade}" 
-                                          data-item-id="${itemOriginal?.id}" 
-                                          onblur="atualizarQuantidadeDireta(this)">
-                                 un.
-                             </div>
-                             <div class="resumo-item-actions">
-                                 <button class="btn-excluir" onclick="excluirItem('${itemOriginal?.id}')">EXCLUIR</button>
-                             </div>
-                         </div>
-                     `;
-                 });
-             }
-        
-             if (descontoTotal > 0) {
-                  resumoTotalPopup.innerHTML = `
-                       <div class="resumo-total-line">SUBTOTAL: R$ ${totalBrutoFormatado}</div>
-                       <div class="resumo-total-line total-com-desconto">DESCONTO CUPOM: R$ ${descontoTotal.toFixed(2).replace('.', ',')}</div>
-                       <div class="resumo-total">TOTAL: R$ ${totalLiquidoFormatado}</div>
-                       `;
-             } else {
-                  resumoTotalPopup.textContent = `TOTAL: R$ ${totalBrutoFormatado}`;
-                  const cupomMessage = document.getElementById('cupom-message');
-                  if (totalBruto === 0 && cupomMessage) {
-                      cupomMessage.textContent = '';
-                      cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
-                      }
-             }
-        
-             if (totalBruto > 0 && !window.temErroDeMinimo) {
-                  fazerPedidoContainer.innerHTML = '<button onclick="abrirPopup()">FAZER PEDIDO</button>';
-             } else {
-                  fazerPedidoContainer.innerHTML = '';
-             }
-             
-             if (totalBruto > 0) {
-                 document.getElementById("summary-total").textContent = `R$ ${totalLiquidoFormatado}`;
-                 document.getElementById("summary-item-count").textContent = ` / ${totalItens} ${totalItens === 1 ? 'item' : 'itens'}`;
-                 fixedSummary.style.display = 'block';
-             } else {
-                 document.getElementById("summary-total").textContent = `R$ 0,00`;
-                 document.getElementById("summary-item-count").textContent = ` / 0 itens`;
-                 fixedSummary.style.display = 'none';
-                 fecharResumoPopup();
-             }
-             
-             window.gruposResumo = gruposResumoParaEnvio;
-         }
+            const tbody = document.getElementById(idTabela).querySelector('tbody');
+            if (!tbody) return;
+
+            let grupoAtual = null;
+            let countGrupo = 0;
+            
+            const isGroupedTable = idTabela.includes('bolo') || idTabela.includes('prato');
+            const isCookieTable = idTabela === 'tabela-cookies';
+            const minDoGrupo = gruposItens[idTabela]?.minTotal || 0;
+
+
+            for (let i = 0; i < grupo.length; i++) {
+                const item = grupo[i];
+                const tr = document.createElement("tr");
+                
+                // Em Cookies, a coluna 2 é o preço. Nas outras, é o tamanho/mínimo.
+                const coluna2 = isCookieTable ? item.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : (item.tamanho || item.min); 
+                const precoFormatado = item.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const itemId = item.id;
+                
+                tr.id = itemId; 
+                
+                let isFirstInGroup = false;
+                
+                if (isGroupedTable) {
+                    if (item.groupKey !== grupoAtual) {
+                        grupoAtual = item.groupKey;
+                        isFirstInGroup = true;
+                        countGrupo = 1;
+                        let j = i + 1;
+                        while (j < grupo.length && grupo[j].groupKey === grupoAtual) {
+                            countGrupo++;
+                            j++;
+                        }
+                    }
+                    
+                    if (item.groupKey === grupoAtual && i < grupo.length - 1 && grupo[i+1].groupKey === grupoAtual) {
+                                               tr.classList.add('item-group-active');
+                    }
+                }
+                
+                // ***************************************************************
+                // VALOR PADRÃO DO INPUT É "0"
+                // ***************************************************************
+                const inputHtml = `<input type="number" value="0" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" data-item-id="${itemId}" class="quantidade-input">`;
+
+                let erroHtml = '';
+                // Verifica se é uma das categorias que deve usar o erro individual
+                const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
+                const isIndividualMinCheck = gruposComMinimoIndividual.includes(nomeGrupo) && (item.min && item.min > 1);
+                
+                if (isIndividualMinCheck) {
+                    erroHtml = `<div class="erro-item-unico">Mín ${item.min} Unid.</div>`; // Display será controlado pelo JS
+                }
+
+
+                // Conteúdo para tabelas sem agrupamento (Doces, Salgados, Cookies)
+                let celulasComuns;
+
+                if (isCookieTable) {
+                    // CÓDIGO PARA COOKIES (3 COLUNAS VISÍVEIS)
+                    celulasComuns = `
+                        <td>
+                            <div class="item-nome">${item.nome}</div>
+                            ${item.descricao ? `<div class="descricao">${item.descricao}</div>` : ''}
+                        </td>
+                        <td>R$ ${precoFormatado}</td>
+                        <td>
+                            <div class="quantidade-container">
+                                ${inputHtml}
+                                ${erroHtml}
+                            </div>
+                        </td>
+                    `;
+                } else {
+                    // CÓDIGO para as outras tabelas (4 COLUNAS VISÍVEIS)
+                    celulasComuns = `
+                        <td>
+                            <div class="item-nome">${item.nome}</div>
+                            ${item.descricao ? `<div class="descricao">${item.descricao}</div>` : ''}
+                        </td>
+                        <td>${coluna2}</td>
+                        <td>R$ ${precoFormatado}</td>
+                        <td>
+                            <div class="quantidade-container">
+                                ${inputHtml}
+                                ${erroHtml}
+                            </div>
+                        </td>
+                    `;
+                }
+
+                // Conteúdo para tabelas AGRUPADAS (Bolos, Pratos Salgados)
+                const celulasAgrupadas = `
+                    <td>${coluna2}</td>
+                    <td>R$ ${precoFormatado}</td>
+                    <td>
+                        <div class="quantidade-container">
+                            ${inputHtml}
+                            ${erroHtml}
+                        </div>
+                    </td>
+                `;
+
+                if (isGroupedTable && isFirstInGroup) {
+                    tr.innerHTML = `
+                        <td rowspan="${countGrupo}" class="item-group-cell">
+                            <div class="item-nome">${item.nome}</div>
+                            ${item.descricao ? `<div class="descricao">${item.descricao}</div>` : ''}
+                        </td>
+                        ${celulasAgrupadas}
+                    `;
+                } else if (isGroupedTable && !isFirstInGroup) {
+                    tr.innerHTML = celulasAgrupadas;
+                } else {
+                    tr.innerHTML = celulasComuns;
+                }
+                
+                tbody.appendChild(tr);
+            }
+        }
         
         // -----------------------------------------------------
-        // FUNÇÕES POPUP - MANTIDAS
+        // LÓGICA DE FILTRO E ABA - MANTIDA
+        // -----------------------------------------------------
+        function ativarAba(linkElement) {
+            const targetGroupId = linkElement.getAttribute('data-target');
+            const targetGroup = document.getElementById(targetGroupId);
+            const categoriasBar = document.getElementById('categorias-horizontal');
+
+            if (!targetGroup) return;
+
+            categoriasBar.querySelectorAll('a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            document.querySelectorAll('.categoria-group').forEach(group => {
+                group.classList.remove('active-group');
+            });
+
+            linkElement.classList.add('active-link');
+            targetGroup.classList.add('active-group');
+            
+            linkElement.scrollIntoView({ behavior: 'smooth', inline: 'center' }); 
+        }
+
+        /**
+         * Rola a página para um elemento específico, considerando a barra sticky.
+         */
+        function scrollToElement(targetElement) {
+            if (!targetElement) return;
+
+            // Remove o destaque de qualquer linha antes de rolar
+            document.querySelectorAll('.highlight-edit').forEach(el => {
+                el.classList.remove('highlight-edit');
+            });
+
+            const mainHeader = document.querySelector('header');
+            const stickyNav = document.getElementById('sticky-nav-container');
+            
+            // Calcula a altura fixa total (header + sticky nav)
+            const fixedHeight = (mainHeader ? mainHeader.offsetHeight : 0) + (stickyNav ? stickyNav.offsetHeight : 0) + 10;
+            
+            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - fixedHeight;
+
+            window.scrollTo({
+                top: Math.max(0, offsetPosition), // Garante que não role para cima demais
+                behavior: 'smooth'
+            });
+        }
+        
+        // -----------------------------------------------------
+        // LÓGICA DE CUPOM - MANTIDA
+        // -----------------------------------------------------
+        
+        function limparCupom() {
+            cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
+            const cupomInput = document.getElementById('cupom-input');
+            if (cupomInput) cupomInput.value = '';
+        }
+
+        function aplicarCupom() {
+            const cupomInput = document.getElementById('cupom-input');
+            const cupomCode = cupomInput.value.toUpperCase().trim();
+            const cupomMessage = document.getElementById('cupom-message');
+            
+            cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
+            cupomMessage.className = 'cupom-message'; // Reset classes
+            
+            // 1. Coleta e valida a quantidade e os subtotais
+            let totalBrutoPedido = 0; 
+            let totalCookies = 0;
+            let subtotalCookies = 0; 
+            const cookiesGrupos = ["Cookies"]; 
+            let hasCookieItem = false;
+            
+            // Lista de grupos que usam a validação de mínimo individual
+            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
+            let temErroDeMinimo = false; 
+
+            document.querySelectorAll(".quantidade-input").forEach(input => {
+                const grupo = input.getAttribute("data-grupo");
+                // Usamos parseInt(input.value) || 0 para garantir que "0" seja tratado como 0
+                const quantidade = parseInt(input.value) || 0; 
+                const preco = parseFloat(input.getAttribute("data-preco")) || 0;
+                const min = parseInt(input.getAttribute("data-min")) || 1;
+                
+                const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
+                const isItemValido = quantidade >= min;
+                
+                // Verifica erros de mínimo para não incluir o item no total bruto (apenas se a quantidade for > 0)
+                if (quantidade > 0 && isIndividualMinCheck && !isItemValido) {
+                    temErroDeMinimo = true;
+                }
+
+                if (quantidade > 0 && (!isIndividualMinCheck || isItemValido)) {
+                    const totalItem = quantidade * preco;
+                    totalBrutoPedido += totalItem; // Total de todo o pedido (válido para o FAVU10)
+                }
+
+                if (cookiesGrupos.includes(grupo)) {
+                    totalCookies += quantidade;
+                    subtotalCookies += quantidade * preco;
+                    if (quantidade > 0) {
+                        hasCookieItem = true;
+                    }
+                }
+            });
+
+            // Revalida se o mínimo do grupo Cookies (3) foi atingido (lógica para evitar descontos em pedidos inválidos)
+            const minTotalCookies = gruposItens["tabela-cookies"]?.minTotal || 0;
+            const cookiesValidos = totalCookies === 0 || totalCookies >= minTotalCookies;
+            if (!cookiesValidos && totalCookies > 0) temErroDeMinimo = true;
+            
+            if (temErroDeMinimo) {
+                cupomAplicado.mensagem = 'Ajuste as quantidades mínimas do seu pedido antes de aplicar um cupom.';
+                cupomMessage.classList.add('cupom-error');
+                atualizarTotal();
+                return;
+            }
+
+            // 2. Validação e Aplicação dos Cupons
+            const taxaDesconto = 0.10; // 10%
+            const minCookiesCupom = 4; // Mínimo de cookies para os cupons de cookies (COOKIES10 e FAVUCOOKIES)
+
+            // 2.1. CUPOM FAVU10 (10% no Total do Pedido - Qualquer dia)
+            if (cupomCode === CUPOM_FAVU10) {
+                
+                if (totalBrutoPedido === 0) {
+                    cupomAplicado.mensagem = 'Adicione itens ao carrinho antes de aplicar o cupom.';
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+                
+                const descontoTotal = totalBrutoPedido * taxaDesconto;
+                
+                cupomAplicado = {
+                    codigo: cupomCode,
+                    desconto: descontoTotal, 
+                    mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF no total)` 
+                };
+                cupomMessage.classList.add('cupom-success');
+                
+            // 2.2. CUPOM COOKIES10 (10% em Cookies - Qualquer dia - REQUER MÍNIMO DE 4 UNIDADES)
+            } else if (cupomCode === CUPOM_COOKIES10) {
+                
+                if (!hasCookieItem) {
+                    cupomAplicado.mensagem = 'Cupom válido apenas para Cookies.';
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+                
+                // CHECK MÍNIMO DE 4 UNIDADES DE COOKIES
+                if (totalCookies < minCookiesCupom) {
+                    cupomAplicado.mensagem = `CUPOM VÁLIDO APENAS PARA NO MÍNIMO ${minCookiesCupom} COOKIES.`;
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+                
+                const descontoTotal = subtotalCookies * taxaDesconto; 
+                
+                cupomAplicado = {
+                    codigo: cupomCode,
+                    desconto: descontoTotal, 
+                    mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF em Cookies)` 
+                };
+                cupomMessage.classList.add('cupom-success');
+                
+            // 2.3. Validação do Cupom FAVUCOOKIES (Regra antiga: Segunda a Quinta, Mínimo 4 Cookies)
+            } else if (cupomCode === CUPOM_FAVUCOOKIES) {
+                
+                // Validação de Item
+                if (!hasCookieItem) {
+                    cupomAplicado.mensagem = 'Cupom válido apenas para Cookies.';
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+                
+                // Validação de Data: USA A DATA ATUAL
+                const dataAtual = new Date();
+                const diaDaSemana = dataAtual.getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
+
+                // Válido de Segunda (1) a Quinta (4)
+                if (diaDaSemana === 0 || diaDaSemana === 5 || diaDaSemana === 6) { // Domingo, Sexta, Sábado
+                    cupomAplicado.mensagem = 'Cupom válido apenas para pedidos realizados entre Segunda e Quinta-feira.';
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+
+                // Validação de Quantidade (também exige 4)
+                if (totalCookies < minCookiesCupom) {
+                    cupomAplicado.mensagem = `CUPOM VÁLIDO APENAS PARA NO MÍNIMO ${minCookiesCupom} COOKIES.`;
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+                
+                // Aplicação do Desconto
+                const descontoTotal = subtotalCookies * taxaDesconto; 
+                
+                cupomAplicado = {
+                    codigo: cupomCode,
+                    desconto: descontoTotal, 
+                    mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF)` 
+                };
+                cupomMessage.classList.add('cupom-success');
+                
+            } else if (cupomCode) {
+                cupomAplicado.mensagem = `Código "${cupomCode}" inválido.`;
+                cupomMessage.classList.add('cupom-error');
+            }
+            
+            cupomMessage.textContent = cupomAplicado.mensagem;
+            atualizarTotal();
+        }
+        
+        // -----------------------------------------------------
+        // FUNÇÕES DE EDIÇÃO E EXCLUSÃO - MANTIDAS
+        // -----------------------------------------------------
+        
+        /**
+         * Zera a quantidade de um item e atualiza o resumo.
+         */
+        function excluirItem(itemId) {
+            const inputNoMain = document.querySelector(`.quantidade-input[data-item-id="${itemId}"]`);
+            if (inputNoMain) {
+                inputNoMain.value = "0"; // Alterado para '0' (zero) para manter a coerência visual
+                // Dispara o evento 'input' para atualizar a interface imediatamente
+                inputNoMain.dispatchEvent(new Event('input')); 
+            }
+            // Revalida o cupom após a exclusão
+            if (cupomAplicado.codigo) aplicarCupom();
+            
+            // Força a reabertura do popup para refletir a exclusão (pois ele seria fechado se o total fosse zero)
+            if (parseFloat(document.getElementById("summary-total").textContent.replace('R$ ', '').replace('.', '').replace(',', '.')) > 0) {
+                abrirResumoPopup();
+            } else {
+                fecharResumoPopup();
+            }
+        }
+        
+        /**
+         * Atualiza o campo de quantidade principal e aciona a recontagem total.
+         */
+        function atualizarQuantidadeDireta(inputElement) {
+            const itemId = inputElement.getAttribute('data-item-id');
+            const valorInput = inputElement.value.replace(/[^0-9]/g, ''); 
+            let novaQuantidade = parseInt(valorInput) || 0;
+
+            const inputNoMain = document.querySelector(`.quantidade-input[data-item-id="${itemId}"]`);
+
+            if (inputNoMain) {
+                if (novaQuantidade <= 0) {
+                    novaQuantidade = 0; 
+                    inputElement.value = "0"; 
+                } else {
+                    inputElement.value = novaQuantidade; 
+                }
+
+                // 2. Atualiza o valor no campo principal da tabela
+                inputNoMain.value = novaQuantidade;
+                
+                // 3. Dispara a atualização total (que recria o pop-up e aplica as validações)
+                atualizarTotal();
+                
+                // 4. Se o cupom estava ativo, revalida
+                if (cupomAplicado.codigo) aplicarCupom();
+
+                // 5. Reabrimos o popup para garantir que a lista esteja consistente e os totais atualizados.
+                if (parseFloat(document.getElementById("summary-total").textContent.replace('R$ ', '').replace('.', '').replace(',', '.')) > 0) {
+                    abrirResumoPopup(); 
+                } else {
+                    fecharResumoPopup();
+                }
+            }
+        }
+        
+        // -----------------------------------------------------
+        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - MANTIDA
+        // -----------------------------------------------------
+        function atualizarTotal() {
+            let totalBruto = 0;
+            let totalItens = 0;
+            const resumoItensPopup = document.getElementById("popup-resumo-itens");
+            const resumoTotalPopup = document.getElementById("popup-resumo-total");
+            const fixedSummary = document.getElementById("fixed-summary");
+            const fazerPedidoContainer = document.getElementById("fazer-pedido-button-container");
+            
+            if (!resumoItensPopup || !fixedSummary || !fazerPedidoContainer) return;
+            resumoItensPopup.innerHTML = ''; 
+
+            const gruposResumo = {}; 
+            const totaisPorGrupo = {};
+
+            // Lista de grupos que usam a validação de mínimo individual
+            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
+
+            document.querySelectorAll(".quantidade-input").forEach(input => {
+                const quantidade = parseInt(input.value) || 0;
+                const min = parseInt(input.getAttribute("data-min")) || 1;
+                const preco = parseFloat(input.getAttribute("data-preco")) || 0;
+                const descricaoResumo = input.getAttribute("data-resumo");
+                const grupo = input.getAttribute("data-grupo");
+                const itemId = input.getAttribute("data-item-id");
+                
+                const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
+                const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
+                
+                // VERIFICAÇÃO DE MÍNIMO INDIVIDUAL
+                const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1; 
+
+                // 1. Soma a quantidade no total do grupo
+                if (!totaisPorGrupo[grupo]) {
+                    totaisPorGrupo[grupo] = { quantidade: 0, items: [] };
+                }
+                totaisPorGrupo[grupo].quantidade += quantidade;
+                totaisPorGrupo[grupo].items.push({ input, quantidade, min, preco, descricaoResumo, itemId, grupo });
+
+                // 2. Validação MÍNIMO INDIVIDUAL (Apenas exibe o erro visual na tabela principal)
+                if (isIndividualMinCheck && quantidade > 0) {
+                    if (quantidade < min) {
+                        // EXIBE MENSAGEM DE ERRO
+                        if (erroElemento) {
+                            erroElemento.textContent = `Mín ${min} Unid.`;
+                            erroElemento.style.display = 'block';
+                        }
+                    } else {
+                        // OCULTA MENSAGEM se for válido
+                        if (erroElemento) erroElemento.style.display = 'none';
+                    }
+                } else {
+                    // Oculta a mensagem se a quantidade for 0 ou não for para checar individualmente
+                    if (erroElemento) erroElemento.style.display = 'none'; 
+                }
+            });
+
+            let temErroDeMinimo = false;
+
+            // 3. Processa os totais e cria o resumo para o pop-up
+            for (const grupo in totaisPorGrupo) {
+                const infoGrupo = totaisPorGrupo[grupo];
+                const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
+                const minTotal = gruposItens[idTabela]?.minTotal || 0;
+                const isCookieGroup = grupo === "Cookies";
+                const erroCategoriaElemento = isCookieGroup ? document.getElementById('erro-cookies') : null;
+                
+                let grupoValido = true;
+                
+                // Validação MÍNIMO POR GRUPO (ex: Cookies: minTotal=3)
+                if (minTotal > 0 && infoGrupo.quantidade > 0 && infoGrupo.quantidade < minTotal) {
+                    grupoValido = false;
+                    temErroDeMinimo = true;
+                    if (erroCategoriaElemento) {
+                        erroCategoriaElemento.textContent = `Mínimo de ${minTotal} unidades na categoria ${grupo}.`;
+                        erroCategoriaElemento.style.display = 'block';
+                    }
+                } else {
+                    if (erroCategoriaElemento) erroCategoriaElemento.style.display = 'none';
+                }
+
+                // Adiciona itens válidos ao subtotal
+                infoGrupo.items.forEach(item => {
+                    const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+                    const isItemValido = item.quantidade >= item.min;
+                    
+                    if (item.quantidade > 0) {
+                        let shouldIncludeInTotal = true;
+                        
+                        if (isIndividualMinCheck && !isItemValido) {
+                             shouldIncludeInTotal = false;
+                             temErroDeMinimo = true; // Marca erro se falhar no min individual
+                        }
+                        
+                        // Checa o erro de grupo para Cookies (ou outros grupos com minTotal > 0)
+                        if (minTotal > 0 && !grupoValido) {
+                             shouldIncludeInTotal = false; // Marca erro se falhar no min de grupo
+                        }
+                        
+                        if (shouldIncludeInTotal) {
+                            const totalItem = item.quantidade * item.preco;
+                            totalBruto += totalItem;
+                            totalItens += item.quantidade;
+                        }
+
+                        // Inclui no resumo (pop-up) se a quantidade for > 0
+                        if (!gruposResumo[grupo]) gruposResumo[grupo] = [];
+                        gruposResumo[grupo].push({ ...item });
+                    }
+                });
+            }
+
+            // Aplica o desconto do cupom
+            const descontoTotal = cupomAplicado.desconto;
+            let totalLiquido = totalBruto;
+            
+            if (descontoTotal > 0) {
+                totalLiquido = totalBruto - descontoTotal;
+            }
+
+            const totalBrutoFormatado = totalBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const totalLiquidoFormatado = totalLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            // 1. Atualiza o conteúdo do Pop-up Resumo
+            for (const grupo in gruposResumo) {
+                resumoItensPopup.innerHTML += `<strong>${grupo}:</strong><br>`;
+                gruposResumo[grupo].forEach(item => {
+                    const precoTotalItem = item.quantidade * item.preco;
+                    let precoExibicao = `R$ ${precoTotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                    
+                    // Geração do item com campo de edição direta
+                    resumoItensPopup.innerHTML += `
+                        <div class="resumo-item-line">
+                            <div class="resumo-item-name">
+                                ${item.descricaoResumo} 
+                                <small>${precoExibicao}</small>
+                            </div>
+                            <div class="resumo-item-input-group">
+                                <input type="number" 
+                                            min="0" 
+                                            value="${item.quantidade}" 
+                                            data-item-id="${item.itemId}" 
+                                            onblur="atualizarQuantidadeDireta(this)">
+                                un.
+                            </div>
+                            <div class="resumo-item-actions">
+                                <button class="btn-excluir" onclick="excluirItem('${item.itemId}')">EXCLUIR</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            // 2. Atualiza o total exibido no Pop-up (incluindo desconto se houver)
+            if (descontoTotal > 0) {
+                 resumoTotalPopup.innerHTML = `
+                     <div class="resumo-total-line">SUBTOTAL: R$ ${totalBrutoFormatado}</div>
+                     <div class="resumo-total-line total-com-desconto">DESCONTO CUPOM: R$ ${descontoTotal.toFixed(2).replace('.', ',')}</div>
+                     <div class="resumo-total">TOTAL: R$ ${totalLiquidoFormatado}</div>
+                     `;
+            } else {
+                 resumoTotalPopup.textContent = `TOTAL: R$ ${totalBrutoFormatado}`;
+                 // Garante que o campo de cupom não mantenha a mensagem de sucesso se o total for 0
+                 const cupomMessage = document.getElementById('cupom-message');
+                 if (totalBruto === 0 && cupomMessage) {
+                     cupomMessage.textContent = '';
+                     cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
+                     }
+            }
+
+            // 3. Controla a visibilidade do botão "Fazer Pedido" no pop-up
+            if (totalBruto > 0) {
+                 fazerPedidoContainer.innerHTML = '<button onclick="abrirPopup()">FAZER PEDIDO</button>';
+            } else {
+                 fazerPedidoContainer.innerHTML = '';
+            }
+
+            // 4. Atualiza e exibe o Rodapé Fixo
+            if (totalBruto > 0) {
+                document.getElementById("summary-total").textContent = `R$ ${totalLiquidoFormatado}`;
+                document.getElementById("summary-item-count").textContent = ` / ${totalItens} ${totalItens === 1 ? 'item' : 'itens'}`;
+                fixedSummary.style.display = 'block';
+            } else {
+                document.getElementById("summary-total").textContent = `R$ 0,00`;
+                document.getElementById("summary-item-count").textContent = ` / 0 itens`;
+                fixedSummary.style.display = 'none';
+                fecharResumoPopup();
+            }
+        }
+        
+        // -----------------------------------------------------
+        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - AJUSTADO PARA FORMSPREE
         // -----------------------------------------------------
         function abrirResumoPopup() {
-             const cupomMessage = document.getElementById('cupom-message');
-             cupomMessage.className = 'cupom-message';
-             cupomMessage.textContent = cupomAplicado.mensagem;
-             
-             const totalText = document.getElementById("summary-total").textContent;
-             const total = parseFloat(totalText.replace('R$ ', '').replace('.', '').replace(',', '.')) || 0; 
-             
-             if (total > 0) {
-                  document.getElementById("popup-resumo").style.display = "flex";
-             } else {
-                  alert("Seu pedido está vazio. Adicione itens para visualizar o resumo!");
-             }
-         }
-         
-         function fecharResumoPopup() {
-             document.getElementById("popup-resumo").style.display = "none";
-         }
-        
-         function abrirPopup() {
-             fecharResumoPopup(); 
-             document.getElementById("popup-pedido").style.display = "flex";
-         }
-         
-         function fecharPopup() {
-             document.getElementById("popup-pedido").style.display = "none";
-         }
-        
-         function editarPedido() {
-             fecharPopup(); 
-             abrirResumoPopup(); 
-         }
-         
-         function resetarCampos() {
-             document.querySelectorAll(".quantidade-input").forEach(input => {
-                 input.value = "0"; 
-                 const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
-                 if (erroElemento) erroElemento.style.display = 'none';
-             });
-             
-             document.querySelectorAll('.erro-categoria').forEach(el => el.style.display = 'none');
-             
-             const resumoItens = document.getElementById("popup-resumo-itens");
-             const resumoTotal = document.getElementById("popup-resumo-total");
-             if (resumoItens) resumoItens.innerHTML = '';
-             if (resumoTotal) resumoTotal.textContent = '';
-             
-             limparCupom();
-        
-             fecharPopup();
-             fecharResumoPopup();
-             atualizarTotal();
-             window.scrollTo(0, 0);
-         }
-
-        // NOVO: GERA ID ÚNICO
-        function gerarIdPedido() {
-            // Exemplo: PEDIDO-20251023-181512-321
-            const agora = new Date();
-            const dataStr = agora.toLocaleDateString('sv-SE').replace(/-/g, '');
-            const horaStr = agora.toLocaleTimeString('pt-BR', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit'}).replace(/:/g, '');
-            const random = Math.floor(Math.random() * 900) + 100; // Número de 3 dígitos
-            return `PEDIDO-${dataStr}-${horaStr}-${random}`;
-        }
-        
-        // NOVO: Função para ENVIAR WHATSAPP (para o seu número)
-        function enviarWhatsapp(nome, data, horario, pagamento, total, resumo, idPedido, cupom) {
-             let mensagem = `*✅ NOVO PEDIDO - ID: ${idPedido}*\n\n`;
-             mensagem += `*Cliente:* ${nome}\n`;
-             mensagem += `*Total:* R$ ${total}\n`;
-             mensagem += `*Cupom:* ${cupom}\n\n`;
-             mensagem += `*AGENDA*\n`;
-             mensagem += `Data: ${data}\n`;
-             mensagem += `Horário: ${horario}\n`;
-             mensagem += `Pagamento: ${pagamento}\n\n`;
-             mensagem += `*ITENS:*\n${resumo.trim()}\n\n`;
-             mensagem += `*Status Inicial:* Aberto\n\n`;
-             mensagem += `_Este pedido foi registrado em seu painel interno._`;
-
-             // O link do whatsapp já usa o número configurado na constante SEU_NUMERO_WHATSAPP
-             const url = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
-             
-             // Abre o WhatsApp em uma nova aba/janela para que o cliente envie
-             window.open(url, '_blank');
-        }
-
-        // FUNÇÃO PRINCIPAL CONFIRMAR PEDIDO (FINAL)
-        function confirmarPedido() {
+            // Garante que a mensagem do cupom seja exibida corretamente ao abrir
+            const cupomMessage = document.getElementById('cupom-message');
+            cupomMessage.className = 'cupom-message';
+            cupomMessage.textContent = cupomAplicado.mensagem;
             
-            atualizarTotal(); 
+            const totalText = document.getElementById("summary-total").textContent;
+            const total = parseFloat(totalText.replace('R$ ', '').replace('.', '').replace(',', '.')) || 0; 
+            
+            if (total > 0) {
+                 document.getElementById("popup-resumo").style.display = "flex";
+            } else {
+                 alert("Seu pedido está vazio. Adicione itens para visualizar o resumo!");
+            }
+        }
+        
+        function fecharResumoPopup() {
+            document.getElementById("popup-resumo").style.display = "none";
+        }
 
-            // Validação de Preenchimento do Formulário
+        function abrirPopup() {
+            fecharResumoPopup(); 
+            document.getElementById("popup-pedido").style.display = "flex";
+        }
+        
+        function fecharPopup() {
+            document.getElementById("popup-pedido").style.display = "none";
+        }
+
+        // NOVO BOTÃO: Volta para o popup de resumo
+        function editarPedido() {
+            fecharPopup(); // Fecha o popup de informações do pedido
+            abrirResumoPopup(); // Abre o popup de resumo do pedido
+        }
+        
+        function resetarCampos() {
+            document.querySelectorAll(".quantidade-input").forEach(input => {
+                input.value = "0"; // Alterado para "0" ao resetar
+                // Esconde erros individuais
+                const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
+                if (erroElemento) erroElemento.style.display = 'none';
+            });
+            
+            // Esconde erros de categoria
+            document.querySelectorAll('.erro-categoria').forEach(el => el.style.display = 'none');
+            
+            const resumoItens = document.getElementById("popup-resumo-itens");
+            const resumoTotal = document.getElementById("popup-resumo-total");
+            if (resumoItens) resumoItens.innerHTML = '';
+            if (resumoTotal) resumoTotal.textContent = '';
+            
+            // Limpa o cupom ao resetar
+            limparCupom();
+
+            fecharPopup();
+            fecharResumoPopup();
+            atualizarTotal();
+            window.scrollTo(0, 0);
+        }
+
+        // ***************************************************************
+        // FUNÇÃO PRINCIPAL DE ENVIO (AJUSTADA PARA FORMSPREE + WHATSAPP)
+        // ***************************************************************
+        async function confirmarPedido() { 
+            // Linha riscada para separar o resumo dos itens das informações do cliente
+            const linhaSeparadora = "\n\n*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*\n\n";
+
+            // O resumo para WhatsApp e para o campo de Resumo do Formspree
+            let resumoParaEnvio = "Olá, Favu!\nGostaria de saber a disponibilidade para encomendar os itens abaixo:\n\n\n*_- Resumo do pedido_:*\n\n";
+            let totalPedido = 0; // Total Bruto
+            let temErroDeMinimo = false;
+
+            const gruposResumo = {}; 
+            const totaisPorGrupo = {};
+
+            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
+
+            // 1. Preenche totaisPorGrupo (lógica repetida de atualizarTotal para validação e resumo)
+            document.querySelectorAll(".quantidade-input").forEach(input => {
+                const quantidade = parseInt(input.value) || 0;
+                const min = parseInt(input.getAttribute("data-min")) || 1;
+                const preco = parseFloat(input.getAttribute("data-preco")) || 0;
+                const descricaoResumo = input.getAttribute("data-resumo");
+                const grupo = input.getAttribute("data-grupo");
+                
+                if (!totaisPorGrupo[grupo]) {
+                    totaisPorGrupo[grupo] = { quantidade: 0, items: [] };
+                }
+                totaisPorGrupo[grupo].quantidade += quantidade;
+                totaisPorGrupo[grupo].items.push({ quantidade, min, preco, descricaoResumo, grupo });
+            });
+
+            // 2. Valida e Calcula o Total Bruto para o Resumo
+            for (const grupo in totaisPorGrupo) {
+                const infoGrupo = totaisPorGrupo[grupo];
+                const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
+                const minTotal = gruposItens[idTabela]?.minTotal || 0;
+                
+                let grupoValido = true;
+                if (minTotal > 0 && infoGrupo.quantidade > 0 && infoGrupo.quantidade < minTotal) {
+                    grupoValido = false;
+                    temErroDeMinimo = true;
+                }
+
+                infoGrupo.items.forEach(item => {
+                    const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+                    const isItemValido = item.quantidade >= item.min;
+
+                    let shouldIncludeInTotal = true;
+
+                    if (item.quantidade > 0 && isIndividualMinCheck && !isItemValido) { 
+                          shouldIncludeInTotal = false;
+                          temErroDeMinimo = true;
+                    }
+                    if (minTotal > 0 && !grupoValido) {
+                        shouldIncludeInTotal = false;
+                    }
+
+                    if (item.quantidade > 0 && shouldIncludeInTotal) {
+                        const totalItem = item.quantidade * item.preco;
+                        totalPedido += totalItem;
+
+                        if (!gruposResumo[grupo]) {
+                            gruposResumo[grupo] = [];
+                        }
+                        gruposResumo[grupo].push({ descricao: item.descricaoResumo, quantidade: item.quantidade });
+                    }
+                });
+            }
+            
+            // ************ VALIDAÇÃO DE BLOQUEIO ************
+            if (totalPedido === 0) {
+                alert("Seu pedido está vazio. Adicione itens para confirmar.");
+                fecharPopup();
+                return;
+            }
+
+            if (temErroDeMinimo) {
+                alert("Por favor, ajuste as quantidades mínimas do seu pedido antes de confirmar.");
+                atualizarTotal(); // Recarrega os totais e erros
+                abrirResumoPopup();
+                return;
+            }
+            // ************ FIM DA VALIDAÇÃO DE BLOQUEIO ************
+
+            // Aplica desconto
+            const desconto = cupomAplicado.desconto;
+            const totalLiquido = totalPedido - desconto;
+
+            // 3. Monta o Resumo Completo (para Formspree e WhatsApp)
+            for (const grupo in gruposResumo) {
+                resumoParaEnvio += `*${grupo}:*\n`;
+                gruposResumo[grupo].forEach(item => {
+                    resumoParaEnvio += `${item.descricao} - ${item.quantidade} unidades\n`;
+                });
+                resumoParaEnvio += `\n`; 
+            }
+            
+            resumoParaEnvio += `*Total Bruto*: R$ ${totalPedido.toFixed(2).replace('.', ',')}\n`; 
+
+            if (desconto > 0) {
+                resumoParaEnvio += `*Desconto Cupom (${cupomAplicado.codigo})*: R$ ${desconto.toFixed(2).replace('.', ',')}\n`;
+            }
+
+            resumoParaEnvio += `*_Total Final_*: R$ ${totalLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
             const nome = document.getElementById("nome").value;
             const data = document.getElementById("data").value;
             const horario = document.getElementById("horario").value;
             const pagamento = document.getElementById("pagamento").value;
-            
-            const totalExibido = parseFloat(document.getElementById("summary-total").textContent.replace('R$ ', '').replace('.', '').replace(',', '.')) || 0; 
 
-            // 1. MONTA A MENSAGEM DE ERRO DETALHADA
-            let mensagemErro = "Não foi possível confirmar o pedido. Por favor, corrija:\n\n";
-            let hasError = false;
-
-            if (totalExibido <= 0) {
-                mensagemErro += "• O pedido está vazio. Adicione pelo menos um item válido.\n";
-                hasError = true;
-            }
-            // Verifica se há erro de mínimo individual ou de grupo (Cookies)
-            if (window.temErroDeMinimo) {
-                mensagemErro += "• Corrija as quantidades mínimas de alguns produtos (ex: Doces, Cookies). Verifique no botão 'Ver Pedido'.\n";
-                hasError = true;
-            }
-            if (!nome) {
-                mensagemErro += "• O campo NOME está vazio.\n";
-                hasError = true;
-            }
-            if (!data) {
-                mensagemErro += "• O campo DATA DA ENTREGA está vazio.\n";
-                hasError = true;
-            }
-            if (!horario) {
-                mensagemErro += "• O campo HORÁRIO DA ENTREGA está vazio.\n";
-                hasError = true;
-            }
-            
-            // 2. EXIBE O ERRO E PARA O ENVIO
-            if (hasError) {
-                alert(mensagemErro.trim());
-                return; // Para o envio do formulário
+            if (!nome || !data || !horario || !pagamento) {
+                alert("Por gentileza, preencha todos os campos!");
+                return;
             }
 
-            // -----------------------------------------------------------------
-            // 3. ENVIO ESTÁ OK - GERAÇÃO E ENVIO DE DADOS
-            // -----------------------------------------------------------------
+            const dataParts = data.split("-");
+            const dataFormatada = `${dataParts[2]}/${dataParts[1]}/${dataParts[0]}`;
 
-            // GERA O ID ÚNICO E ARMAZENA
-            idPedidoAtual = gerarIdPedido(); 
+            // Inclui a linha separadora e os dados do cliente
+            resumoParaEnvio += linhaSeparadora;
+            resumoParaEnvio += `_*- Informações do Cliente:*_\n\n*Nome*: ${nome}\n*Data da Entrega*: ${dataFormatada}\n*Horário da Entrega*: ${horario}\n*Forma de Pagamento*: ${pagamento}`;
 
-            const cupom = cupomAplicado.codigo || "Nenhum";
             
-            // CORREÇÃO: Formatação para PONTO (Ex: 150.00) para o Forms reconhecer como número.
-            const totalForms = totalLiquido.toFixed(2); 
+            // -------------------------------------------------------------
+            // NOVO BLOCO: ENVIO DOS DADOS PARA O FORMSPREE
+            // -------------------------------------------------------------
             
-            // Formato com vírgula para o WhatsApp (exibição)
-            const totalWhatsApp = totalLiquido.toFixed(2).replace('.', ','); 
-            
-            // Monta a string de resumo
-            let resumoString = '';
-            for (const grupo in window.gruposResumo) {
-                resumoString += `[${grupo}]: `;
-                window.gruposResumo[grupo].forEach(item => {
-                    resumoString += `${item.descricaoResumo} (${item.quantidade} un); `;
+            const formData = new FormData();
+            formData.append('Nome do Cliente', nome);
+            formData.append('Data da Entrega', dataFormatada); 
+            formData.append('Horário da Entrega', horario);
+            formData.append('Forma de Pagamento', pagamento);
+            formData.append('Total Bruto', totalPedido.toFixed(2).replace('.', ','));
+            formData.append('Desconto', desconto.toFixed(2).replace('.', ','));
+            formData.append('Total Final', totalLiquido.toFixed(2).replace('.', ','));
+            formData.append('Cupom Aplicado', cupomAplicado.codigo || 'Nenhum');
+            // Campo principal que contém todos os detalhes do pedido
+            formData.append('Resumo dos Itens', resumoParaEnvio); 
+
+            // Configura o botão de CONFIRMAR PEDIDO para o estado de envio
+            const submitButton = document.querySelector('button[onclick="confirmarPedido()"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'ENVIANDO...';
+            submitButton.disabled = true;
+
+            let formspreeSuccess = false;
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' 
+                    }
                 });
+
+                if (response.ok) {
+                    alert("Pedido registrado com sucesso! Você será redirecionado para o WhatsApp.");
+                    formspreeSuccess = true;
+                } else {
+                    const errorData = await response.json();
+                    console.error('Erro Formspree:', errorData);
+                    alert(`Falha no registro do pedido (${response.status}). Enviando via WhatsApp.`);
+                }
+            } catch (error) {
+                console.error('Erro de rede ao enviar para Formspree:', error);
+                alert("Erro de conexão. Enviando via WhatsApp para garantir o pedido.");
+            } finally {
+                // Restaura o estado do botão
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
             }
-            
-            // PREPARAÇÃO DO FORMULÁRIO OCULTO (Registro no Google Sheets)
-            const form = document.getElementById('form_envio_oculto');
-            form.innerHTML = ''; // Limpa campos anteriores
 
-            // Adiciona os campos de input escondidos com os entry.IDs
-            const campos = {
-                [FORM_MAP.NOME]: nome,
-                [FORM_MAP.DATA]: data,
-                [FORM_MAP.HORARIO]: horario,
-                [FORM_MAP.PAGAMENTO]: pagamento,
-                [FORM_MAP.TOTAL]: totalForms, // ENVIANDO COM PONTO
-                [FORM_MAP.CUPOM]: cupom,
-                [FORM_MAP.RESUMO_ITENS]: resumoString.trim(),
-                [FORM_MAP.ID_PEDIDO]: idPedidoAtual, 
-                [FORM_MAP.STATUS]: 'Aberto' 
-            };
+            // 4. Abre o WhatsApp (sempre, para a comunicação imediata)
+            const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(resumoParaEnvio)}`;
+            window.open(whatsappLink, '_blank');
 
-            for (const entryId in campos) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = entryId;
-                input.value = campos[entryId];
-                form.appendChild(input);
+            // 5. Se o envio ao Formspree foi bem-sucedido, reseta o formulário.
+            if (formspreeSuccess) {
+                resetarCampos();
             }
-            
-            // ENVIO PARA O GOOGLE FORMS (REGISTRO NO SHEETS)
-            window.submitted = true;
-            form.submit(); 
-
-            // CHAMA O ENVIO DO WHATSAPP (usa o total formatado com VÍRGULA)
-            enviarWhatsapp(nome, data, horario, pagamento, totalWhatsApp, resumoString.trim(), idPedidoAtual, cupom);
-
-            // Fechamos o popup do pedido (o alerta de sucesso será dado pelo iframe.onload)
-            fecharPopup();
         }
-        // -----------------------------------------------------
-        
+
+        // ***************************************************************
+        // FIM DA FUNÇÃO PRINCIPAL
+        // ***************************************************************
         
         document.addEventListener("DOMContentLoaded", function () {
             
+            // 1. Cria as tabelas
             for (const idTabela in gruposItens) {
                 const tabelaId = idTabela;
                 criarTabelaGrupo(gruposItens[idTabela].itens, tabelaId, gruposItens[idTabela].nomeGrupo);
             }
 
+            // 2. Evento para atualizar o total (mantido como input para a tabela principal)
             const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
 
             document.querySelectorAll(".quantidade-input").forEach(input => {
@@ -1807,6 +1932,8 @@
                 
                 input.addEventListener("blur", function() {
                     const quantidade = parseInt(this.value) || 0;
+                    const min = parseInt(this.getAttribute("data-min")) || 1;
+                    const grupo = this.getAttribute("data-grupo");
                     
                     if (this.value === "" || quantidade <= 0) {
                         this.value = "0"; 
@@ -1814,10 +1941,12 @@
                         this.value = quantidade.toString();
                     }
 
+                    // NUNCA CORRIGE O VALOR: Apenas chama o atualizarTotal para exibir a mensagem de erro.
                     atualizarTotal();
                 });
             });
             
+            // 3. Evento de Clique nas Abas (Filtro e Rolagem OTIMIZADA)
             const categoriasBar = document.getElementById('categorias-horizontal');
             const links = categoriasBar.querySelectorAll('a');
             
@@ -1836,6 +1965,7 @@
                 });
             });
 
+            // 4. Inicia com a primeira aba (Bolos Tradicionais) ativada
             const primeiroLink = document.querySelector('#categorias-horizontal a[data-target="grupo-bolo-tradicional"]');
             const primeiroGrupo = document.getElementById('grupo-bolo-tradicional');
             
@@ -1846,14 +1976,17 @@
                 primeiroGrupo.classList.add('active-group');
             }
             
+            // 5. FECHAMENTO DO POPUP AO CLICAR FORA (CORREÇÃO)
             document.addEventListener('click', function(event) {
                 const popupResumo = document.getElementById('popup-resumo');
                 const popupPedido = document.getElementById('popup-pedido');
                 
+                // Fechando o pop-up de resumo se o clique for no overlay
                 if (popupResumo && popupResumo.style.display === 'flex' && event.target === popupResumo) {
                     fecharResumoPopup();
                 }
                 
+                // Fechando o pop-up de pedido se o clique for no overlay
                 if (popupPedido && popupPedido.style.display === 'flex' && event.target === popupPedido) {
                     fecharPopup();
                 }
