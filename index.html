@@ -108,7 +108,7 @@
         }
 
         /* ---------------------------------------------------------------------- */
-        /* ESTILOS DAS TABELAS (e dos grupos para o filtro) - AJUSTADOS (COOKIES) */
+        /* ESTILOS DAS TABELAS (e dos grupos para o filtro) - MANTIDOS */
         /* ---------------------------------------------------------------------- */
         .categoria-group {
             transition: opacity 0.3s ease; 
@@ -860,9 +860,10 @@
     </div>
 
     <script>
-        // 🚨🚨 AJUSTE A URL DO SEU FORMSPREE AQUI! 🚨🚨
-        const FORMSPREE_ENDPOINT = "https://script.google.com/macros/s/AKfycbyx-GAj1IgiYxS-HUe0wtVNjtprviAR7A6-bgfV3eXIsc0dTxoNLtCsSNwMHVYbR8AF/exec"; 
-        const WHATSAPP_NUMBER = "558195256641"; // Seu número para contato
+        // 🚨🚨 URL DO APPS SCRIPT (SUA CHAVE API) 🚨🚨
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyx-GAj1IgiYxS-HUe0wtVNjtprviAR7A6-bgfV3eXIsc0dTxoNLtCsSNwMHVYbR8AF/exec"; 
+        // Seu número de WhatsApp (mantido)
+        const WHATSAPP_NUMBER = "558195256641"; 
 
         // Variável global para armazenar o cupom aplicado
         let cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
@@ -1666,7 +1667,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - AJUSTADO PARA FORMSPREE
+        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - MANTIDAS
         // -----------------------------------------------------
         function abrirResumoPopup() {
             // Garante que a mensagem do cupom seja exibida corretamente ao abrir
@@ -1729,13 +1730,13 @@
         }
 
         // ***************************************************************
-        // FUNÇÃO PRINCIPAL DE ENVIO (AJUSTADA PARA FORMSPREE + WHATSAPP)
+        // FUNÇÃO PRINCIPAL DE ENVIO (AJUSTADA PARA APPS SCRIPT + WHATSAPP)
         // ***************************************************************
         async function confirmarPedido() { 
             // Linha riscada para separar o resumo dos itens das informações do cliente
             const linhaSeparadora = "\n\n*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*\n\n";
 
-            // O resumo para WhatsApp e para o campo de Resumo do Formspree
+            // O resumo para WhatsApp e para o campo de Resumo da Planilha
             let resumoParaEnvio = "Olá, Favu!\nGostaria de saber a disponibilidade para encomendar os itens abaixo:\n\n\n*_- Resumo do pedido_:*\n\n";
             let totalPedido = 0; // Total Bruto
             let temErroDeMinimo = false;
@@ -1817,7 +1818,7 @@
             const desconto = cupomAplicado.desconto;
             const totalLiquido = totalPedido - desconto;
 
-            // 3. Monta o Resumo Completo (para Formspree e WhatsApp)
+            // 3. Monta o Resumo Completo (para API e WhatsApp)
             for (const grupo in gruposResumo) {
                 resumoParaEnvio += `*${grupo}:*\n`;
                 gruposResumo[grupo].forEach(item => {
@@ -1853,10 +1854,13 @@
 
             
             // -------------------------------------------------------------
-            // NOVO BLOCO: ENVIO DOS DADOS PARA O FORMSPREE
+            // NOVO BLOCO: ENVIO DOS DADOS PARA O GOOGLE APPS SCRIPT (Criação de Pedido)
             // -------------------------------------------------------------
             
             const formData = new FormData();
+            // Adiciona a ação para o Apps Script saber que é um novo pedido
+            formData.append('action', 'createOrder'); 
+            
             formData.append('Nome do Cliente', nome);
             formData.append('Data da Entrega', dataFormatada); 
             formData.append('Horário da Entrega', horario);
@@ -1868,33 +1872,32 @@
             // Campo principal que contém todos os detalhes do pedido
             formData.append('Resumo dos Itens', resumoParaEnvio); 
 
-            // Configura o botão de CONFIRMAR PEDIDO para o estado de envio
+            // Configura o botão para o estado de envio
             const submitButton = document.querySelector('button[onclick="confirmarPedido()"]');
             const originalText = submitButton.textContent;
             submitButton.textContent = 'ENVIANDO...';
             submitButton.disabled = true;
 
-            let formspreeSuccess = false;
+            let apiSuccess = false;
 
             try {
-                const response = await fetch(FORMSPREE_ENDPOINT, {
+                // Envia para o Apps Script (com action=createOrder no POST)
+                const response = await fetch(APPS_SCRIPT_URL, { 
                     method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json' 
-                    }
+                    body: formData
                 });
 
-                if (response.ok) {
-                    alert("Pedido registrado com sucesso! Você será redirecionado para o WhatsApp.");
-                    formspreeSuccess = true;
+                const responseData = await response.json();
+
+                if (response.ok && responseData.success) {
+                    alert("Pedido registrado com sucesso na Planilha! Você será redirecionado para o WhatsApp.");
+                    apiSuccess = true;
                 } else {
-                    const errorData = await response.json();
-                    console.error('Erro Formspree:', errorData);
-                    alert(`Falha no registro do pedido (${response.status}). Enviando via WhatsApp.`);
+                    console.error('Erro API:', responseData.message);
+                    alert(`Falha no registro do pedido. Enviando via WhatsApp. Erro: ${responseData.message || 'API indisponível'}`);
                 }
             } catch (error) {
-                console.error('Erro de rede ao enviar para Formspree:', error);
+                console.error('Erro de rede ao enviar para Apps Script:', error);
                 alert("Erro de conexão. Enviando via WhatsApp para garantir o pedido.");
             } finally {
                 // Restaura o estado do botão
@@ -1902,12 +1905,12 @@
                 submitButton.disabled = false;
             }
 
-            // 4. Abre o WhatsApp (sempre, para a comunicação imediata)
+            // 4. Abre o WhatsApp (sempre)
             const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(resumoParaEnvio)}`;
             window.open(whatsappLink, '_blank');
 
-            // 5. Se o envio ao Formspree foi bem-sucedido, reseta o formulário.
-            if (formspreeSuccess) {
+            // 5. Se o envio foi bem-sucedido para a API, reseta o formulário.
+            if (apiSuccess) {
                 resetarCampos();
             }
         }
