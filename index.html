@@ -1,547 +1,670 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resumo do Pedido</title>
-    <style>
-        /* ---------------------------------------------------------------------- */
-        /* ESTILOS GERAIS E FONTES - MANTIDOS */
-        /* ---------------------------------------------------------------------- */
-        @font-face {
-            font-family: 'Basic Choice 2';
-            src: url('fonts/Basic Choice 2.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+<style>
+    /* ---------------------------------------------------------------------- */
+    /* ESTILOS GERAIS E FONTES - MANTIDOS */
+    /* ---------------------------------------------------------------------- */
+    @font-face {
+        font-family: 'Basic Choice 2';
+        src: url('fonts/Basic Choice 2.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-        body {
-            background-color: #E09F41;
-            text-align: center;
-            color: white;
-            font-family: 'Basic Choice 2', Arial, sans-serif;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch; 
-            padding-bottom: 70px; /* Espaço para o rodapé fixo */
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-        
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0;
-        }
-        
-        header img:first-child { 
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0;
-        }
-        
-        /* ---------------------------------------------------------------------- */
-        /* BARRA DE NAVEGAÇÃO (STICKY) - MANTIDOS */
-        /* ---------------------------------------------------------------------- */
-        
-        #sticky-nav-container {
-            background-color: #E09F41; 
-            position: sticky; 
-            top: 0; 
-            z-index: 10; 
-            width: 100%;
-            padding: 5px 0; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
+    body {
+        background-color: #E09F41;
+        text-align: center;
+        color: white;
+        font-family: 'Basic Choice 2', Arial, sans-serif;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch; 
+        padding-bottom: 70px; /* Espaço para o rodapé fixo */
+    }
+    
+    .container {
+        max-width: 600px;
+        margin: auto;
+    }
+    
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+    }
+    
+    header img:first-child { 
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+    }
+    
+    /* ---------------------------------------------------------------------- */
+    /* BARRA DE NAVEGAÇÃO (STICKY) - MANTIDOS */
+    /* ---------------------------------------------------------------------- */
+    
+    #sticky-nav-container {
+        background-color: #E09F41; 
+        position: sticky; 
+        top: 0; 
+        z-index: 10; 
+        width: 100%;
+        padding: 5px 0; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
 
-        #categorias-horizontal {
-            display: flex;
-            overflow-x: scroll; 
-            padding: 5px 10px;
-            white-space: nowrap; 
-            -webkit-overflow-scrolling: touch; 
-        }
+    #categorias-horizontal {
+        display: flex;
+        overflow-x: scroll; 
+        padding: 5px 10px;
+        white-space: nowrap; 
+        -webkit-overflow-scrolling: touch; 
+    }
 
-        /* Esconde a barra de rolagem horizontal */
-        #categorias-horizontal::-webkit-scrollbar {
-            display: none;
-        }
-        #categorias-horizontal {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+    /* Esconde a barra de rolagem horizontal */
+    #categorias-horizontal::-webkit-scrollbar {
+        display: none;
+    }
+    #categorias-horizontal {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 
-        #categorias-horizontal a {
-            display: inline-block;
-            padding: 8px 15px;
-            margin-right: 10px;
-            background-color: #F4E6CB; 
-            color: #1A2B0F; 
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background-color 0.2s;
-            flex-shrink: 0; 
-            scroll-snap-align: start; 
-        }
+    #categorias-horizontal a {
+        display: inline-block;
+        padding: 8px 15px;
+        margin-right: 10px;
+        background-color: #F4E6CB; 
+        color: #1A2B0F; 
+        text-decoration: none;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+        transition: background-color 0.2s;
+        flex-shrink: 0; 
+        scroll-snap-align: start; 
+    }
 
-        #categorias-horizontal a:hover {
-            background-color: #c9bda5;
-        }
-        
-        /* Estilo da aba ATIVA */
-        #categorias-horizontal a.active-link {
-            background-color: #7FB1C8; 
-            color: white;
-        }
+    #categorias-horizontal a:hover {
+        background-color: #c9bda5;
+    }
+    
+    /* Estilo da aba ATIVA */
+    #categorias-horizontal a.active-link {
+        background-color: #7FB1C8; 
+        color: white;
+    }
 
-        /* ---------------------------------------------------------------------- */
-        /* ESTILOS DAS TABELAS (e dos grupos para o filtro) - MANTIDOS */
-        /* ---------------------------------------------------------------------- */
-        .categoria-group {
-            transition: opacity 0.3s ease; 
-            display: none;
-        }
-        
-        /* Sobrescreve para mostrar o grupo ATIVO */
-        .categoria-group.active-group {
-            display: block;
-        }
-        
-        .categoria-group img {
-            width: 50%; 
-            margin: 20px auto 10px auto;
-        }
-        
-        .categoria-group table {
-            width: 100%; 
-            border-collapse: collapse;
-        }
+    /* ---------------------------------------------------------------------- */
+    /* ESTILOS DAS TABELAS (e dos grupos para o filtro) - MANTIDOS */
+    /* ---------------------------------------------------------------------- */
+    .categoria-group {
+        transition: opacity 0.3s ease; 
+        display: none;
+    }
+    
+    /* Sobrescreve para mostrar o grupo ATIVO */
+    .categoria-group.active-group {
+        display: block;
+    }
+    
+    .categoria-group img {
+        width: 50%; 
+        margin: 20px auto 10px auto;
+    }
+    
+    .categoria-group table {
+        width: 100%; 
+        border-collapse: collapse;
+    }
 
-        /* ESTILO PADRÃO DA LINHA DIVISÓRIA */
-        .categoria-group tr { 
-            border-bottom: 1px solid #F4E6CB; 
-            transition: background-color 0.3s ease-in-out; 
-        }
+    /* ESTILO PADRÃO DA LINHA DIVISÓRIA */
+    .categoria-group tr { 
+        border-bottom: 1px solid #F4E6CB; 
+        transition: background-color 0.3s ease-in-out; 
+    }
 
-        /* CLASSE DE DESTAQUE PARA EDIÇÃO */
-        .highlight-edit { 
-            background-color: rgba(255, 255, 0, 0.4) !important; /* Destaque amarelo-claro */
-            transition: background-color 0.3s ease-in-out; 
-        }
-        
-        /* Remove a borda inferior das linhas que iniciam ou continuam um grupo */
-        .item-group-active {
-            border-bottom: none !important;
-        }
-        
-        /* Definindo larguras para as colunas da tabela padrão (com QNT. MÍN.) */
-        /* 1: Item (45%) | 2: QNT. MIN. (25%) | 3: UNID. (15%) | 4: QUANTIDADE (15%) */
-        .categoria-group:not(#grupo-cookies) th:nth-child(1), .categoria-group:not(#grupo-cookies) td:nth-child(1) { width: 45%; } 
-        .categoria-group:not(#grupo-cookies) th:nth-child(2), .categoria-group:not(#grupo-cookies) td:nth-child(2) { width: 25%; } 
-        .categoria-group:not(#grupo-cookies) th:nth-child(3), .categoria-group:not(#grupo-cookies) td:nth-child(3) { width: 15%; } 
-        .categoria-group:not(#grupo-cookies) th:nth-child(4), .categoria-group:not(#grupo-cookies) td:nth-child(4) { width: 15%; } 
+    /* CLASSE DE DESTAQUE PARA EDIÇÃO */
+    .highlight-edit { 
+        background-color: rgba(255, 255, 0, 0.4) !important; /* Destaque amarelo-claro */
+        transition: background-color 0.3s ease-in-out; 
+    }
+    
+    /* Remove a borda inferior das linhas que iniciam ou continuam um grupo */
+    .item-group-active {
+        border-bottom: none !important;
+    }
+    
+    /* Definindo larguras para as colunas da tabela padrão (com QNT. MÍN.) */
+    /* 1: Item (45%) | 2: QNT. MIN. (25%) | 3: UNID. (15%) | 4: QUANTIDADE (15%) */
+    .categoria-group:not(#grupo-cookies) th:nth-child(1), .categoria-group:not(#grupo-cookies) td:nth-child(1) { width: 45%; } 
+    .categoria-group:not(#grupo-cookies) th:nth-child(2), .categoria-group:not(#grupo-cookies) td:nth-child(2) { width: 25%; } 
+    .categoria-group:not(#grupo-cookies) th:nth-child(3), .categoria-group:not(#grupo-cookies) td:nth-child(3) { width: 15%; } 
+    .categoria-group:not(#grupo-cookies) th:nth-child(4), .categoria-group:not(#grupo-cookies) td:nth-child(4) { width: 15%; } 
 
-        /* *************************************************************** */
-        /* AJUSTE PARA A TABELA DE COOKIES (AGORA COM 3 COLUNAS NO HTML) */
-        /* *************************************************************** */
-        /* 1: Item | 2: UNID. (Preço) | 3: QUANTIDADE */
-        #tabela-cookies th:nth-child(1), #tabela-cookies td:nth-child(1) { width: 55%; } /* ITEM */
-        #tabela-cookies th:nth-child(2), #tabela-cookies td:nth-child(2) { width: 20%; } /* UNID. (Preço) */
-        #tabela-cookies th:nth-child(3), #tabela-cookies td:nth-child(3) { width: 25%; } /* QUANTIDADE */
-        
-        /* Ajustes finos para td/th */
-        th, td { 
-            padding: 10px 5px; 
-            text-align: center;
-            vertical-align: middle;
-        }
-        
-        /* Alinhamento da Coluna 1 (NÃO agrupada) */
-        .categoria-group table:not(#tabela-prato-salgado):not(#tabela-bolo-tradicional):not(#tabela-bolo-especial) td:nth-child(1) {
-            text-align: left; 
-            padding-left: 10px;
-        }
+    /* *************************************************************** */
+    /* AJUSTE PARA A TABELA DE COOKIES (AGORA COM 3 COLUNAS NO HTML) */
+    /* *************************************************************** */
+    /* 1: Item | 2: UNID. (Preço) | 3: QUANTIDADE */
+    #tabela-cookies th:nth-child(1), #tabela-cookies td:nth-child(1) { width: 55%; } /* ITEM */
+    #tabela-cookies th:nth-child(2), #tabela-cookies td:nth-child(2) { width: 20%; } /* UNID. (Preço) */
+    #tabela-cookies th:nth-child(3), #tabela-cookies td:nth-child(3) { width: 25%; } /* QUANTIDADE */
+    
+    /* Ajustes finos para td/th */
+    th, td { 
+        padding: 10px 5px; 
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    /* Alinhamento da Coluna 1 (NÃO agrupada) */
+    .categoria-group table:not(#tabela-prato-salgado):not(#tabela-bolo-tradicional):not(#tabela-bolo-especial) td:nth-child(1) {
+        text-align: left; 
+        padding-left: 10px;
+    }
 
-        /* Alinhamento da Coluna 2 (QNT. MIN. ou UNID. em Cookies) */
-        .categoria-group td:nth-child(2), .categoria-group td:nth-child(1):not(.item-group-cell) {
-             text-align: center; 
-             padding-left: 5px; 
-        }
-        
-        caption { display: none; }
-        header img + img { display: none; }
+    /* Alinhamento da Coluna 2 (QNT. MIN. ou UNID. em Cookies) */
+    .categoria-group td:nth-child(2), .categoria-group td:nth-child(1):not(.item-group-cell) {
+         text-align: center; 
+         padding-left: 5px; 
+    }
+    
+    caption { display: none; }
+    header img + img { display: none; }
 
-        /* Cores (AJUSTADAS) */
-        
-        /* A cor dos dados das colunas QUANTIDADE (td) é mantida em branco */
-        table#tabela-bolo-tradicional td:nth-child(4), table#tabela-bolo-especial td:nth-child(4), table#tabela-prato-salgado td:nth-child(4), table#tabela-doces td:nth-child(4), table#tabela-cookies td:nth-child(3), table#tabela-salfri td:nth-child(4), table#tabela-salgado-forno td:nth-child(4), table#tabela-salgado-vegetariano td:nth-child(4) { color: white; }
+    /* Cores (AJUSTADAS) */
+    
+    /* A cor dos dados das colunas QUANTIDADE (td) é mantida em branco */
+    table#tabela-bolo-tradicional td:nth-child(4), table#tabela-bolo-especial td:nth-child(4), table#tabela-prato-salgado td:nth-child(4), table#tabela-doces td:nth-child(4), table#tabela-cookies td:nth-child(3), table#tabela-salfri td:nth-child(4), table#tabela-salgado-forno td:nth-child(4), table#tabela-salgado-vegetariano td:nth-child(4) { color: white; }
 
-        /* 2. Cor de todos os cabeçalhos de coluna (ITEM, QNT. MÍN/tamanho, UNID., QUANTIDADE) é definida como BRANCA */
-        th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4) { color: white; }
-        
-        /* Corrige o item em si para a cor correta (MANTIDA EM BRANCO) */
-        table#tabela-bolo-tradicional td:nth-child(1), table#tabela-bolo-especial td:nth-child(1), table#tabela-prato-salgado td:nth-child(1), table#tabela-doces td:nth-child(1), table#tabela-cookies td:nth-child(1), table#tabela-salfri td:nth-child(1), table#tabela-salgado-forno td:nth-child(1), table#tabela-salgado-vegetariano td:nth-child(1) { color: white; }
+    /* 2. Cor de todos os cabeçalhos de coluna (ITEM, QNT. MÍN/tamanho, UNID., QUANTIDADE) é definida como BRANCA */
+    th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4) { color: white; }
+    
+    /* Corrige o item em si para a cor correta (MANTIDA EM BRANCO) */
+    table#tabela-bolo-tradicional td:nth-child(1), table#tabela-bolo-especial td:nth-child(1), table#tabela-prato-salgado td:nth-child(1), table#tabela-doces td:nth-child(1), table#tabela-cookies td:nth-child(1), table#tabela-salfri td:nth-child(1), table#tabela-salgado-forno td:nth-child(1), table#tabela-salgado-vegetariano td:nth-child(1) { color: white; }
 
 
-        .item-nome { font-weight: bold; color: inherit; }
-        .descricao { font-size: 12px; margin-top: 4px; color: inherit; }
+    .item-nome { font-weight: bold; color: inherit; }
+    .descricao { font-size: 12px; margin-top: 4px; color: inherit; }
 
-        .item-group-cell {
-            text-align: center; 
-            vertical-align: middle;
-            font-size: 16px; 
-            font-weight: bold;
-            padding: 10px;
-        }
+    .item-group-cell {
+        text-align: center; 
+        vertical-align: middle;
+        font-size: 16px; 
+        font-weight: bold;
+        padding: 10px;
+    }
+    
+    /* Estilos do Input de Quantidade na Tabela Principal */
+    .quantidade-container { 
+        text-align: center; 
+        display: flex;
+        flex-direction: column; /* Para empilhar o input e a mensagem de erro */
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .quantidade-container input[type="number"] { 
+        width: 90%; 
+        height: 40px; 
+        padding: 5px; 
+        font-size: 16px; 
+        font-family: 'Basic Choice 2', Arial, sans-serif;
+        text-align: center;
+        background-color: #F4E6CB; 
+        border: 2px solid #F4E6CB; 
+        color: #1A2B0F; 
+        border-radius: 10px; 
+        box-sizing: border-box;
         
-        /* Estilos do Input de Quantidade na Tabela Principal */
-        .quantidade-container { 
-            text-align: center; 
-            display: flex;
-            flex-direction: column; /* Para empilhar o input e a mensagem de erro */
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-        }
+        -moz-appearance: textfield; /* Firefox */
+    }
+    
+    /* OCULTAÇÃO DE SETAS: Aplicado a ambos os inputs numéricos */
+    .quantidade-container input[type="number"]::-webkit-outer-spin-button,
+    .quantidade-container input[type="number"]::-webkit-inner-spin-button,
+    .resumo-item-input-group input::-webkit-outer-spin-button, 
+    .resumo-item-input-group input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    /* CORREÇÃO PARA MENSAGEM DE ERRO/MINIMO PARA DOCES, SALGADOS FRITOS E FORNO */
+    .erro-item-unico { 
+        color: red; 
+        display: none; 
+        font-size: 0.9em; 
+        margin-top: 5px;
+        /* ADICIONADO: Garante que a mensagem de erro individual não quebre o layout */
+        line-height: 1.1; 
+        width: 100%;
+        text-align: center;
+    } 
 
-        .quantidade-container input[type="number"] { 
-            width: 90%; 
-            height: 40px; 
-            padding: 5px; 
-            font-size: 16px; 
-            font-family: 'Basic Choice 2', Arial, sans-serif;
-            text-align: center;
-            background-color: #F4E6CB; 
-            border: 2px solid #F4E6CB; 
-            color: #1A2B0F; 
-            border-radius: 10px; 
-            box-sizing: border-box;
-            
-            -moz-appearance: textfield; /* Firefox */
-        }
+    /* NOVO ESTILO: Erro de mínimo na CATEGORIA (ex: Cookies) */
+    .erro-categoria {
+        color: red; 
+        font-size: 14px; 
+        margin-top: 10px; 
+        font-weight: bold;
+        text-align: center;
+        display: none; /* Inicia oculto */
+        padding-bottom: 5px;
+    }
+
+    /* ---------------------------------------------------------------------- */
+    /* RODAPÉ FIXO (RESUMO DO PEDIDO) - MANTIDOS */
+    /* ---------------------------------------------------------------------- */
+    #fixed-summary {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        max-width: 600px; 
+        margin: auto;
+        left: 0;
+        right: 0;
+        background-color: #F4E6CB; 
+        color: #1A2B0F; 
+        padding: 10px 15px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 50; 
+        display: none; 
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    #fixed-summary .summary-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    #summary-text {
+        line-height: 1.2;
+    }
+
+    #summary-text span {
+        font-size: 12px;
+        font-weight: normal;
+        display: block;
+        color: #555;
+    }
+
+    #summary-total {
+        font-size: 20px;
+        font-weight: bold;
+        color: #1A2B0F;
+    }
+    
+    /* Cor do botão de rodapé "Ver Pedido" alterada para o AZUL ESPECÍFICO */
+    #summary-button {
+        background-color: #7FB1C8; /* AZUL SOLICITADO */
+        color: white; 
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        width: 150px;
+        text-align: center;
+        box-shadow: 0 4px #4c7e93; /* Sombra ajustada para o azul */
+        transition: background-color 0.2s;
+    }
+    
+    #summary-button:active {
+        box-shadow: 0 2px #4c7e93;
+        transform: translateY(2px);
+    }
+    /* ---------------------------------------------------------------------- */
+
+    /* Estilos de Botões e Popup - MANTIDOS/AJUSTADOS */
+    select, input { text-align: center; }
+    
+    /* Input do Pop-up e Input da Tabela principal (para padronizar) */
+    .popup input[type="number"] {
+        background-color: #F4E6CB; 
+        border: 1px solid #ccc;
+        color: #1A2B0F;
+        font-family: 'Basic Choice 2', Arial, sans-serif;
+    }
+    
+    /* MODIFICAÇÃO AQUI: Fundo branco e fonte padronizada para inputs do resumo */
+    .resumo-item-input-group input {
+        background-color: white; /* Fundo branco solicitado */
+        border: 1px solid #ccc;
+        color: #1A2B0F;
+        font-family: 'Basic Choice 2', Arial, sans-serif; /* Fonte padronizada */
+    }
+
+    /* Cor do botão primário (Fazer Pedido/Continuar Comprando) */
+    button { 
+        padding: 10px; 
+        border-radius: 20px; 
+        background-color: #7FB1C8; 
+        border: none; 
+        color: #FFF; 
+        cursor: pointer; 
+        font-family: 'Basic Choice 2', Arial, sans-serif; 
+        width: 100%; 
+        font-size: 18px; 
+        margin-top: 10px; /* Ajustado para espaçamento consistente */
+        box-shadow: 0 4px #4c7e93; /* Sombra padrão azul */
+    }
+    button:active {
+        box-shadow: 0 2px #4c7e93;
+        transform: translateY(2px);
+    }
+
+    /* MODIFICAÇÃO: Adicionando margem inferior ao botão VOLTAR */
+    #botao-voltar { 
+        background-color: #7FB1C8; 
+        color: #FFF; 
+        font-size: 18px; 
+        border: none; 
+        padding: 12px; 
+        border-radius: 20px; 
+        cursor: pointer; 
+        width: 100%; 
+        margin-top: 20px; 
+        /* ADICIONADO ESPAÇAMENTO INFERIOR */
+        margin-bottom: 20px; 
+        font-family: 'Basic Choice 2', Arial, sans-serif; 
+    }
+
+    .erro { color: red; font-size: 14px; margin-top: 10px; }
+    
+    #resumo { display: none; } 
+    
+    /* Estilos do Popup Geral */
+    .popup { 
+        position: fixed; 
+        z-index: 100; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        height: 100%; 
+        background-color: rgba(0, 0, 0, 0.5); 
+        justify-content: center; 
+        align-items: center; 
+        display: none; 
+    }
+    
+    .popup-conteudo { 
+        background-color: #F4E6CB; 
+        padding: 20px; 
+        border-radius: 10px; 
+        width: 90%; 
+        max-width: 450px; 
+        text-align: center; 
+        position: relative; 
+        max-height: 80vh; 
+        overflow-y: auto; 
+    }
+    
+    /* ÍCONE DE FECHAR NO CANTO DIREITO (CORREÇÃO) */
+    .fechar { 
+        color: #aaa; 
+        font-size: 28px; 
+        font-weight: bold; 
+        position: absolute; 
+        top: 10px; 
+        right: 20px; 
+        cursor: pointer; 
+        z-index: 110;
+    }
+    
+    /* NOVO ESTILO PARA O POPUP DE MENSAGEM */
+    #popup-mensagem h2 {
+        font-size: 24px;
+        color: #1A2B0F;
+        margin-bottom: 10px;
+    }
+
+    /* Estilos específicos do conteúdo do Resumo */
+    .popup-conteudo h2 { color: #1A2B0F; font-size: 26px; font-weight: bold; }
+    .resumo-itens { text-align: left; padding-left: 0px; color: #1A2B0F; margin-bottom: 10px;}
+    
+    /* ESTILOS DE TOTAIS */
+    .resumo-total { 
+        text-align: right; 
+        font-size: 22px; 
+        font-weight: bold; 
+        color: #1A2B0F; 
+        margin-top: 10px;
+    }
+    .resumo-total-line {
+        font-size: 16px; /* Menor que o TOTAL FINAL */
+        font-weight: normal;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+    }
+    .resumo-total-line.total-com-desconto {
+        color: #E60000;
+    }
+    /* Separador visual */
+    #popup-resumo-total {
+         border-top: 1px dashed #7FB1C8; 
+         padding-top: 10px;
+         margin-top: 10px;
+    }
+
+
+    /* Estilo do preço original riscado */
+    .price-original-item {
+        text-decoration: line-through;
+        color: #888;
+        font-weight: normal;
+        margin-right: 5px;
+    }
+    
+    /* Estilo do preço final com desconto */
+    .price-final-item {
+         color: #E60000; /* Vermelho para destaque de desconto */
+    }
+
+    /* Estilo para cada item do resumo (linha do produto) */
+    .resumo-item-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Alinha tudo verticalmente */
+        border-bottom: 1px dashed #7FB1C8; 
+        padding: 8px 0;
+        font-size: 14px;
+    }
+    
+    /* Contém o nome do item e o preço total (do item) */
+    .resumo-item-name {
+        flex-grow: 1;
+        text-align: left;
+        margin-right: 10px;
+    }
+    
+    /* Estilo do preço no nome do item */
+    .resumo-item-name small {
+        display: block;
+        font-weight: normal;
+        color: #1A2B0F;
+    }
+    .resumo-item-name .price-final-item {
+         color: #1A2B0F; /* O preço com desconto permanece preto aqui */
+         font-weight: bold;
+    }
+
+    /* Grupo de edição e exclusão no pop-up */
+    .resumo-item-input-group {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        gap: 5px; /* ESPAÇAMENTO REDUZIDO ENTRE UNIDADE E INPUT */
+    }
+
+    /* Estilo para o campo de input na edição direta (como na imagem) */
+    .resumo-item-input-group input {
+        width: 55px; 
+        height: 35px; 
+        padding: 5px;
+        font-size: 14px;
+        text-align: center;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin: 0; /* CORREÇÃO: Aproxima o input do UN. */
         
-        /* OCULTAÇÃO DE SETAS: Aplicado a ambos os inputs numéricos */
-        .quantidade-container input[type="number"]::-webkit-outer-spin-button,
-        .quantidade-container input[type="number"]::-webkit-inner-spin-button,
-        .resumo-item-input-group input::-webkit-outer-spin-button, 
-        .resumo-item-input-group input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        
-        /* CORREÇÃO PARA MENSAGEM DE ERRO/MINIMO PARA DOCES, SALGADOS FRITOS E FORNO */
-        .erro-item-unico { 
-            color: red; 
-            display: none; 
-            font-size: 0.9em; 
-            margin-top: 5px;
-            /* ADICIONADO: Garante que a mensagem de erro individual não quebre o layout */
-            line-height: 1.1; 
-            width: 100%;
-            text-align: center;
-        } 
+        -moz-appearance: textfield; 
+    }
+    
+    /* Botão de excluir (Excluir) - PADRONIZADO COM APLICAR */
+    .btn-excluir {
+        background-color: #E60000; 
+        color: white;
+        width: 70px; 
+        font-size: 12px; 
+        padding: 10px 0; /* AUMENTADO para igualar a altura do botão APLICAR */
+        margin: 0 0 0 10px; /* MAIOR ESPAÇAMENTO com UNIDADE */
+        border-radius: 10px; 
+        box-shadow: none;
+        flex-shrink: 0;
+        line-height: 1; /* Centraliza o texto verticalmente */
+        height: 40px; /* Garante a altura */
+    }
+    /* ----------------- CUPOM STYLES ----------------- */
+    #cupom-container {
+        background-color: #e8dcc6; 
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        text-align: left;
+        color: #1A2B0F;
+    }
 
-        /* NOVO ESTILO: Erro de mínimo na CATEGORIA (ex: Cookies) */
-        .erro-categoria {
-            color: red; 
-            font-size: 14px; 
-            margin-top: 10px; 
-            font-weight: bold;
-            text-align: center;
-            display: none; /* Inicia oculto */
-            padding-bottom: 5px;
-        }
+    #cupom-input-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        align-items: center;
+    }
 
-        /* ---------------------------------------------------------------------- */
-        /* RODAPÉ FIXO (RESUMO DO PEDIDO) - MANTIDOS */
-        /* ---------------------------------------------------------------------- */
+    #cupom-input {
+        flex-grow: 1;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #7FB1C8;
+        background-color: white;
+        color: #1A2B0F;
+        box-sizing: border-box;
+        height: 40px; /* Ajuste para alinhar com o botão APLICAR */
+    }
+
+    #apply-cupom-btn {
+        width: 70px; 
+        flex-shrink: 0;
+        padding: 10px 0; 
+        margin: 0;
+        font-size: 14px;
+        background-color: #E09F41; /* Laranja para destaque */
+        border-radius: 10px; 
+        height: 40px; /* Garante a altura para alinhar com o input */
+    }
+
+    .cupom-message {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .cupom-error {
+        color: red;
+    }
+
+    .cupom-success {
+        color: green;
+    }
+
+    /* ---------------------------------------------------------------------- */
+    /* ESTILOS DO POPUP DE INFORMAÇÕES DO PEDIDO (Novo Estilo) */
+    /* ---------------------------------------------------------------------- */
+    #form-pedido {
+        display: flex;
+        flex-direction: column; /* Coloca os filhos em coluna */
+        gap: 15px; /* Espaçamento entre os campos */
+        text-align: left;
+        color: #1A2B0F; /* Cor do texto do rótulo */
+    }
+
+    /* ********* CORREÇÃO PARA FORÇAR QUEBRA DE LINHA NO FORM ********* */
+    #form-pedido > label, 
+    #form-pedido > input, 
+    #form-pedido > select,
+    #form-pedido > button {
+        /* Força cada elemento a começar em uma nova linha no layout de coluna */
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    #form-pedido label {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: -5px; /* Ajuste para aproximar do campo */
+    }
+
+    /* Estilo para todos os inputs e selects dentro do formulário */
+    #form-pedido input[type="text"],
+    #form-pedido input[type="date"],
+    #form-pedido input[type="time"],
+    #form-pedido select {
+        /* Cor de fundo branca, conforme solicitação (como o campo de cupom) */
+        background-color: white; 
+        color: #1A2B0F;
+        border: 1px solid #7FB1C8; /* Borda azul padrão do site */
+        padding: 10px;
+        border-radius: 10px;
+        font-family: 'Basic Choice 2', Arial, sans-serif;
+        font-size: 16px;
+        box-sizing: border-box;
+        text-align: left; /* Alinhamento do texto */
+    }
+    
+    /* Ajuste do input de nome para alinhamento esquerdo */
+    #form-pedido input[type="text"] {
+        text-align: left;
+    }
+
+    /* PADRONIZAÇÃO dos botões (CONFIRMAR/EDITAR/CONTINUAR COMPRANDO) com o botão azul principal */
+    #form-pedido button {
+        background-color: #7FB1C8; /* Cor azul do "CONTINUAR COMPRANDO" */
+        box-shadow: 0 4px #4c7e93; /* Sombra do "CONTINUAR COMPRANDO" */
+        margin-top: 15px; /* Espaçamento padrão */
+    }
+
+    /* O botão "CONTINUAR COMPRANDO" (era Cancelar) mantém o estilo do botão azul */
+    #form-pedido button:nth-of-type(2) { 
+        background-color: #7FB1C8;
+        box-shadow: 0 4px #4c7e93;
+    }
+    /* ---------------------------------------------------------------------- */
+
+
+    /* Media Queries (Mantidos) */
+    @media (min-width: 768px) {
+        header img:first-child { content: url('topodesktop.png'); }
+        footer img { content: url('rodadesktop.png'); }
         #fixed-summary {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 600px; 
-            margin: auto;
-            left: 0;
-            right: 0;
-            background-color: #F4E6CB; 
-            color: #1A2B0F; 
-            padding: 10px 15px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 50; 
-            display: none; 
-            box-sizing: border-box;
-            text-align: left;
+             max-width: 600px; 
         }
-
-        #fixed-summary .summary-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        #summary-text {
-            line-height: 1.2;
-        }
-
-        #summary-text span {
-            font-size: 12px;
-            font-weight: normal;
-            display: block;
-            color: #555;
-        }
-
-        #summary-total {
-            font-size: 20px;
-            font-weight: bold;
-            color: #1A2B0F;
-        }
-        
-        /* Cor do botão de rodapé "Ver Pedido" alterada para o AZUL ESPECÍFICO */
-        #summary-button {
-            background-color: #7FB1C8; /* AZUL SOLICITADO */
-            color: white; 
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            width: 150px;
-            text-align: center;
-            box-shadow: 0 4px #4c7e93; /* Sombra ajustada para o azul */
-            transition: background-color 0.2s;
-        }
-        
-        #summary-button:active {
-            box-shadow: 0 2px #4c7e93;
-            transform: translateY(2px);
-        }
-        /* ---------------------------------------------------------------------- */
-
-        /* Estilos de Botões e Popup - MANTIDOS/AJUSTADOS */
-        select, input { text-align: center; }
-        
-        /* Input do Pop-up e Input da Tabela principal (para padronizar) */
-        .popup input[type="number"] {
-            background-color: #F4E6CB; 
-            border: 1px solid #ccc;
-            color: #1A2B0F;
-            font-family: 'Basic Choice 2', Arial, sans-serif;
-        }
-        
-        /* MODIFICAÇÃO AQUI: Fundo branco e fonte padronizada para inputs do resumo */
-        .resumo-item-input-group input {
-            background-color: white; /* Fundo branco solicitado */
-            border: 1px solid #ccc;
-            color: #1A2B0F;
-            font-family: 'Basic Choice 2', Arial, sans-serif; /* Fonte padronizada */
-        }
-
-        /* Cor do botão primário (Fazer Pedido/Continuar Comprando) */
-        button { 
-            padding: 10px; 
-            border-radius: 20px; 
-            background-color: #7FB1C8; 
-            border: none; 
-            color: #FFF; 
-            cursor: pointer; 
-            font-family: 'Basic Choice 2', Arial, sans-serif; 
-            width: 100%; 
-            font-size: 18px; 
-            margin-top: 10px; /* Ajustado para espaçamento consistente */
-            box-shadow: 0 4px #4c7e93; /* Sombra padrão azul */
-        }
-        button:active {
-            box-shadow: 0 2px #4c7e93;
-            transform: translateY(2px);
-        }
-
-        /* MODIFICAÇÃO: Adicionando margem inferior ao botão VOLTAR */
-        #botao-voltar { 
-            background-color: #7FB1C8; 
-            color: #FFF; 
-            font-size: 18px; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 20px; 
-            cursor: pointer; 
-            width: 100%; 
-            margin-top: 20px; 
-            /* ADICIONADO ESPAÇAMENTO INFERIOR */
-            margin-bottom: 20px; 
-            font-family: 'Basic Choice 2', Arial, sans-serif; 
-        }
-
-        .erro { color: red; font-size: 14px; margin-top: 10px; }
-        
-        #resumo { display: none; } 
-        
-        /* Estilos do Popup Geral */
-        .popup { 
-            position: fixed; 
-            z-index: 100; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.5); 
-            justify-content: center; 
-            align-items: center; 
-            display: none; 
-        }
-        
-        .popup-conteudo { 
-            background-color: #F4E6CB; 
-            padding: 20px; 
-            border-radius: 10px; 
-            width: 90%; 
-            max-width: 450px; 
-            text-align: center; 
-            position: relative; 
-            max-height: 80vh; 
-            overflow-y: auto; 
-        }
-        
-        /* ÍCONE DE FECHAR NO CANTO DIREITO (CORREÇÃO) */
-        .fechar { 
-            color: #aaa; 
-            font-size: 28px; 
-            font-weight: bold; 
-            position: absolute; 
-            top: 10px; 
-            right: 20px; 
-            cursor: pointer; 
-            z-index: 110;
-        }
-        
-        /* NOVO ESTILO PARA O POPUP DE MENSAGEM */
-        #popup-mensagem h2 {
-            font-size: 24px;
-            color: #1A2B0F;
-            margin-bottom: 10px;
-        }
-
-        /* Estilos específicos do conteúdo do Resumo */
-        .popup-conteudo h2 { color: #1A2B0F; font-size: 26px; font-weight: bold; }
-        .resumo-itens { text-align: left; padding-left: 0px; color: #1A2B0F; margin-bottom: 10px;}
-        
-        /* ESTILOS DE TOTAIS */
-        .resumo-total { 
-            text-align: right; 
-            font-size: 22px; 
-            font-weight: bold; 
-            color: #1A2B0F; 
-            margin-top: 10px;
-        }
-        .resumo-total-line {
-            font-size: 16px; /* Menor que o TOTAL FINAL */
-            font-weight: normal;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-        }
-        .resumo-total-line.total-com-desconto {
-            color: #E60000;
-        }
-        /* Separador visual */
-        #popup-resumo-total {
-             border-top: 1px dashed #7FB1C8; 
-             padding-top: 10px;
-             margin-top: 10px;
-        }
-
-
-        /* Estilo do preço original riscado */
-        .price-original-item {
-            text-decoration: line-through;
-            color: #888;
-            font-weight: normal;
-            margin-right: 5px;
-        }
-        
-        /* Estilo do preço final com desconto */
-        .price-final-item {
-             color: #E60000; /* Vermelho para destaque de desconto */
-        }
-
-        /* Estilo para cada item do resumo (linha do produto) */
-        .resumo-item-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Alinha tudo verticalmente */
-            border-bottom: 1px dashed #7FB1C8; 
-            padding: 8px 0;
-            font-size: 14px;
-        }
-        
-        /* Contém o nome do item e o preço total (do item) */
-        .resumo-item-name {
-            flex-grow: 1;
-            text-align: left;
-            margin-right: 10px;
-        }
-        
-        /* Estilo do preço no nome do item */
-        .resumo-item-name small {
-            display: block;
-            font-weight: normal;
-            color: #1A2B0F;
-        }
-        .resumo-item-name .price-final-item {
-             color: #1A2B0F; /* O preço com desconto permanece preto aqui */
-             font-weight: bold;
-        }
-
-        /* Grupo de edição e exclusão no pop-up */
-        .resumo-item-input-group {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-            gap: 5px; /* ESPAÇAMENTO REDUZIDO ENTRE UNIDADE E INPUT */
-        }
-
-        /* Estilo para o campo de input na edição direta (como na imagem) */
-        .resumo-item-input-group input {
-            width: 55px; 
-            height: 35px; 
-            padding: 5px;
-            font-size: 14px;
-            text-align: center;
-            border-radius: 10px;
-            box-sizing: border-box;
-            margin: 0; /* CORREÇÃO: Aproxima o input do UN. */
-            
-            -moz-appearance: textfield; 
-        }
-        
-        /* Botão de excluir (Excluir) - PADRONIZADO COM APLICAR */
-        .btn-excluir {
-            background-color: #E60000; 
-            color: white;
-            width: 70px; 
-            font-size: 12px; 
-            padding: 10px 0; /* AUMENTADO para igualar a altura do botão APLICAR */
-            margin: 0 0 0 10px; /* MAIOR ESPAÇAMENTO com UNIDADE */
-            border-radius: 10px; 
-            box-shadow: none;
-            flex-shrink: 0;
-            line-height: 1; /* Centraliza o texto verticalmente */
-            height: 40px; /* Garante a altura */
-        }
+    }
+    @media (max-width: 767px) {
+        header img:nth-of-type(2) { display: none; } 
+        header img, footer img { width: 100%; }
+    }
     </style>
     
 </head>
@@ -665,7 +788,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tby>
+                <tbody></tbody>
             </table>
         </div>
         
