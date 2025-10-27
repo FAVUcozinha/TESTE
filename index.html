@@ -860,7 +860,7 @@
     </div>
 
     <script>
-        // 🚨🚨 ATUALIZE ESTA URL COM A NOVA URL DO SEU APPS SCRIPT APÓS IMPLEMENTAR O CÓDIGO FORNECIDO 🚨🚨
+        // 🚨🚨 ATUALIZE ESTA URL COM A URL DO SEU APPS SCRIPT ATUALIZADO 🚨🚨
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPg0luc_LKOhkOLrefXv202qDAHMHFHO_19WF4dtXoc_20MwykJzNI5IRuYlq0Rr5s/exec"; 
         // Seu número de WhatsApp (mantido)
         const WHATSAPP_NUMBER = "558195256641"; 
@@ -1414,7 +1414,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÕES DE EDIÇÃO E EXCLUSÃO - MANTIDAS
+        // FUNÇÕES DE EDIÇÃO E EXCLUSÃO - MANTIDAS (Excluir foi desativado no HTML)
         // -----------------------------------------------------
         
         /**
@@ -1475,7 +1475,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - MANTIDA
+        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL (BOTÃO EXCLUIR REMOVIDO)
         // -----------------------------------------------------
         function atualizarTotal() {
             let totalBruto = 0;
@@ -1503,39 +1503,31 @@
                 const itemId = input.getAttribute("data-item-id");
                 
                 const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
-                const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
                 
-                // VERIFICAÇÃO DE MÍNIMO INDIVIDUAL
                 const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1; 
 
-                // 1. Soma a quantidade no total do grupo
                 if (!totaisPorGrupo[grupo]) {
                     totaisPorGrupo[grupo] = { quantidade: 0, items: [] };
                 }
                 totaisPorGrupo[grupo].quantidade += quantidade;
                 totaisPorGrupo[grupo].items.push({ input, quantidade, min, preco, descricaoResumo, itemId, grupo });
 
-                // 2. Validação MÍNIMO INDIVIDUAL (Apenas exibe o erro visual na tabela principal)
                 if (isIndividualMinCheck && quantidade > 0) {
                     if (quantidade < min) {
-                        // EXIBE MENSAGEM DE ERRO
                         if (erroElemento) {
                             erroElemento.textContent = `Mín ${min} Unid.`;
                             erroElemento.style.display = 'block';
                         }
                     } else {
-                        // OCULTA MENSAGEM se for válido
                         if (erroElemento) erroElemento.style.display = 'none';
                     }
                 } else {
-                    // Oculta a mensagem se a quantidade for 0 ou não for para checar individualmente
                     if (erroElemento) erroElemento.style.display = 'none'; 
                 }
             });
 
             let temErroDeMinimo = false;
 
-            // 3. Processa os totais e cria o resumo para o pop-up
             for (const grupo in totaisPorGrupo) {
                 const infoGrupo = totaisPorGrupo[grupo];
                 const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
@@ -1544,8 +1536,6 @@
                 const erroCategoriaElemento = isCookieGroup ? document.getElementById('erro-cookies') : null;
                 
                 let grupoValido = true;
-                
-                // Validação MÍNIMO POR GRUPO (ex: Cookies: minTotal=3)
                 if (minTotal > 0 && infoGrupo.quantidade > 0 && infoGrupo.quantidade < minTotal) {
                     grupoValido = false;
                     temErroDeMinimo = true;
@@ -1557,7 +1547,6 @@
                     if (erroCategoriaElemento) erroCategoriaElemento.style.display = 'none';
                 }
 
-                // Adiciona itens válidos ao subtotal
                 infoGrupo.items.forEach(item => {
                     const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
                     const isItemValido = item.quantidade >= item.min;
@@ -1567,12 +1556,11 @@
                         
                         if (isIndividualMinCheck && !isItemValido) {
                              shouldIncludeInTotal = false;
-                             temErroDeMinimo = true; // Marca erro se falhar no min individual
+                             temErroDeMinimo = true; 
                         }
                         
-                        // Checa o erro de grupo para Cookies (ou outros grupos com minTotal > 0)
                         if (minTotal > 0 && !grupoValido) {
-                             shouldIncludeInTotal = false; // Marca erro se falhar no min de grupo
+                            shouldIncludeInTotal = false; 
                         }
                         
                         if (shouldIncludeInTotal) {
@@ -1581,14 +1569,12 @@
                             totalItens += item.quantidade;
                         }
 
-                        // Inclui no resumo (pop-up) se a quantidade for > 0
                         if (!gruposResumo[grupo]) gruposResumo[grupo] = [];
                         gruposResumo[grupo].push({ ...item });
                     }
                 });
             }
 
-            // Aplica o desconto do cupom
             const descontoTotal = cupomAplicado.desconto;
             let totalLiquido = totalBruto;
             
@@ -1605,8 +1591,8 @@
                 gruposResumo[grupo].forEach(item => {
                     const precoTotalItem = item.quantidade * item.preco;
                     let precoExibicao = `R$ ${precoTotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-                    
-                    // Geração do item com campo de edição direta
+                    
+                    // CÓDIGO HTML AGORA SEM O BOTÃO "EXCLUIR"
                     resumoItensPopup.innerHTML += `
                         <div class="resumo-item-line">
                             <div class="resumo-item-name">
@@ -1621,15 +1607,12 @@
                                             onblur="atualizarQuantidadeDireta(this)">
                                 un.
                             </div>
-                            <div class="resumo-item-actions">
-                                <button class="btn-excluir" onclick="excluirItem('${item.itemId}')">EXCLUIR</button>
-                            </div>
                         </div>
                     `;
                 });
             }
 
-            // 2. Atualiza o total exibido no Pop-up (incluindo desconto se houver)
+            // 2. Atualiza o total exibido no Pop-up (lógica de desconto inalterada)
             if (descontoTotal > 0) {
                  resumoTotalPopup.innerHTML = `
                      <div class="resumo-total-line">SUBTOTAL: R$ ${totalBrutoFormatado}</div>
@@ -1638,7 +1621,6 @@
                      `;
             } else {
                  resumoTotalPopup.textContent = `TOTAL: R$ ${totalBrutoFormatado}`;
-                 // Garante que o campo de cupom não mantenha a mensagem de sucesso se o total for 0
                  const cupomMessage = document.getElementById('cupom-message');
                  if (totalBruto === 0 && cupomMessage) {
                      cupomMessage.textContent = '';
@@ -1646,14 +1628,14 @@
                      }
             }
 
-            // 3. Controla a visibilidade do botão "Fazer Pedido" no pop-up
+            // 3. Controla a visibilidade do botão "Fazer Pedido" no pop-up (inalterado)
             if (totalBruto > 0) {
                  fazerPedidoContainer.innerHTML = '<button onclick="abrirPopup()">FAZER PEDIDO</button>';
             } else {
                  fazerPedidoContainer.innerHTML = '';
             }
 
-            // 4. Atualiza e exibe o Rodapé Fixo
+            // 4. Atualiza e exibe o Rodapé Fixo (inalterado)
             if (totalBruto > 0) {
                 document.getElementById("summary-total").textContent = `R$ ${totalLiquidoFormatado}`;
                 document.getElementById("summary-item-count").textContent = ` / ${totalItens} ${totalItens === 1 ? 'item' : 'itens'}`;
@@ -2003,7 +1985,7 @@
                 confirmarPedidoButton.addEventListener("click", confirmarPedido);
             }
 
-            atualizarTotal();
+            actualizarTotal();
         });
     </script>
     
