@@ -23,7 +23,7 @@
         }
 
         body {
-            background-color: #E09F41;
+            background-color: #ED704F;
             text-align: center;
             color: white;
             font-family: 'Basic Choice 2', Arial, sans-serif;
@@ -44,19 +44,12 @@
             margin: 0;
         }
         
-        header img:first-child { 
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0;
-        }
-        
         /* ---------------------------------------------------------------------- */
         /* BARRA DE NAVEGAÇÃO (STICKY) - MANTIDOS */
         /* ---------------------------------------------------------------------- */
         
         #sticky-nav-container {
-            background-color: #E09F41; 
+            background-color: #ED704F; 
             position: sticky; 
             top: 0; 
             z-index: 10; 
@@ -101,14 +94,14 @@
             background-color: #c9bda5;
         }
         
-        /* Estilo da aba ATIVA */
+        /* Estilo da aba ATIVA (Cor de destaque: Verde-Azulado) */
         #categorias-horizontal a.active-link {
-            background-color: #7FB1C8; 
+            background-color: #399466; 
             color: white;
         }
 
         /* ---------------------------------------------------------------------- */
-        /* ESTILOS DAS TABELAS (e dos grupos para o filtro) - MANTIDOS */
+        /* ESTILOS DAS TABELAS */
         /* ---------------------------------------------------------------------- */
         .categoria-group {
             transition: opacity 0.3s ease; 
@@ -154,9 +147,7 @@
         .categoria-group:not(#grupo-cookies) th:nth-child(3), .categoria-group:not(#grupo-cookies) td:nth-child(3) { width: 15%; } 
         .categoria-group:not(#grupo-cookies) th:nth-child(4), .categoria-group:not(#grupo-cookies) td:nth-child(4) { width: 15%; } 
 
-        /* *************************************************************** */
-        /* AJUSTE PARA A TABELA DE COOKIES (AGORA COM 3 COLUNAS NO HTML) */
-        /* *************************************************************** */
+        /* AJUSTE PARA A TABELA DE COOKIES (3 COLUNAS) */
         /* 1: Item | 2: UNID. (Preço) | 3: QUANTIDADE */
         #tabela-cookies th:nth-child(1), #tabela-cookies td:nth-child(1) { width: 55%; } /* ITEM */
         #tabela-cookies th:nth-child(2), #tabela-cookies td:nth-child(2) { width: 20%; } /* UNID. (Preço) */
@@ -184,16 +175,10 @@
         caption { display: none; }
         header img + img { display: none; }
 
-        /* Cores (AJUSTADAS) */
-        
-        /* A cor dos dados das colunas QUANTIDADE (td) é mantida em branco */
-        table#tabela-bolo-tradicional td:nth-child(4), table#tabela-bolo-especial td:nth-child(4), table#tabela-prato-salgado td:nth-child(4), table#tabela-doces td:nth-child(4), table#tabela-cookies td:nth-child(3), table#tabela-salfri td:nth-child(4), table#tabela-salgado-forno td:nth-child(4), table#tabela-salgado-vegetariano td:nth-child(4) { color: white; }
-
-        /* 2. Cor de todos os cabeçalhos de coluna (ITEM, QNT. MÍN/tamanho, UNID., QUANTIDADE) é definida como BRANCA */
-        th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4) { color: white; }
-        
-        /* Corrige o item em si para a cor correta (MANTIDA EM BRANCO) */
-        table#tabela-bolo-tradicional td:nth-child(1), table#tabela-bolo-especial td:nth-child(1), table#tabela-prato-salgado td:nth-child(1), table#tabela-doces td:nth-child(1), table#tabela-cookies td:nth-child(1), table#tabela-salfri td:nth-child(1), table#tabela-salgado-forno td:nth-child(1), table#tabela-salgado-vegetariano td:nth-child(1) { color: white; }
+        /* Cores (A cor dos dados das colunas QUANTIDADE é BRANCA, como o fundo) */
+        table td:nth-child(3), table td:nth-child(4) { color: white; }
+        th { color: white; }
+        table td:nth-child(1) { color: white; }
 
 
         .item-nome { font-weight: bold; color: inherit; }
@@ -211,7 +196,7 @@
         .quantidade-container { 
             text-align: center; 
             display: flex;
-            flex-direction: column; /* Para empilhar o input e a mensagem de erro */
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
             padding: 0;
@@ -234,7 +219,7 @@
             -moz-appearance: textfield; /* Firefox */
         }
         
-        /* OCULTAÇÃO DE SETAS: Aplicado a ambos os inputs numéricos */
+        /* OCULTAÇÃO DE SETAS */
         .quantidade-container input[type="number"]::-webkit-outer-spin-button,
         .quantidade-container input[type="number"]::-webkit-inner-spin-button,
         .resumo-item-input-group input::-webkit-outer-spin-button, 
@@ -243,13 +228,12 @@
             margin: 0;
         }
         
-        /* CORREÇÃO PARA MENSAGEM DE ERRO/MINIMO PARA DOCES, SALGADOS FRITOS E FORNO */
+        /* MENSAGEM DE ERRO/MINIMO PARA ITENS INDIVIDUAIS */
         .erro-item-unico { 
             color: red; 
             display: none; 
             font-size: 0.9em; 
             margin-top: 5px;
-            /* ADICIONADO: Garante que a mensagem de erro individual não quebre o layout */
             line-height: 1.1; 
             width: 100%;
             text-align: center;
@@ -310,9 +294,9 @@
             color: #1A2B0F;
         }
         
-        /* Cor do botão de rodapé "Ver Pedido" alterada para o AZUL ESPECÍFICO */
+        /* Cor do botão de rodapé "Ver Pedido" (Verde-Azulado principal) */
         #summary-button {
-            background-color: #7FB1C8; /* AZUL SOLICITADO */
+            background-color: #399466; 
             color: white; 
             padding: 12px 20px;
             border-radius: 10px;
@@ -332,7 +316,7 @@
         }
         /* ---------------------------------------------------------------------- */
 
-        /* Estilos de Botões e Popup - MANTIDOS/AJUSTADOS */
+        /* Estilos de Botões e Input */
         select, input { text-align: center; }
         
         /* Input do Pop-up e Input da Tabela principal (para padronizar) */
@@ -343,7 +327,7 @@
             font-family: 'Basic Choice 2', Arial, sans-serif;
         }
         
-        /* MODIFICAÇÃO AQUI: Fundo branco e fonte padronizada para inputs do resumo */
+        /* Estilo dos inputs de quantidade no resumo (pop-up) */
         .resumo-item-input-group input {
             background-color: white; /* Fundo branco solicitado */
             border: 1px solid #ccc;
@@ -351,28 +335,41 @@
             font-family: 'Basic Choice 2', Arial, sans-serif; /* Fonte padronizada */
         }
 
-        /* Cor do botão primário (Fazer Pedido/Continuar Comprando) */
+        /* Estilo do botão Primário (CONFIRMAR PEDIDO, FAZER PEDIDO) */
         button { 
             padding: 10px; 
             border-radius: 20px; 
-            background-color: #7FB1C8; 
+            background-color: #399466; 
             border: none; 
             color: #FFF; 
             cursor: pointer; 
             font-family: 'Basic Choice 2', Arial, sans-serif; 
             width: 100%; 
             font-size: 18px; 
-            margin-top: 10px; /* Ajustado para espaçamento consistente */
+            margin-top: 10px;
             box-shadow: 0 4px #4c7e93; /* Sombra padrão azul */
         }
+        
+        /* NOVO ESTILO: Botões Secundários/De Navegação (ex: Continuar Comprando, Editar Pedido) */
+        .btn-secundario {
+            background-color: white;
+            color: #399466; /* Cor da borda/texto primário */
+            border: 2px solid #399466;
+            box-shadow: none; /* Sem sombra 3D */
+            margin-top: 15px; /* Mais espaço para separar dos botões primários */
+        }
+        .btn-secundario:active {
+            transform: translateY(1px);
+        }
+
         button:active {
             box-shadow: 0 2px #4c7e93;
             transform: translateY(2px);
         }
 
-        /* MODIFICAÇÃO: Adicionando margem inferior ao botão VOLTAR */
+        /* Botão VOLTAR na tela principal */
         #botao-voltar { 
-            background-color: #7FB1C8; 
+            background-color: #399466; 
             color: #FFF; 
             font-size: 18px; 
             border: none; 
@@ -381,14 +378,12 @@
             cursor: pointer; 
             width: 100%; 
             margin-top: 20px; 
-            /* ADICIONADO ESPAÇAMENTO INFERIOR */
             margin-bottom: 20px; 
             font-family: 'Basic Choice 2', Arial, sans-serif; 
+            box-shadow: 0 4px #4c7e93; 
         }
 
         .erro { color: red; font-size: 14px; margin-top: 10px; }
-        
-        #resumo { display: none; } 
         
         /* Estilos do Popup Geral */
         .popup { 
@@ -416,7 +411,7 @@
             overflow-y: auto; 
         }
         
-        /* ÍCONE DE FECHAR NO CANTO DIREITO (CORREÇÃO) */
+        /* ÍCONE DE FECHAR */
         .fechar { 
             color: #aaa; 
             font-size: 28px; 
@@ -441,7 +436,7 @@
             margin-top: 10px;
         }
         .resumo-total-line {
-            font-size: 16px; /* Menor que o TOTAL FINAL */
+            font-size: 16px; 
             font-weight: normal;
             display: flex;
             justify-content: space-between;
@@ -452,13 +447,13 @@
         }
         /* Separador visual */
         #popup-resumo-total {
-             border-top: 1px dashed #7FB1C8; 
+             border-top: 1px dashed #399466; 
              padding-top: 10px;
              margin-top: 10px;
         }
 
 
-        /* Estilo do preço original riscado */
+        /* Estilo do preço original riscado (inativo) */
         .price-original-item {
             text-decoration: line-through;
             color: #888;
@@ -466,18 +461,17 @@
             margin-right: 5px;
         }
         
-        /* Estilo do preço final com desconto */
+        /* Estilo do preço final com desconto (inativo) */
         .price-final-item {
-             color: #E60000; /* Vermelho para destaque de desconto */
+             color: #E60000; 
         }
 
         /* Estilo para cada item do resumo (linha do produto) */
         .resumo-item-line {
             display: flex;
-            /* Justify-content agora usa mais espaço para o input e un. */
-            justify-content: space-between; 
-            align-items: center; /* Alinha tudo verticalmente */
-            border-bottom: 1px dashed #7FB1C8; 
+            justify-content: space-between;
+            align-items: center; 
+            border-bottom: 1px dashed #399466; 
             padding: 8px 0;
             font-size: 14px;
         }
@@ -496,7 +490,7 @@
             color: #1A2B0F;
         }
         .resumo-item-name .price-final-item {
-             color: #1A2B0F; /* O preço com desconto permanece preto aqui */
+             color: #1A2B0F; 
              font-weight: bold;
         }
 
@@ -505,10 +499,10 @@
             display: flex;
             align-items: center;
             flex-shrink: 0;
-            gap: 5px; /* ESPAÇAMENTO REDUZIDO ENTRE UNIDADE E INPUT */
+            gap: 5px; 
         }
 
-        /* Estilo para o campo de input na edição direta (como na imagem) */
+        /* Estilo para o campo de input na edição direta */
         .resumo-item-input-group input {
             width: 55px; 
             height: 35px; 
@@ -517,13 +511,25 @@
             text-align: center;
             border-radius: 10px;
             box-sizing: border-box;
-            margin: 0; /* CORREÇÃO: Aproxima o input do UN. */
+            margin: 0; 
             
             -moz-appearance: textfield; 
         }
         
-        /* O botão de excluir foi removido do HTML, mas mantemos o estilo do input group
-           para garantir que a edição de quantidade continue funcionando corretamente. */
+        /* Botão de excluir */
+        .btn-excluir {
+            background-color: #E60000; 
+            color: white;
+            width: 70px; 
+            font-size: 12px; 
+            padding: 10px 0; 
+            margin: 0 0 0 10px; 
+            border-radius: 10px; 
+            box-shadow: none;
+            flex-shrink: 0;
+            line-height: 1; 
+            height: 40px; 
+        }
         
         /* ----------------- CUPOM STYLES ----------------- */
         #cupom-container {
@@ -546,11 +552,11 @@
             flex-grow: 1;
             padding: 10px;
             border-radius: 10px;
-            border: 1px solid #7FB1C8;
+            border: 1px solid #399466;
             background-color: white;
             color: #1A2B0F;
             box-sizing: border-box;
-            height: 40px; /* Ajuste para alinhar com o botão APLICAR */
+            height: 40px; 
         }
 
         #apply-cupom-btn {
@@ -559,9 +565,9 @@
             padding: 10px 0; 
             margin: 0;
             font-size: 14px;
-            background-color: #E09F41; /* Laranja para destaque */
+            background-color: #399466; 
             border-radius: 10px; 
-            height: 40px; /* Garante a altura para alinhar com o input */
+            height: 40px; 
         }
 
         .cupom-message {
@@ -579,20 +585,20 @@
         }
 
         /* ---------------------------------------------------------------------- */
-        /* ESTILOS DO POPUP DE INFORMAÇÕES DO PEDIDO (Novo Estilo) */
+        /* ESTILOS DO POPUP DE INFORMAÇÕES DO PEDIDO */
         /* ---------------------------------------------------------------------- */
         #form-pedido {
             display: flex;
-            flex-direction: column; /* Coloca os filhos em coluna */
-            gap: 15px; /* Espaçamento entre os campos */
+            flex-direction: column; 
+            gap: 15px; 
             text-align: left;
-            color: #1A2B0F; /* Cor do texto do rótulo */
+            color: #1A2B0F; 
         }
 
         #form-pedido label {
             font-weight: bold;
             font-size: 16px;
-            margin-bottom: -5px; /* Ajuste para aproximar do campo */
+            margin-bottom: -5px; 
         }
 
         /* Estilo para todos os inputs e selects dentro do formulário */
@@ -600,17 +606,16 @@
         #form-pedido input[type="date"],
         #form-pedido input[type="time"],
         #form-pedido select {
-            /* Cor de fundo branca, conforme solicitação (como o campo de cupom) */
             background-color: white; 
             color: #1A2B0F;
-            border: 1px solid #7FB1C8; /* Borda azul padrão do site */
+            border: 1px solid #399466; 
             padding: 10px;
             border-radius: 10px;
             font-family: 'Basic Choice 2', Arial, sans-serif;
             font-size: 16px;
-            width: 100%; /* Ocupa a largura total para quebrar a linha */
+            width: 100%; 
             box-sizing: border-box;
-            text-align: left; /* Alinhamento do texto */
+            text-align: left; 
         }
         
         /* Ajuste do input de nome para alinhamento esquerdo */
@@ -618,25 +623,28 @@
             text-align: left;
         }
 
-        /* PADRONIZAÇÃO dos botões (CONFIRMAR/EDITAR/CONTINUAR COMPRANDO) com o botão azul principal */
+        /* Os botões CONFIRMAR/FAZER PEDIDO mantêm o estilo principal (Verde-Azulado) */
         #form-pedido button {
-            background-color: #7FB1C8; /* Cor azul do "CONTINUAR COMPRANDO" */
-            box-shadow: 0 4px #4c7e93; /* Sombra do "CONTINUAR COMPRANDO" */
-            margin-top: 15px; /* Espaçamento padrão */
+            background-color: #399466; 
+            box-shadow: 0 4px #4c7e93; 
+            margin-top: 15px; 
         }
 
-        /* O botão "CONTINUAR COMPRANDO" (era Cancelar) mantém o estilo do botão azul */
-        #form-pedido button:nth-of-type(2) { 
-            background-color: #7FB1C8;
-            box-shadow: 0 4px #4c7e93;
+        /* Os botões SECUNDÁRIOS no formulário (EDITAR/CONTINUAR) usam o novo estilo */
+        #form-pedido button:nth-of-type(2), #form-pedido button:nth-of-type(3) { 
+            background-color: white;
+            color: #399466;
+            border: 2px solid #399466;
+            box-shadow: none;
         }
+
         /* ---------------------------------------------------------------------- */
 
 
         /* Media Queries (Mantidos) */
         @media (min-width: 768px) {
-            header img:first-child { content: url('topodesktop.png'); }
-            footer img { content: url('rodadesktop.png'); }
+            header img:first-child { content: url('toponatal.png'); }
+            footer img { content: url('rodanatal.png'); }
             #fixed-summary {
                  max-width: 600px; 
             }
@@ -651,7 +659,7 @@
 <body>
     <div class="container">
         <header>
-            <img src="topo.png" alt="Topo">
+            <img src="toponatal.png" alt="Topo">
         </header>
 
         <div id="sticky-nav-container">
@@ -729,7 +737,7 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tby>
+                <tbody></tbody>
             </table>
         </div>
 
@@ -768,18 +776,12 @@
                     <th>UNID.</th>
                     <th>QUANTIDADE</th>
                 </tr>
-                <tbody></tby>
+                <tbody></tbody>
             </table>
         </div>
         
         
-        <div id="resumo" style="display:none;"> 
-            <h2>Resumo do Pedido</h2>
-            <div id="resumo-itens" class="resumo-itens"></div>
-            <div id="resumo-total"></div>
-        </div>
-        
-        <button id="botao-voltar" onclick="window.location.replace('https://favucozinha.github.io/Inicio/')">Voltar</button>
+        <button id="botao-voltar" onclick="window.location.replace('https://favucozinha.github.io/Favu/')">Voltar</button>
         
         <div id="popup-resumo" class="popup">
             <div class="popup-conteudo">
@@ -800,7 +802,7 @@
                 
                 <div id="fazer-pedido-button-container">
                     </div>
-                <button onclick="fecharResumoPopup()">CONTINUAR COMPRANDO</button>
+                <button class="btn-secundario" onclick="fecharResumoPopup()">CONTINUAR COMPRANDO</button>
             </div>
         </div>
         
@@ -808,7 +810,7 @@
             <div class="popup-conteudo">
                 <span class="fechar" onclick="fecharPopup()">&times;</span>
                 <h2>INFORMAÇÕES DO PEDIDO</h2>
-                <form id="form-pedido"> 
+                <form id="form-pedido">
                     <label for="nome">NOME:</label>
                     <input type="text" id="nome" name="nome" placeholder="Seu Nome Completo" required>
 
@@ -824,10 +826,10 @@
                         <option value="Cartão">Cartão</option>
                         <option value="Pix">Pix</option>
                     </select>
-
+                    
+                                             <button type="button" class="btn-secundario" onclick="editarPedido()">EDITAR PEDIDO</button>
+                    <button type="button" class="btn-secundario" onclick="fecharPopup()">CONTINUAR COMPRANDO</button> 
                     <button type="button" onclick="confirmarPedido()">CONFIRMAR PEDIDO</button>
-                    <button type="button" onclick="fecharPopup()">CONTINUAR COMPRANDO</button> 
-                    <button type="button" onclick="editarPedido()">EDITAR PEDIDO</button>
                 </form>
             </div>
         </div>
@@ -844,26 +846,67 @@
         </div>
 
         <footer>
-            <img src="roda2.png" alt="Rodapé">
+            <img src="rodanatal.png" alt="Rodapé">
         </footer>
     </div>
 
     <script>
-        // 🚨🚨 ATUALIZE ESTA URL COM A URL DO SEU APPS SCRIPT ATUALIZADO 🚨🚨
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPg0luc_LKOhkOLrefXv202qDAHMHFHO_19WF4dtXoc_20MwykJzNI5IRuYlq0Rr5s/exec"; 
-        // Seu número de WhatsApp (mantido)
-        const WHATSAPP_NUMBER = "558195256641"; 
-
-        // 🚨 NOVO: Variável global para evitar envio duplo
-        let isSubmitting = false; 
-
         // Variável global para armazenar o cupom aplicado
         let cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
         
-        // NOVAS CONSTANTES DE CUPOM
-        const CUPOM_COOKIES10 = 'COOKIES10'; 
-        const CUPOM_FAVU10 = 'FAVU10OFF'; 
-        const CUPOM_FAVUCOOKIES = 'FAVUCOOKIES'; 
+        // CONSTANTES DE CUPOM
+        const CUPOM_COOKIES10 = 'COOKIES10';
+        const CUPOM_FAVU10 = 'FAVU10OFF';
+        const CUPOM_FAVUCOOKIES = 'FAVUCOOKIES';
+        
+        // =======================================================
+        // NOVOS CUPONS GERADOS (USO ÚNICO E VALIDADE: ATÉ 28/02/2026)
+        // =======================================================
+        const CUPONS_GERADOS = {
+            // Exemplo de cupom de uso único solicitado (10% OFF no total, válido até 28/02/2026)
+            '11850273430': { 
+                descontoTipo: 'percentual', 
+                valor: 0.10, // 10%
+                aplicaEm: 'total', 
+                expiraEm: '2026-02-28', // Data de Expiração
+                usoUnico: true,
+                usado: false 
+            },
+            // Exemplo de cupom de uso único solicitado (10% OFF no total, válido até 28/02/2026)
+            '0047': { 
+                descontoTipo: 'percentual', 
+                valor: 0.10, // 10%
+                aplicaEm: 'total', 
+                expiraEm: '2026-02-28', // Data de Expiração
+                usoUnico: true,
+                usado: false 
+            },
+            // Inclua novos cupons de uso único aqui (uso único é uma simulação)
+            'NOVO15REAIS': { 
+                descontoTipo: 'valorFixo', 
+                valor: 15.00, // R$ 15,00 de desconto
+                aplicaEm: 'total',
+                expiraEm: '2026-02-28',
+                usoUnico: true,
+                usado: false 
+            },
+            'COOK20OFF': {
+                descontoTipo: 'percentual', 
+                valor: 0.20, // 20%
+                aplicaEm: 'cookies',
+                expiraEm: '2026-02-28',
+                minCookies: 4, 
+                usoUnico: true,
+                usado: false
+            }
+        };
+
+        // REGRA DE MINIMO: Mini Cookie (ID) e Grupos (Doces, Salgados)
+        // Lista de grupos que devem usar a VALIDAÇÃO DE MÍNIMO INDIVIDUAL (Doces e Salgados)
+        const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
+
+        // ID do Mini Cookie para tratamento especial (gerado pela função generateId)
+        const MINI_COOKIE_ID = 'mini-cookie';
         
         // -----------------------------------------------------
         // DADOS DOS PRODUTOS - MANTIDOS
@@ -879,7 +922,7 @@
         const addGroupKeys = (itens) => {
             return itens.map(item => ({
                 ...item,
-                groupKey: item.tamanho ? item.nome : item.id 
+                groupKey: item.tamanho ? item.nome : item.id
             }));
         };
 
@@ -902,6 +945,8 @@
         ]).map(item => ({...item, id: generateId(item.nome, item.tamanho)}));
         
         const itensBoloEspecial = addGroupKeys([
+            { nome: "🎄Cheesecake tradicional", tamanho: "2.1 KG", preco: 150.00, min: 1, descricaoResumo: "Cheesecake tradicional - 2.1 KG", descricao: "Com Goiabada"},
+            { nome: "🎄Cheesecake Doce de leite", tamanho: "2.1 KG", preco: 155.00, min: 1, descricaoResumo: "Cheesecake Doce de leite - 2.1 KG", descricao: "Com Caramelo Salgado"},
             { nome: "Bolo de Ameixa", tamanho: "P (1.5 KG)", preco: 110.00, min: 1, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - P (1.5 KG)", descricao: "Com Chocolate Branco"},
             { nome: "Bolo de Ameixa", tamanho: "M (2.5 KG)", preco: 180.00, min: 1, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - M (2.5 KG)", descricao: "Com Chocolate Branco"},
             { nome: "Bolo de Ameixa", tamanho: "G (3.5 KG)", preco: 250.00, min: 1, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - G (3.5 KG)", descricao: "Com Chocolate Branco"},
@@ -920,9 +965,12 @@
             { nome: "Bolo de Ninho trufado", tamanho: "P (1.5 KG)", preco: 110.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - P (1.5 KG)", descricao: "Com chocolate Branco"},
             { nome: "Bolo de Ninho trufado", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - M (2.5 KG)", descricao: "Com chocolate Branco"},
             { nome: "Bolo de Ninho trufado", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - G (3.5 KG)", descricao: "Com chocolate Branco"},
+            { nome: "🎄Bolo de Noiva", tamanho: "P (1.5 KG)", preco: 130.00, min: 1, descricaoResumo: "Bolo de noiva - P (1.5 KG)", descricao: "Com cobertura de glacê "},
+            { nome: "🎄Bolo de Noiva", tamanho: "M (2.5 KG)", preco: 215.00, min: 1, descricaoResumo: "Bolo de noiva - M (2.5 KG)", descricao: "Com cobertura de glacê "},
+            { nome: "🎄Bolo de Noiva", tamanho: "G (3.5 KG)", preco: 300.00, min: 1, descricaoResumo: "Bolo de noiva - G (3.5 KG)", descricao: "Com cobertura de glacê "},
             { nome: "Bolo Prestígio", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Prestígio - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Prestígio", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Prestígio - M (2.5 KG)", descricao: ""},
-            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},      
+            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},    
             { nome: "Bolo Red velvet", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Red velvet - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Red velvet", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Red velvet - M (2.5 KG)", descricao: ""},
             { nome: "Bolo Red velvet", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Red Velvet - G (3.5 KG)", descricao: ""},
@@ -940,11 +988,11 @@
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensCookies = addGroupKeys([
-            // MINIMO DE CADA COOKIE AGORA É 1. A VALIDAÇÃO DE 3 UNIDADES VAI PARA O GRUPO.
+            // MIN: 20 para o Mini Cookie, conforme solicitado. O ID gerado será 'mini-cookie'
+            { nome: "Mini Cookie", min: 20, preco: 2.80, descricaoResumo: "Cookie Tradicional", descricao: "Massa de baunilha com pedaços de chocolate meio amargo" },
             { nome: "Cookie Tradicional", min: 1, preco: 12.00, descricaoResumo: "Cookie Tradicional", descricao: "Massa de baunilha com pedaços de chocolate meio amargo" },
             { nome: "Cookie Red Velvet", min: 1, preco: 12.00, descricaoResumo: "Cookie Red Velvet", descricao: "Massa de baunilha com toque de cream cheese, cacau vermelho e pedaços de chocolate branco" },
             { nome: "Cookie Black", min: 1, preco: 12.00, descricaoResumo: "Cookie Black", descricao: "Massa feita com cacau 100% e pedaços de chocolate meio amargo" },
-            { nome: "Cookie Romeu e Julieta", min: 1, preco: 12.00, descricaoResumo: "Cookie Romeu e Julieta", descricao: "Massa de baunilha com pedacinhos de queijo, recheado com cream cheese e goiabada" },
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensSalgadoFrito = addGroupKeys([
@@ -1019,9 +1067,12 @@
             { nome: "Rocambole de Carne", tamanho: "P (1 KG)", preco: 70.00, min: 1, descricaoResumo: "Rocambole de Carne - P (1 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Carne", tamanho: "M (2 KG)", preco: 140.00, min: 1, descricaoResumo: "Rocambole de Carne - M (2 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Carne", tamanho: "G (3 KG)", preco: 210.00, min: 1, descricaoResumo: "Rocambole de Carne - G (3 KG)", descricao: "Massa de Batata"},
-            { nome: "Rocambole de Frango", tamanho: "P (1 KG)", preco: 70.00, min: 1, descricaoResumo: "Rocambole de Frango - P (1.5 KG)", descricao: "Massa de Batata"},
+            { nome: "Rocambole de Frango", tamanho: "P (1 KG)", preco: 70.00, min: 1, descricaoResumo: "Rocambole de Frango - P (1 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Frango", tamanho: "M (2 KG)", preco: 140.00, min: 1, descricaoResumo: "Rocambole de Frango - M (2 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Frango", tamanho: "G (3 KG)", preco: 210.00, min: 1, descricaoResumo: "Rocambole de Frango - G (3 KG)", descricao: "Massa de Batata"},
+            { nome: "🎄Salpicão de Frango", tamanho: "P (1 KG)", preco: 80.00, min: 1, descricaoResumo: "Salpicão de Frango - P (1 KG)", descricao: "Massa de Batata"},
+            { nome: "🎄Salpicão de Frango", tamanho: "M (2 KG)", preco: 160.00, min: 1, descricaoResumo: "Salpicão de Frango - M (2 KG)", descricao: "Massa de Batata"},
+            { nome: "🎄Salpicão de Frango", tamanho: "G (3 KG)", preco: 240.00, min: 1, descricaoResumo: "Salpicão de Frango - G (3 KG)", descricao: "Massa de Batata"},
             { nome: "Torta Salgada de Bacalhau", tamanho: "P (1 KG)", preco: 120.00, min: 1, descricaoResumo: "Torta Salgada de Bacalhau - P (1 KG)", descricao: ""},
             { nome: "Torta Salgada de Bacalhau", tamanho: "M (2 KG)", preco: 240.00, min: 1, descricaoResumo: "Torta Salgada de Bacalhau - M (2 KG)", descricao: ""},
             { nome: "Torta Salgada de Bacalhau", tamanho: "G (3 KG)", preco: 360.00, min: 1, descricaoResumo: "Torta Salgada de Bacalhau - G (3 KG)", descricao: ""},
@@ -1092,7 +1143,7 @@
                     if (item.groupKey !== grupoAtual) {
                         grupoAtual = item.groupKey;
                         isFirstInGroup = true;
-                        countGrupo = 1;
+                        countGrupo = 1; // Reseta a contagem para o novo grupo
                         let j = i + 1;
                         while (j < grupo.length && grupo[j].groupKey === grupoAtual) {
                             countGrupo++;
@@ -1101,19 +1152,16 @@
                     }
                     
                     if (item.groupKey === grupoAtual && i < grupo.length - 1 && grupo[i+1].groupKey === grupoAtual) {
-                                                                       tr.classList.add('item-group-active');
+                        tr.classList.add('item-group-active');
                     }
                 }
                 
-                // ***************************************************************
-                // VALOR PADRÃO DO INPUT É "0"
-                // ***************************************************************
                 const inputHtml = `<input type="number" value="0" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" data-item-id="${itemId}" class="quantidade-input">`;
 
                 let erroHtml = '';
-                // Verifica se é uma das categorias que deve usar o erro individual
-                const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-                const isIndividualMinCheck = gruposComMinimoIndividual.includes(nomeGrupo) && (item.min && item.min > 1);
+                // Verifica se é Doces/Salgados OU se é o Mini Cookie (que tem min: 20)
+                const isMiniCookie = itemId === MINI_COOKIE_ID;
+                const isIndividualMinCheck = (gruposComMinimoIndividual.includes(nomeGrupo) && (item.min && item.min > 1)) || isMiniCookie;
                 
                 if (isIndividualMinCheck) {
                     erroHtml = `<div class="erro-item-unico">Mín ${item.min} Unid.</div>`; // Display será controlado pelo JS
@@ -1137,9 +1185,9 @@
                                 ${erroHtml}
                             </div>
                         </td>
-                    `;
+                        `;
                 } else {
-                    // CÓDIGO para as outras tabelas (4 COLUNAS VISÍVEIS)
+                    // CÓDIGO PARA DOCES, SALGADOS FRITOS, FORNO, VEGETARIANOS (4 COLUNAS VISÍVEIS)
                     celulasComuns = `
                         <td>
                             <div class="item-nome">${item.nome}</div>
@@ -1153,7 +1201,7 @@
                                 ${erroHtml}
                             </div>
                         </td>
-                    `;
+                        `;
                 }
 
                 // Conteúdo para tabelas AGRUPADAS (Bolos, Pratos Salgados)
@@ -1211,6 +1259,7 @@
 
         /**
          * Rola a página para um elemento específico, considerando a barra sticky.
+         * @param {HTMLElement} targetElement O elemento alvo (ex: a imagem ou o TR).
          */
         function scrollToElement(targetElement) {
             if (!targetElement) return;
@@ -1236,7 +1285,7 @@
         }
         
         // -----------------------------------------------------
-        // LÓGICA DE CUPOM - MANTIDA
+        // LÓGICA DE CUPOM - ATUALIZADA (com Cupons de Uso Único e Validade)
         // -----------------------------------------------------
         
         function limparCupom() {
@@ -1253,35 +1302,36 @@
             cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
             cupomMessage.className = 'cupom-message'; // Reset classes
             
-            // 1. Coleta e valida a quantidade e os subtotais
-            let totalBrutoPedido = 0; 
+            // --- 1. COLETA DE TOTAIS E VALIDAÇÃO DE MÍNIMOS EXISTENTES ---
+            
+            let totalBrutoPedido = 0;   
             let totalCookies = 0;
-            let subtotalCookies = 0; 
+            let subtotalCookies = 0;   
             const cookiesGrupos = ["Cookies"]; 
             let hasCookieItem = false;
-            
-            // Lista de grupos que usam a validação de mínimo individual
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
             let temErroDeMinimo = false; 
 
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 const grupo = input.getAttribute("data-grupo");
-                // Usamos parseInt(input.value) || 0 para garantir que "0" seja tratado como 0
                 const quantidade = parseInt(input.value) || 0; 
                 const preco = parseFloat(input.getAttribute("data-preco")) || 0;
                 const min = parseInt(input.getAttribute("data-min")) || 1;
+                const itemId = input.getAttribute("data-item-id");
                 
-                const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
+                const isMiniCookieCheck = itemId === MINI_COOKIE_ID;
+                const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
+
+                const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookieCheck;
                 const isItemValido = quantidade >= min;
                 
-                // Verifica erros de mínimo para não incluir o item no total bruto (apenas se a quantidade for > 0)
+                // Validação de mínimo individual para bloquear cálculo do total bruto
                 if (quantidade > 0 && isIndividualMinCheck && !isItemValido) {
                     temErroDeMinimo = true;
                 }
 
                 if (quantidade > 0 && (!isIndividualMinCheck || isItemValido)) {
                     const totalItem = quantidade * preco;
-                    totalBrutoPedido += totalItem; // Total de todo o pedido (válido para o FAVU10)
+                    totalBrutoPedido += totalItem; 
                 }
 
                 if (cookiesGrupos.includes(grupo)) {
@@ -1293,8 +1343,9 @@
                 }
             });
 
-            // Revalida se o mínimo do grupo Cookies (3) foi atingido (lógica para evitar descontos em pedidos inválidos)
-            const minTotalCookies = gruposItens["tabela-cookies"]?.minTotal || 0;
+            // Validação de mínimo do grupo Cookies
+            const idTabelaCookies = "tabela-cookies";
+            const minTotalCookies = gruposItens[idTabelaCookies]?.minTotal || 0;
             const cookiesValidos = totalCookies === 0 || totalCookies >= minTotalCookies;
             if (!cookiesValidos && totalCookies > 0) temErroDeMinimo = true;
             
@@ -1305,13 +1356,80 @@
                 return;
             }
 
-            // 2. Validação e Aplicação dos Cupons
-            const taxaDesconto = 0.10; // 10%
-            const minCookiesCupom = 4; // Mínimo de cookies para os cupons de cookies (COOKIES10 e FAVUCOOKIES)
-
-            // 2.1. CUPOM FAVU10 (10% no Total do Pedido - Qualquer dia)
-            if (cupomCode === CUPOM_FAVU10) {
+            // --- 2. TRATAMENTO DE CUPONS DE USO ÚNICO/EXPIRAÇÃO (NOVOS) ---
+            
+            const cupomDeUsoUnico = CUPONS_GERADOS[cupomCode];
+            if (cupomDeUsoUnico) {
                 
+                if (totalBrutoPedido === 0) {
+                     cupomAplicado.mensagem = 'Adicione itens ao carrinho antes de aplicar o cupom.';
+                     cupomMessage.classList.add('cupom-error');
+                     atualizarTotal();
+                     return;
+                }
+
+                // 2.1. Checagem de Uso Único
+                if (cupomDeUsoUnico.usoUnico && cupomDeUsoUnico.usado) {
+                    cupomAplicado.mensagem = 'Este cupom já foi utilizado.';
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+
+                // 2.2. Checagem de Expiração
+                const hoje = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+                if (cupomDeUsoUnico.expiraEm < hoje) {
+                    cupomAplicado.mensagem = 'Este cupom está expirado.';
+                    cupomMessage.classList.add('cupom-error');
+                    atualizarTotal();
+                    return;
+                }
+
+                // 2.3. Checagem de Aplicação em Cookies (se for o caso)
+                if (cupomDeUsoUnico.aplicaEm === 'cookies') {
+                    const minCookies = cupomDeUsoUnico.minCookies || 1;
+                    if (totalCookies < minCookies) {
+                        cupomAplicado.mensagem = `CUPOM VÁLIDO APENAS PARA NO MÍNIMO ${minCookies} COOKIES.`;
+                        cupomMessage.classList.add('cupom-error');
+                        atualizarTotal();
+                        return;
+                    }
+                }
+                
+                // 2.4. Aplica o Desconto
+                let baseCalculo = totalBrutoPedido;
+                let mensagemDesconto = `OFF no total`;
+
+                if (cupomDeUsoUnico.aplicaEm === 'cookies') {
+                    baseCalculo = subtotalCookies;
+                    mensagemDesconto = `OFF em Cookies`;
+                }
+                
+                let descontoTotal = 0;
+                if (cupomDeUsoUnico.descontoTipo === 'percentual') {
+                    descontoTotal = baseCalculo * cupomDeUsoUnico.valor;
+                    mensagemDesconto = `${(cupomDeUsoUnico.valor * 100).toFixed(0)}% ${mensagemDesconto}`;
+                } else if (cupomDeUsoUnico.descontoTipo === 'valorFixo') {
+                    descontoTotal = cupomDeUsoUnico.valor;
+                    mensagemDesconto = `R$ ${descontoTotal.toFixed(2).replace('.', ',')} ${mensagemDesconto}`;
+                }
+                
+                // Em um sistema real, aqui você chamaria o servidor para marcar o cupom como USADO.
+                // cupomDeUsoUnico.usado = true;
+                
+                cupomAplicado = {
+                    codigo: cupomCode,
+                    desconto: descontoTotal, 
+                    mensagem: `CUPOM ${cupomCode} APLICADO! (${mensagemDesconto})` 
+                };
+                cupomMessage.classList.add('cupom-success');
+
+
+            // --- 3. TRATAMENTO DE CUPONS DE USO COMUM (ANTIGOS) ---
+
+            } else if (cupomCode === CUPOM_FAVU10) {
+                
+                const taxaDesconto = 0.10;
                 if (totalBrutoPedido === 0) {
                     cupomAplicado.mensagem = 'Adicione itens ao carrinho antes de aplicar o cupom.';
                     cupomMessage.classList.add('cupom-error');
@@ -1324,12 +1442,14 @@
                 cupomAplicado = {
                     codigo: cupomCode,
                     desconto: descontoTotal, 
-                    mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF no total)` 
+                    mensagem: `CUPOM ${cupomCode} APLICADO! (10% OFF no total)`  
                 };
                 cupomMessage.classList.add('cupom-success');
                 
-            // 2.2. CUPOM COOKIES10 (10% em Cookies - Qualquer dia - REQUER MÍNIMO DE 4 UNIDADES)
             } else if (cupomCode === CUPOM_COOKIES10) {
+                
+                const taxaDesconto = 0.10;
+                const minCookiesCupom = 4;
                 
                 if (!hasCookieItem) {
                     cupomAplicado.mensagem = 'Cupom válido apenas para Cookies.';
@@ -1338,7 +1458,6 @@
                     return;
                 }
                 
-                // CHECK MÍNIMO DE 4 UNIDADES DE COOKIES
                 if (totalCookies < minCookiesCupom) {
                     cupomAplicado.mensagem = `CUPOM VÁLIDO APENAS PARA NO MÍNIMO ${minCookiesCupom} COOKIES.`;
                     cupomMessage.classList.add('cupom-error');
@@ -1355,10 +1474,11 @@
                 };
                 cupomMessage.classList.add('cupom-success');
                 
-            // 2.3. Validação do Cupom FAVUCOOKIES (Regra antiga: Segunda a Quinta, Mínimo 4 Cookies)
             } else if (cupomCode === CUPOM_FAVUCOOKIES) {
                 
-                // Validação de Item
+                const taxaDesconto = 0.10;
+                const minCookiesCupom = 4;
+                
                 if (!hasCookieItem) {
                     cupomAplicado.mensagem = 'Cupom válido apenas para Cookies.';
                     cupomMessage.classList.add('cupom-error');
@@ -1366,19 +1486,16 @@
                     return;
                 }
                 
-                // Validação de Data: USA A DATA ATUAL
                 const dataAtual = new Date();
-                const diaDaSemana = dataAtual.getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
+                const diaDaSemana = dataAtual.getDay(); 
 
-                // Válido de Segunda (1) a Quinta (4)
-                if (diaDaSemana === 0 || diaDaSemana === 5 || diaDaSemana === 6) { // Domingo, Sexta, Sábado
+                if (diaDaSemana === 0 || diaDaSemana === 5 || diaDaSemana === 6) { 
                     cupomAplicado.mensagem = 'Cupom válido apenas para pedidos realizados entre Segunda e Quinta-feira.';
                     cupomMessage.classList.add('cupom-error');
                     atualizarTotal();
                     return;
                 }
 
-                // Validação de Quantidade (também exige 4)
                 if (totalCookies < minCookiesCupom) {
                     cupomAplicado.mensagem = `CUPOM VÁLIDO APENAS PARA NO MÍNIMO ${minCookiesCupom} COOKIES.`;
                     cupomMessage.classList.add('cupom-error');
@@ -1386,7 +1503,6 @@
                     return;
                 }
                 
-                // Aplicação do Desconto
                 const descontoTotal = subtotalCookies * taxaDesconto; 
                 
                 cupomAplicado = {
@@ -1397,6 +1513,7 @@
                 cupomMessage.classList.add('cupom-success');
                 
             } else if (cupomCode) {
+                // CUPOM INVÁLIDO GENÉRICO
                 cupomAplicado.mensagem = `Código "${cupomCode}" inválido.`;
                 cupomMessage.classList.add('cupom-error');
             }
@@ -1404,19 +1521,20 @@
             cupomMessage.textContent = cupomAplicado.mensagem;
             atualizarTotal();
         }
+
         
         // -----------------------------------------------------
-        // FUNÇÕES DE EDIÇÃO E EXCLUSÃO - MANTIDAS (Excluir desativado no HTML)
+        // FUNÇÕES DE EDIÇÃO E EXCLUSÃO - MANTIDAS
         // -----------------------------------------------------
         
         /**
          * Zera a quantidade de um item e atualiza o resumo.
-         * (Mantida para ser chamada por edição direta, mas o botão foi removido)
+         * @param {string} itemId O ID exclusivo do item a ser excluído.
          */
         function excluirItem(itemId) {
             const inputNoMain = document.querySelector(`.quantidade-input[data-item-id="${itemId}"]`);
             if (inputNoMain) {
-                inputNoMain.value = "0"; // Alterado para '0' (zero) para manter a coerência visual
+                inputNoMain.value = "0"; 
                 // Dispara o evento 'input' para atualizar a interface imediatamente
                 inputNoMain.dispatchEvent(new Event('input')); 
             }
@@ -1433,6 +1551,7 @@
         
         /**
          * Atualiza o campo de quantidade principal e aciona a recontagem total.
+         * @param {HTMLElement} inputElement O campo input no pop-up de resumo.
          */
         function atualizarQuantidadeDireta(inputElement) {
             const itemId = inputElement.getAttribute('data-item-id');
@@ -1468,7 +1587,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL (BOTÃO EXCLUIR REMOVIDO)
+        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - MANTIDA
         // -----------------------------------------------------
         function atualizarTotal() {
             let totalBruto = 0;
@@ -1485,8 +1604,7 @@
             const totaisPorGrupo = {};
 
             // Lista de grupos que usam a validação de mínimo individual
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-
+            
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 const quantidade = parseInt(input.value) || 0;
                 const min = parseInt(input.getAttribute("data-min")) || 1;
@@ -1496,31 +1614,42 @@
                 const itemId = input.getAttribute("data-item-id");
                 
                 const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
+                const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
                 
-                const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1; 
+                // Checagem de Mínimo Individual para Doces/Salgados OU Mini Cookie
+                const isMiniCookie = itemId === MINI_COOKIE_ID;
+                const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
 
+                const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookie; 
+
+                // 1. Soma a quantidade no total do grupo
                 if (!totaisPorGrupo[grupo]) {
                     totaisPorGrupo[grupo] = { quantidade: 0, items: [] };
                 }
                 totaisPorGrupo[grupo].quantidade += quantidade;
                 totaisPorGrupo[grupo].items.push({ input, quantidade, min, preco, descricaoResumo, itemId, grupo });
 
+                // 2. Validação MÍNIMO INDIVIDUAL (Apenas exibe o erro visual na tabela principal)
                 if (isIndividualMinCheck && quantidade > 0) {
                     if (quantidade < min) {
+                        // EXIBE MENSAGEM DE ERRO
                         if (erroElemento) {
                             erroElemento.textContent = `Mín ${min} Unid.`;
                             erroElemento.style.display = 'block';
                         }
                     } else {
+                        // OCULTA MENSAGEM se for válido
                         if (erroElemento) erroElemento.style.display = 'none';
                     }
                 } else {
+                    // Oculta a mensagem se a quantidade for 0 ou não for para checar individualmente
                     if (erroElemento) erroElemento.style.display = 'none'; 
                 }
             });
 
             let temErroDeMinimo = false;
 
+            // 3. Processa os totais e cria o resumo para o pop-up
             for (const grupo in totaisPorGrupo) {
                 const infoGrupo = totaisPorGrupo[grupo];
                 const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
@@ -1529,6 +1658,8 @@
                 const erroCategoriaElemento = isCookieGroup ? document.getElementById('erro-cookies') : null;
                 
                 let grupoValido = true;
+                
+                // Validação MÍNIMO POR GRUPO (ex: Cookies: minTotal=3)
                 if (minTotal > 0 && infoGrupo.quantidade > 0 && infoGrupo.quantidade < minTotal) {
                     grupoValido = false;
                     temErroDeMinimo = true;
@@ -1540,20 +1671,27 @@
                     if (erroCategoriaElemento) erroCategoriaElemento.style.display = 'none';
                 }
 
+                // Adiciona itens válidos ao subtotal
                 infoGrupo.items.forEach(item => {
-                    const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+                    // Checagem de Mínimo Individual para Doces/Salgados OU Mini Cookie
+                    const isMiniCookie = item.itemId === MINI_COOKIE_ID;
+                    const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+
+                    const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookie;
                     const isItemValido = item.quantidade >= item.min;
                     
                     if (item.quantidade > 0) {
                         let shouldIncludeInTotal = true;
                         
-                        if (isIndividualMinCheck && !isItemValido) {
-                            shouldIncludeInTotal = false;
-                            temErroDeMinimo = true; 
+                        // Checa o erro individual (Mini Cookie ou Doces/Salgados)
+                        if (isIndividualMinCheck && !isItemValido) { 
+                                     shouldIncludeInTotal = false;
+                                     temErroDeMinimo = true; // Marca erro se falhar no min individual
                         }
                         
+                        // Checa o erro de grupo para Cookies (ou outros grupos com minTotal > 0)
                         if (minTotal > 0 && !grupoValido) {
-                            shouldIncludeInTotal = false; 
+                                     shouldIncludeInTotal = false; // Marca erro se falhar no min de grupo
                         }
                         
                         if (shouldIncludeInTotal) {
@@ -1562,12 +1700,14 @@
                             totalItens += item.quantidade;
                         }
 
+                        // Inclui no resumo (pop-up) se a quantidade for > 0
                         if (!gruposResumo[grupo]) gruposResumo[grupo] = [];
                         gruposResumo[grupo].push({ ...item });
                     }
                 });
             }
 
+            // Aplica o desconto do cupom
             const descontoTotal = cupomAplicado.desconto;
             let totalLiquido = totalBruto;
             
@@ -1585,7 +1725,7 @@
                     const precoTotalItem = item.quantidade * item.preco;
                     let precoExibicao = `R$ ${precoTotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
                     
-                    // CÓDIGO HTML AGORA SEM O BOTÃO "EXCLUIR"
+                    // Geração do item com campo de edição direta
                     resumoItensPopup.innerHTML += `
                         <div class="resumo-item-line">
                             <div class="resumo-item-name">
@@ -1594,26 +1734,30 @@
                             </div>
                             <div class="resumo-item-input-group">
                                 <input type="number" 
-                                        min="0" 
-                                        value="${item.quantidade}" 
-                                        data-item-id="${item.itemId}" 
-                                        onblur="atualizarQuantidadeDireta(this)">
+                                             min="0" 
+                                             value="${item.quantidade}" 
+                                             data-item-id="${item.itemId}" 
+                                             onblur="atualizarQuantidadeDireta(this)">
                                 un.
+                            </div>
+                            <div class="resumo-item-actions">
+                                <button class="btn-excluir" onclick="excluirItem('${item.itemId}')">EXCLUIR</button>
                             </div>
                         </div>
                     `;
                 });
             }
 
-            // 2. Atualiza o total exibido no Pop-up (lógica de desconto inalterada)
+            // 2. Atualiza o total exibido no Pop-up (incluindo desconto se houver)
             if (descontoTotal > 0) {
                  resumoTotalPopup.innerHTML = `
-                        <div class="resumo-total-line">SUBTOTAL: R$ ${totalBrutoFormatado}</div>
-                        <div class="resumo-total-line total-com-desconto">DESCONTO CUPOM: R$ ${descontoTotal.toFixed(2).replace('.', ',')}</div>
-                        <div class="resumo-total">TOTAL: R$ ${totalLiquidoFormatado}</div>
-                        `;
+                    <div class="resumo-total-line">SUBTOTAL: R$ ${totalBrutoFormatado}</div>
+                    <div class="resumo-total-line total-com-desconto">DESCONTO CUPOM: R$ ${descontoTotal.toFixed(2).replace('.', ',')}</div>
+                    <div class="resumo-total">TOTAL: R$ ${totalLiquidoFormatado}</div>
+                    `;
             } else {
                  resumoTotalPopup.textContent = `TOTAL: R$ ${totalBrutoFormatado}`;
+                 // Garante que o campo de cupom não mantenha a mensagem de sucesso se o total for 0
                  const cupomMessage = document.getElementById('cupom-message');
                  if (totalBruto === 0 && cupomMessage) {
                      cupomMessage.textContent = '';
@@ -1621,14 +1765,14 @@
                      }
             }
 
-            // 3. Controla a visibilidade do botão "Fazer Pedido" no pop-up (inalterado)
+            // 3. Controla a visibilidade do botão "Fazer Pedido" no pop-up
             if (totalBruto > 0) {
                  fazerPedidoContainer.innerHTML = '<button onclick="abrirPopup()">FAZER PEDIDO</button>';
             } else {
                  fazerPedidoContainer.innerHTML = '';
             }
 
-            // 4. Atualiza e exibe o Rodapé Fixo (inalterado)
+            // 4. Atualiza e exibe o Rodapé Fixo
             if (totalBruto > 0) {
                 document.getElementById("summary-total").textContent = `R$ ${totalLiquidoFormatado}`;
                 document.getElementById("summary-item-count").textContent = ` / ${totalItens} ${totalItens === 1 ? 'item' : 'itens'}`;
@@ -1642,7 +1786,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÕES POPUP E CONFIRMAR PEDIDO
+        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - MANTIDAS
         // -----------------------------------------------------
         function abrirResumoPopup() {
             // Garante que a mensagem do cupom seja exibida corretamente ao abrir
@@ -1704,47 +1848,35 @@
             window.scrollTo(0, 0);
         }
 
-        // ***************************************************************
-        // FUNÇÃO PRINCIPAL DE ENVIO (CORRIGIDA CONTRA DUPLICAÇÃO)
-        // ***************************************************************
-        async function confirmarPedido() { 
-            
-            // 🚨 CORREÇÃO DE DUPLICAÇÃO NO FRONTEND 🚨
-            if (isSubmitting) {
-                alert("O pedido já está em processamento. Por favor, aguarde.");
-                return;
-            }
-            isSubmitting = true; // Bloqueia o envio imediatamente
-
+        function confirmarPedido() {
             // Linha riscada para separar o resumo dos itens das informações do cliente
             const linhaSeparadora = "\n\n*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*\n\n";
 
-            // O resumo para WhatsApp e para o campo de Resumo da Planilha
-            let resumoParaEnvio = "Olá, Favu!\nGostaria de saber a disponibilidade para encomendar os itens abaixo:\n\n\n*_- Resumo do pedido_:*\n\n";
-            let totalPedido = 0; // Total Bruto
+            let resumoWhatsapp = "Olá, Favu!\nGostaria de saber a disponibilidade para encomendar os itens abaixo:\n\n\n*_- Resumo do pedido_:*\n\n";
+            let totalPedido = 0; // Será preenchido com o total Bruto (sem desconto)
             let temErroDeMinimo = false;
 
             const gruposResumo = {}; 
             const totaisPorGrupo = {};
 
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-
-            // 1. Preenche totaisPorGrupo (lógica inalterada)
+            
+            // 1. Preenche totaisPorGrupo (lógica repetida de atualizarTotal para validação e resumo)
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 const quantidade = parseInt(input.value) || 0;
                 const min = parseInt(input.getAttribute("data-min")) || 1;
                 const preco = parseFloat(input.getAttribute("data-preco")) || 0;
                 const descricaoResumo = input.getAttribute("data-resumo");
                 const grupo = input.getAttribute("data-grupo");
+                const itemId = input.getAttribute("data-item-id");
                 
                 if (!totaisPorGrupo[grupo]) {
                     totaisPorGrupo[grupo] = { quantidade: 0, items: [] };
                 }
                 totaisPorGrupo[grupo].quantidade += quantidade;
-                totaisPorGrupo[grupo].items.push({ quantidade, min, preco, descricaoResumo, grupo });
+                totaisPorGrupo[grupo].items.push({ quantidade, min, preco, descricaoResumo, grupo, itemId });
             });
 
-            // 2. Valida e Calcula o Total Bruto para o Resumo (lógica inalterada)
+            // 2. Valida e Calcula o Total Bruto para o WhatsApp
             for (const grupo in totaisPorGrupo) {
                 const infoGrupo = totaisPorGrupo[grupo];
                 const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
@@ -1757,15 +1889,21 @@
                 }
 
                 infoGrupo.items.forEach(item => {
-                    const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+                    // Checagem de Mínimo Individual para Doces/Salgados OU Mini Cookie
+                    const isMiniCookie = item.itemId === MINI_COOKIE_ID;
+                    const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+
+                    const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookie;
                     const isItemValido = item.quantidade >= item.min;
 
                     let shouldIncludeInTotal = true;
 
+                    // Checagem Individual
                     if (item.quantidade > 0 && isIndividualMinCheck && !isItemValido) { 
-                          shouldIncludeInTotal = false;
-                          temErroDeMinimo = true;
+                                     shouldIncludeInTotal = false;
+                                     temErroDeMinimo = true;
                     }
+                    // Checagem de Grupo
                     if (minTotal > 0 && !grupoValido) {
                         shouldIncludeInTotal = false;
                     }
@@ -1785,40 +1923,35 @@
             // ************ VALIDAÇÃO DE BLOQUEIO ************
             if (totalPedido === 0) {
                 alert("Seu pedido está vazio. Adicione itens para confirmar.");
-                isSubmitting = false; // Libera o envio
                 fecharPopup();
                 return;
             }
 
             if (temErroDeMinimo) {
-                alert("Por favor, ajuste as quantidades mínimas do seu pedido antes de confirmar.");
-                isSubmitting = false; // Libera o envio
-                atualizarTotal(); // Recarrega os totais e erros
-                abrirResumoPopup();
-                return;
+                 alert("Por favor, ajuste as quantidades mínimas do seu pedido antes de confirmar.");
+                 atualizarTotal(); // Recarrega os totais e erros
+                 abrirResumoPopup();
+                 return;
             }
             // ************ FIM DA VALIDAÇÃO DE BLOQUEIO ************
 
-            // Aplica desconto
+            // Aplica desconto para o resumo do WhatsApp
             const desconto = cupomAplicado.desconto;
             const totalLiquido = totalPedido - desconto;
 
-            // 3. Monta o Resumo Completo (para API e WhatsApp) (lógica inalterada)
             for (const grupo in gruposResumo) {
-                resumoParaEnvio += `*${grupo}:*\n`;
+                resumoWhatsapp += `*${grupo}:*\n`;
                 gruposResumo[grupo].forEach(item => {
-                    resumoParaEnvio += `${item.descricao} - ${item.quantidade} unidades\n`;
+                    resumoWhatsapp += `${item.descricao} - ${item.quantidade} unidades\n`;
                 });
-                resumoParaEnvio += `\n`; 
+                resumoWhatsapp += `\n`; 
             }
             
-            resumoParaEnvio += `*Total Bruto*: R$ ${totalPedido.toFixed(2).replace('.', ',')}\n`; 
-
             if (desconto > 0) {
-                resumoParaEnvio += `*Desconto Cupom (${cupomAplicado.codigo})*: R$ ${desconto.toFixed(2).replace('.', ',')}\n`;
+                 resumoWhatsapp += `*Desconto Cupom (${cupomAplicado.codigo})*: R$ ${desconto.toFixed(2).replace('.', ',')}\n`;
             }
 
-            resumoParaEnvio += `*_Total Final_*: R$ ${totalLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            resumoWhatsapp += `*_Total Final_*: R$ ${totalLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
             const nome = document.getElementById("nome").value;
             const data = document.getElementById("data").value;
@@ -1827,85 +1960,28 @@
 
             if (!nome || !data || !horario || !pagamento) {
                 alert("Por gentileza, preencha todos os campos!");
-                isSubmitting = false; // Libera o envio
                 return;
             }
 
             const dataParts = data.split("-");
             const dataFormatada = `${dataParts[2]}/${dataParts[1]}/${dataParts[0]}`;
 
-            // Inclui a linha separadora e os dados do cliente (lógica inalterada)
-            resumoParaEnvio += linhaSeparadora;
-            resumoParaEnvio += `_*- Informações do Cliente:*_\n\n*Nome*: ${nome}\n*Data da Entrega*: ${dataFormatada}\n*Horário da Entrega*: ${horario}\n*Forma de Pagamento*: ${pagamento}`;
-
+            // INCLUI A NOVA LINHA SEPARADORA AQUI
+            resumoWhatsapp += linhaSeparadora;
             
-            // -------------------------------------------------------------
-            // BLOCO: ENVIO DOS DADOS PARA O GOOGLE APPS SCRIPT
-            // -------------------------------------------------------------
-            
-            const formData = new FormData();
-            formData.append('action', 'createOrder'); 
-            
-            formData.append('Nome do Cliente', nome);
-            formData.append('Data da Entrega', dataFormatada); 
-            formData.append('Horário da Entrega', horario);
-            formData.append('Forma de Pagamento', pagamento);
-            formData.append('Total Bruto', totalPedido.toFixed(2).replace('.', ','));
-            formData.append('Desconto', desconto.toFixed(2).replace('.', ','));
-            formData.append('Total Final', totalLiquido.toFixed(2).replace('.', ','));
-            formData.append('Cupom Aplicado', cupomAplicado.codigo || 'Nenhum');
-            // Campo principal que contém todos os detalhes do pedido
-            formData.append('Resumo dos Itens', resumoParaEnvio); 
+            resumoWhatsapp += `_*- Informações do Pedido:*_\n\n*Nome*: ${nome}\n*Data da entrega*: ${dataFormatada}\n*Horário da entrega*: ${horario}\n*Forma de pagamento*: ${pagamento}`;
 
-            // Converte FormData para URLSearchParams (formato que Apps Script espera no doPost(e))
-            const urlEncodedData = new URLSearchParams(formData);
-
-            // Configura o botão para o estado de envio
-            const submitButton = document.querySelector('button[onclick="confirmarPedido()"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'ENVIANDO...';
-            submitButton.disabled = true;
-
-            let apiSuccess = false;
-
-            try {
-                const response = await fetch(APPS_SCRIPT_URL, { 
-                    method: 'POST',
-                    body: urlEncodedData
-                });
-
-                const responseData = await response.json();
-
-                if (response.ok && responseData.success) {
-                    alert("Pedido registrado com sucesso na Planilha! Você será redirecionado para o WhatsApp.");
-                    apiSuccess = true;
-                } else {
-                    console.error('Erro API:', responseData.message || responseData);
-                    alert(`Falha no registro do pedido. Enviando via WhatsApp. Erro: ${responseData.message || 'API indisponível'}`);
-                }
-            } catch (error) {
-                console.error('Erro de rede ao enviar para Apps Script:', error);
-                alert("Erro de conexão. Enviando via WhatsApp para garantir o pedido.");
-            } finally {
-                // Restaura o estado do botão
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-                isSubmitting = false; // 🚨 Libera o envio após a conclusão 🚨
-            }
-
-            // 4. Abre o WhatsApp (sempre)
-            const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(resumoParaEnvio)}`;
+            const whatsappLink = `https://wa.me/558195256641?text=${encodeURIComponent(resumoWhatsapp)}`;
             window.open(whatsappLink, '_blank');
 
-            // 5. Se o envio foi bem-sucedido para a API, reseta o formulário.
-            if (apiSuccess) {
-                resetarCampos();
+            // Marca o cupom de uso único como usado após o envio do pedido
+            if (CUPONS_GERADOS[cupomAplicado.codigo]) {
+                CUPONS_GERADOS[cupomAplicado.codigo].usado = true;
             }
+
+            resetarCampos();
         }
 
-        // ***************************************************************
-        // FIM DA FUNÇÃO PRINCIPAL
-        // ***************************************************************
         
         document.addEventListener("DOMContentLoaded", function () {
             
@@ -1916,16 +1992,18 @@
             }
 
             // 2. Evento para atualizar o total (mantido como input para a tabela principal)
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-
+            
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 input.addEventListener("input", atualizarTotal);
                 
+                // Ajuste no evento blur para manter o valor "0"
                 input.addEventListener("blur", function() {
                     const quantidade = parseInt(this.value) || 0;
                     const min = parseInt(this.getAttribute("data-min")) || 1;
                     const grupo = this.getAttribute("data-grupo");
                     
+                    // Se o valor for menor ou igual a 0 ou vazio, defina como "0"
+                    // Caso contrário, use o valor numérico (evita NaN)
                     if (this.value === "" || quantidade <= 0) {
                         this.value = "0"; 
                     } else {
@@ -1947,10 +2025,12 @@
                     
                     ativarAba(this);
                     
+                    // Alvo de rolagem é a IMAGEM do grupo
                     const targetImageId = this.getAttribute('data-img');
                     const targetElement = document.getElementById(targetImageId);
 
                     if (targetElement) {
+                        // Usa a função de rolagem precisa para levar a imagem para o topo
                         scrollToElement(targetElement);
                     }
                 });
@@ -1967,7 +2047,7 @@
                 primeiroGrupo.classList.add('active-group');
             }
             
-            // 5. FECHAMENTO DO POPUP AO CLICAR FORA (CORREÇÃO)
+            // 5. FECHAMENTO DO POPUP AO CLICAR FORA 
             document.addEventListener('click', function(event) {
                 const popupResumo = document.getElementById('popup-resumo');
                 const popupPedido = document.getElementById('popup-pedido');
